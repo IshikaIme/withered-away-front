@@ -1,0 +1,44 @@
+[
+  {
+    "ID": "1",
+    "NAME": "Angelina Jolie",
+    "GENDER": "Female",
+    "BIRTHDAY": "20-AUG-40",
+    "EMERGENCY_CONTACT_NO": "01675340238"
+  },
+  {
+    "ID": "16",
+    "NAME": "Ananto",
+    "GENDER": "Female",
+    "BIRTHDAY": "20-AUG-40",
+    "EMERGENCY_CONTACT_NO": "01675340238"
+  },
+  {
+    "ID": "3",
+    "NAME": "Jeon Jungkook",
+    "GENDER": "Male",
+    "BIRTHDAY": "1-SEP-97",
+    "EMERGENCY_CONTACT_NO": "039183180"
+  },
+  {
+    "ID": "5",
+    "NAME": "Lee Min ho",
+    "GENDER": "Male",
+    "BIRTHDAY": "2-AUG-80",
+    "EMERGENCY_CONTACT_NO": "0868799"
+  },
+  {
+    "ID": "7",
+    "NAME": "Kim Taehyung",
+    "GENDER": "Male",
+    "BIRTHDAY": "31-DEC-95",
+    "EMERGENCY_CONTACT_NO": "014342238"
+  },
+  {
+    "ID": "4",
+    "NAME": "Park Jimin",
+    "GENDER": "Male",
+    "BIRTHDAY": "9-OCT-95",
+    "EMERGENCY_CONTACT_NO": "13553538"
+  }
+]
