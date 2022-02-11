@@ -1,0 +1,69 @@
+.YourName {
+  /* width: 100%;  */
+  display: table;
+  /* border: 1px solid #444444; */
+}
+
+.wrap1 {
+  display: table-cell;
+}
+
+.wrap2 {
+  margin-right: 2rem;
+}
+
+.createAccount {
+  display: table-cell;
+  margin-left: 1rem;
+  margin-right: 3rem;
+}
+.btn {
+  margin-top: 1rem;
+  margin-left: 1rem;
+}
+section {
+  display: block;
+}
+label,
+input {
+  display: block;
+}
+
+/* label {
+  margin-bottom: 1rem;
+} */
+
+.radio {
+  margin-left: 50px;
+  margin-right: 50px;
+}
+.Birthdaypicker {
+  margin-left: 1rem;
+  margin-right: 50px;
+}
+
+.closecontact {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.contact {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.bmicontent {
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 2rem;
+}
+.BMI {
+  margin-right: 2rem;
+}
+.table-title {
+  margin-top: 2rem;
+}
+
+.wrap3 {
+  margin-left: 3rem;
+  margin-right: 3rem;
+}

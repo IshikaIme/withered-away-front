@@ -6,10 +6,13 @@ import {
   Switch,
   Link,
 } from "react-router-dom";
-import HomeAni from "./Animation/HomeAni";
+import HomeAni from "./HomePageAnimation/HomeAni";
 import { Formsidebar } from "./Registration/Form-sidebar";
-
+import { Homepage } from "./Homepage";
 import TableBody from "./Tables/TableBody";
+import Formcall from "./RegistraionAnimation/Formcall";
+import "./RegistraionAnimation/forms.css";
+import CostTable from "./RegistraionAnimation/CostTable";
 export class App extends React.Component {
   constructor(props) {
     super(props);
@@ -18,8 +21,9 @@ export class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <HomeAni />
-
+        {/* <CostTable /> */}
+        <Formcall />
+        {/* <HomeAni /> */}
         {/* <FormdemoApp /> */}
       </div>
     );

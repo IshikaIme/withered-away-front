@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/styles";
 import { AppBar, IconButton, Toolbar } from "@material-ui/core";
 import ExpandCircleDownRoundedIcon from "@mui/icons-material/ExpandCircleDownRounded";
 import SortIcon from "@mui/icons-material/Sort";
-
+import { Link as Scroll } from "react-scroll";
 import { Collapse } from "@material-ui/core";
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
 
   colortext: {
     // color: "	#800000",
-    color: "#800000",
+    color: "red",
   },
   title: {
     color: "#fff",
@@ -92,12 +92,14 @@ export default function HomeHeader() {
               <span className={classes.colortext}>Away </span>
             </h1>
           </h1>
-          <IconButton>
-            <ExpandCircleDownRoundedIcon
-              size="10rem"
-              className={classes.goDown}
-            />
-          </IconButton>
+          <Scroll to="Navigation card" smooth={true}>
+            <IconButton>
+              <ExpandCircleDownRoundedIcon
+                size="10rem"
+                className={classes.goDown}
+              />
+            </IconButton>
+          </Scroll>
         </div>
       </Collapse>
     </div>
