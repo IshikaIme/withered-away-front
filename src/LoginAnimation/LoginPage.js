@@ -12,7 +12,7 @@ import {
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
+import CustomizedSnackbars from "../CustomizedSnackbars";
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundRepeat: "no-repeat",
@@ -77,6 +77,7 @@ export default function LoginPage() {
     console.log(data, e);
     const values = getValues();
     console.log(values);
+
     axios
       .post("http://localhost:8080/auth/users/login", values)
       .then((response) => {
@@ -90,6 +91,10 @@ export default function LoginPage() {
           else if (values.role === "staff") navigate("/StaffDash");
 
           window.location.reload(false);
+        } else {
+          {
+            <CustomizedSnackbars.error />;
+          }
         }
       })
       .catch((error) => {
