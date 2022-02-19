@@ -85,7 +85,7 @@ export default function AppointmentHistory() {
       headerStyle: { color: "#fff" },
     },
     {
-      title: "ACCEPTED",
+      title: "STATUS",
       field: "ACCEPTED",
       sorting: true,
       align: "center",
@@ -94,6 +94,10 @@ export default function AppointmentHistory() {
         fontfamily: "corgette",
         height: 80,
         maxHeight: 80,
+      },
+      lookup: {
+        T: "Accepted",
+        F: "Pending",
       },
       headerStyle: { color: "#fff" },
     },

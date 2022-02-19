@@ -22,7 +22,7 @@ const useStyles = makeStyles({
   root: {
     width: 300,
     height: 400,
-    background: "rgba(255,25,0,0.8)",
+    background: "rgba(255,25,0,0.2)",
     margin: "20px",
     marginTop: "11.5rem",
 
@@ -33,16 +33,16 @@ const useStyles = makeStyles({
     height: 400,
     background: "rgba(255,255,255,0.4)",
     margin: "20px",
-    marginTop: "10rem",
+    marginTop: "11.5rem",
 
     marginRight: "2rem",
   },
   root3: {
     width: 300,
     height: 400,
-    background: "rgba(255,255,255,0.4)",
+    background: "rgba(165,42,42,0.6)",
     margin: "20px",
-    marginTop: "10rem",
+    marginTop: "11.5rem",
     marginLeft: "1rem",
     marginRight: "2rem",
   },
@@ -64,7 +64,7 @@ const useStyles = makeStyles({
     fontFamily: "Nunito",
     marginTop: "35rem",
     height: 80,
-    background: "rgba(0,0,0,0.2)",
+    background: "rgba(0,199,0,0.6)",
   },
 });
 

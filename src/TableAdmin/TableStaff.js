@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import MaterialTable from "material-table";
 import GetAppIcon from "@material-ui/icons/GetApp";
-
+import BodyAdminDash from "../AdminDashboard/BodyAdminDash";
 import AddIcon from "@material-ui/icons/Add";
 
 function TableStaff() {
@@ -47,6 +47,7 @@ function TableStaff() {
 
   return (
     <div className="TablePeople">
+      <BodyAdminDash />
       <MaterialTable
         title="Staff Information"
         data={TableData}
