@@ -84,6 +84,8 @@ export default function ReqABook() {
     e.preventDefault();
     console.log(data, e);
 
+    const values = getValues();
+    console.log(values);
     // setNewValue(100, data.ISSUE_DATE, id, 1, "F", data.REASON);
     // console.log(values);
     // newvalue.ID = "100";
@@ -108,6 +110,7 @@ export default function ReqABook() {
   const [value, setValue] = useState();
   const handleChange = (event) => {
     setValue(event.target.value);
+    console.log(event.target.value);
   };
   return (
     <div className={classes.root}>
@@ -146,13 +149,16 @@ export default function ReqABook() {
 
               <FormControl>
                 <RadioGroup
-                  aria-labelledby="BOOK NAME"
-                  name="BOOK_NAME"
+                  aria-labelledby="BOOK_NAME"
                   value={value}
+                  className="BOOK_NAME"
                   onChange={handleChange}
                 >
                   {item.map((book) => (
                     <FormControlLabel
+                      // id={book.ID}
+                      {...register("BOOK_NAME")}
+                      name={book.ID}
                       value={book.NAME}
                       control={<Radio />}
                       label={book.NAME}

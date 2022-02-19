@@ -102,8 +102,12 @@ export default function Songs() {
                   console.log(newData);
                   resolve();
                 }, 500);
-                newItem.ID = newData.SONG_ID;
-                newItem.TITLE = newData.TITLE;
+                // newItem.ID = newData.SONG_ID;
+                // newItem.TITLE = newData.TITLE;
+                const newItem = {
+                  ID: newData.SONG_ID,
+                  TITLE: newData.TITLE,
+                };
                 console.log(newItem);
                 axios
                   .post(
@@ -149,7 +153,7 @@ export default function Songs() {
 
                   resolve();
                 }, 1000);
-                let url = `http://localhost:8080/api/song_favorites/people_id/${id}/${contactId}`;
+                let url = `http://localhost:8080/api/song_favorites/song_id/${contactId}`;
                 axios.delete(url).then((res) => {
                   //     console.log("res", res);
                 });
