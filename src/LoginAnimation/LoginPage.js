@@ -1,18 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import loginImg from "../images/redfloweryellow.jpg";
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert from "@mui/material/Alert";
 import { makeStyles } from "@material-ui/styles";
 import {
-  CssBaseline,
-  TextField,
-  Button,
-  FormControlLabel,
-  RadioGroup,
-  Radio,
+	CssBaseline,
+	TextField,
+	Button,
+	FormControlLabel,
+	RadioGroup,
+	Radio,
 } from "@material-ui/core";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import CustomizedSnackbars from "../CustomizedSnackbars";
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+	return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -71,6 +77,9 @@ export default function LoginPage() {
 
 	const { handleSubmit, register, getValues } = useForm();
 	// const [data, setData] = useState(null);
+	const [alertOpen, setAlertOpen] = React.useState(false);
+	const [alertMsg, setAlertMsg] = React.useState(false);
+	const [alertType, setAlertType] = React.useState(false);
 	let navigate = useNavigate();
 
 	const onSubmit = (data, e) => {
@@ -83,6 +92,9 @@ export default function LoginPage() {
 			.post("http://localhost:8080/auth/users/login", values)
 			.then((response) => {
 				if (response.data.accessToken) {
+					setAlertType("success");
+					setAlertMsg("Login Successful");
+					setAlertOpen(true);
 					localStorage.setItem(
 						"accessToken",
 						response.data.accessToken
@@ -96,13 +108,28 @@ export default function LoginPage() {
 					else if (values.role === "staff") navigate("/StaffDash");
 
 					window.location.reload(false);
+				} else {
+					setAlertType("error");
+					setAlertMsg("Invalid Username or Password");
+					setAlertOpen(true);
 				}
 			})
 			.catch((error) => {
 				console.log(error);
+				setAlertType("error");
+				setAlertMsg("Invalid Username or Password");
+				setAlertOpen(true);
 			});
 	};
 	const onError = (errors, e) => console.log(errors, e);
+
+	const handleClose = (event, reason) => {
+		if (reason === "clickaway") {
+			return;
+		}
+
+		setAlertOpen(false);
+	};
 
 	return (
 		<div className={classes.root}>
@@ -181,8 +208,19 @@ export default function LoginPage() {
 					</div>
 				</div>
 			</form>
-			{/* <DataValidation /> */}
-			{/* <CustomizedSnackbars msg="Invalid Password or Role" /> */}
+			<Snackbar
+				open={alertOpen}
+				autoHideDuration={6000}
+				onClose={handleClose}
+			>
+				<Alert
+					onClose={handleClose}
+					severity={alertType}
+					sx={{ width: "100%" }}
+				>
+					{alertMsg}
+				</Alert>
+			</Snackbar>
 		</div>
 	);
 }

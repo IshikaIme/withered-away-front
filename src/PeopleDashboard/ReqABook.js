@@ -10,6 +10,14 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert from "@mui/material/Alert";
+import CustomizedSnackbars from "../CustomizedSnackbars";
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+	return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
+
 const useStyles = makeStyles((theme) => ({
 	root: {
 		// backgroundRepeat: "no-repeat",
@@ -66,6 +74,10 @@ const useStyles = makeStyles((theme) => ({
 export default function ReqABook() {
 	const [item, setItem] = useState([]);
 
+	const [alertOpen, setAlertOpen] = React.useState(false);
+	const [alertMsg, setAlertMsg] = React.useState(false);
+	const [alertType, setAlertType] = React.useState(false);
+
 	const classes = useStyles();
 	const id = localStorage.getItem("id");
 	const { handleSubmit, register, getValues } = useForm();
@@ -81,27 +93,48 @@ export default function ReqABook() {
 			});
 	}, []);
 
+	const handleClose = (event, reason) => {
+		if (reason === "clickaway") {
+			return;
+		}
+
+		setAlertOpen(false);
+	};
+
 	const onSubmit = (data, e) => {
 		e.preventDefault();
 		console.log(data, e);
 
 		// const values = getValues();
 		// console.log(values);
-		axios
-			.post("http://localhost:8080/api/book_issue", {
-				BOOK_ID: data.BOOK_ID,
-				PEOPLE_ID: id,
-				ISSUE_DATE: new Date(),
-				RETURN_DATE: data.RETURN_DATE,
-			})
-			.then((response) => {
-				if (response) {
-					console.log(response);
-				}
-			})
-			.catch((error) => {
-				console.log(error);
-			});
+		try {
+			axios
+				.post("http://localhost:8080/api/book_issue", {
+					BOOK_ID: data.BOOK_ID,
+					PEOPLE_ID: id,
+					ISSUE_DATE: new Date(),
+					RETURN_DATE: data.RETURN_DATE,
+				})
+				.then((response) => {
+					if (response) {
+						console.log(response);
+						setAlertType("success");
+						setAlertMsg("Book Added Successfully");
+						setAlertOpen(true);
+					}
+				})
+				.catch((error) => {
+					console.log(error);
+					setAlertType("error");
+					setAlertMsg("Couldn't add this Book");
+					setAlertOpen(true);
+				});
+		} catch (e) {
+			console.log(e);
+			setAlertType("error");
+			setAlertMsg("Couldn't add this Book");
+			setAlertOpen(true);
+		}
 	};
 
 	const [selectedBookId, setSelectedBookId] = useState();
@@ -165,6 +198,19 @@ export default function ReqABook() {
 					</div>
 				</div>
 			</form>
+			<Snackbar
+				open={alertOpen}
+				autoHideDuration={6000}
+				onClose={handleClose}
+			>
+				<Alert
+					onClose={handleClose}
+					severity={alertType}
+					sx={{ width: "100%" }}
+				>
+					{alertMsg}
+				</Alert>
+			</Snackbar>
 		</div>
 	);
 }
