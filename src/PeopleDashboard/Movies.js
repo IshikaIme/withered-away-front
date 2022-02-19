@@ -47,21 +47,21 @@ export default function Songs() {
       });
   }, []);
   const columns = [
-    {
-      title: "Movie ID",
-      field: "MOVIE_ID",
-      sorting: true,
-      align: "center",
-      filtering: true,
-      cellStyle: {
-        fontfamily: "corgette",
-        height: 40,
-        maxHeight: 40,
-        width: 20,
-        maxWidth: 20,
-      },
-      headerStyle: { color: "#fff" },
-    },
+    // {
+    //   title: "Movie ID",
+    //   field: "MOVIE_ID",
+    //   sorting: true,
+    //   align: "center",
+    //   filtering: true,
+    //   cellStyle: {
+    //     fontfamily: "corgette",
+    //     height: 40,
+    //     maxHeight: 40,
+    //     width: 20,
+    //     maxWidth: 20,
+    //   },
+    //   headerStyle: { color: "#fff" },
+    // },
 
     {
       title: "Movie Name",
@@ -100,40 +100,38 @@ export default function Songs() {
 
                   resolve();
                 }, 500);
-
+                const newItem = {
+                  TITLE: newData.TITLE,
+                };
                 axios
                   .post(
-                    `http://localhost:8080/api/movie/id/movie_favorites/movie_id/people_id/${id}`,
+                    `http://localhost:8080/api/movie/`,
 
-                    newData
+                    newItem
                   )
                   .then((response) => {
                     // alertService.success("User added",);
                     console.log(response);
+
+                    axios
+                      .post(
+                        `http://localhost:8080/api/movie_favorites/`,
+
+                        { PEOPLE_ID: id, MOVIE_ID: response.data.ID }
+                      )
+                      .then((response) => {
+                        // alertService.success("User added",);
+                        console.log(response);
+                      })
+                      .catch((error) => {
+                        console.log(error);
+                      });
                   })
                   .catch((error) => {
                     console.log(error);
                   });
               }),
-            onRowUpdate: (newData, oldData) =>
-              new Promise((resolve, reject) => {
-                setTimeout(() => {
-                  const dataUpdate = [...item];
-                  const index = oldData.item.id;
-                  dataUpdate[index] = newData;
-                  setItem([...dataUpdate]);
 
-                  resolve();
-                }, 500);
-                axios
-                  .patch(
-                    `http://localhost:8080/api/movie/id/movie_favorites/movie_id/people_id/${id}`,
-                    newData
-                  )
-                  .then((res) => {
-                    // window.location.reload(false);
-                  });
-              }),
             onRowDelete: (oldData) =>
               new Promise((resolve, reject) => {
                 let contactId = oldData.ID;
@@ -145,7 +143,7 @@ export default function Songs() {
 
                   resolve();
                 }, 1000);
-                let url = `http://localhost:8080/api/movie/id/movie_favorites/movie_id/people_id/${id}`;
+                let url = `http://localhost:8080/api/movie_favorites/movie_id/${contactId}`;
                 axios.delete(url).then((res) => {
                   //     console.log("res", res);
                 });

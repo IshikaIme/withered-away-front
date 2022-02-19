@@ -10,19 +10,6 @@ function TableStaff() {
 
   const columns = [
     {
-      title: "ID",
-      field: "ID",
-      sorting: true,
-      align: "center",
-      filtering: true,
-      cellStyle: {
-        fontfamily: "corgette",
-        height: 80,
-        maxHeight: 80,
-      },
-      headerStyle: { color: "#fff" },
-    },
-    {
       title: "Name",
       field: "NAME",
       sorting: true,

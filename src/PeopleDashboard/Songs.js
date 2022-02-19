@@ -48,21 +48,21 @@ export default function Songs() {
       });
   }, []);
   const columns = [
-    {
-      title: "Song ID",
-      field: "SONG_ID",
-      sorting: true,
-      align: "center",
-      filtering: true,
-      cellStyle: {
-        fontfamily: "corgette",
-        height: 40,
-        maxHeight: 40,
-        width: 20,
-        maxWidth: 20,
-      },
-      headerStyle: { color: "#fff" },
-    },
+    // {
+    //   title: "Song ID",
+    //   field: "SONG_ID",
+    //   sorting: true,
+    //   align: "center",
+    //   filtering: true,
+    //   cellStyle: {
+    //     fontfamily: "corgette",
+    //     height: 40,
+    //     maxHeight: 40,
+    //     width: 20,
+    //     maxWidth: 20,
+    //   },
+    //   headerStyle: { color: "#fff" },
+    // },
 
     {
       title: "Song Name",
@@ -102,10 +102,8 @@ export default function Songs() {
                   console.log(newData);
                   resolve();
                 }, 500);
-                // newItem.ID = newData.SONG_ID;
-                // newItem.TITLE = newData.TITLE;
+
                 const newItem = {
-                  ID: newData.SONG_ID,
                   TITLE: newData.TITLE,
                 };
                 console.log(newItem);
@@ -118,6 +116,20 @@ export default function Songs() {
                   .then((response) => {
                     // alertService.success("User added",);
                     console.log(response);
+
+                    axios
+                      .post(
+                        `http://localhost:8080/api/song_favorites/`,
+
+                        { PEOPLE_ID: id, SONG_ID: response.data.ID }
+                      )
+                      .then((response) => {
+                        // alertService.success("User added",);
+                        console.log(response);
+                      })
+                      .catch((error) => {
+                        console.log(error);
+                      });
                   })
                   .catch((error) => {
                     console.log(error);

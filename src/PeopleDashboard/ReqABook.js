@@ -65,7 +65,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ReqABook() {
   const [item, setItem] = useState([]);
-  const [newvalue, setNewValue] = useState(null);
+
   const classes = useStyles();
   const id = localStorage.getItem("id");
   const { handleSubmit, register, getValues } = useForm();
@@ -86,31 +86,11 @@ export default function ReqABook() {
 
     const values = getValues();
     console.log(values);
-    // setNewValue(100, data.ISSUE_DATE, id, 1, "F", data.REASON);
-    // console.log(values);
-    // newvalue.ID = "100";
-    // newvalue.APPOINTED_DATE = data.ISSUE_DATE;
-    // newvalue.PEOPLE_ID = id;
-    // newvalue.DOCTOR_ID = 1;
-    // newvalue.ACCEPTED = "F";
-    // newvalue.REASON = data.REASON;
-
-    // axios
-    //   .post("http://localhost:8080/appointment", newvalue)
-    //   .then((response) => {
-    //     if (response) {
-    //       console.log(newvalue);
-    //     }
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
   };
   const onError = (errors, e) => console.log(errors, e);
   const [value, setValue] = useState();
   const handleChange = (event) => {
     setValue(event.target.value);
-    console.log(event.target.value);
   };
   return (
     <div className={classes.root}>
@@ -136,17 +116,6 @@ export default function ReqABook() {
           <div className={classes.wrap}>
             <h1 className={classes.Title2}>BOOK NAME</h1>
             <div className={classes.content2}>
-              {/* <RadioGroup row {...register("book")}>
-                <Radio
-                  className="reason"
-                  label="reason"
-                  color="secondary"
-                  fullWidth
-                  required
-                  value="A|B|C|D"
-                />
-              </RadioGroup> */}
-
               <FormControl>
                 <RadioGroup
                   aria-labelledby="BOOK_NAME"

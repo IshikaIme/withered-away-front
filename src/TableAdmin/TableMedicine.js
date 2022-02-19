@@ -9,20 +9,20 @@ export default function TableMedicine() {
   const [TableData, setTableData] = useState([]);
 
   const columns = [
-    {
-      title: "ID",
-      field: "ID",
-      sorting: true,
-      align: "center",
-      filtering: true,
-      cellStyle: {
-        // background: "#009688",
-        fontfamily: "corgette",
-        height: 80,
-        maxHeight: 80,
-      },
-      headerStyle: { color: "#fff" },
-    },
+    // {
+    //   title: "ID",
+    //   field: "ID",
+    //   sorting: true,
+    //   align: "center",
+    //   filtering: true,
+    //   cellStyle: {
+    //     // background: "#009688",
+    //     fontfamily: "corgette",
+    //     height: 80,
+    //     maxHeight: 80,
+    //   },
+    //   headerStyle: { color: "#fff" },
+    // },
     {
       title: "Name",
       field: "NAME",
@@ -65,10 +65,10 @@ export default function TableMedicine() {
   }, []);
 
   return (
-    <div className="Rooms">
+    <div className="Medicines">
       <BodyAdminDash />
       <MaterialTable
-        title="Rooms"
+        title="Medicines"
         data={TableData}
         columns={columns}
         actions={[
