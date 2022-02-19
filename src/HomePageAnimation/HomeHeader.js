@@ -25,23 +25,26 @@ const useStyles = makeStyles((theme) => ({
   },
   AppBarTitle: {
     flexGrow: "1",
+    marginLeft: "60rem",
     // fontSize: "100px",
     // margin: "2 auto",
   },
 
   colortext: {
     // color: "	#800000",
-    color: "red",
+    color: "	#8B0000",
   },
   title: {
     color: "#fff",
     fontSize: "6.5rem",
+    marginTop: "20rem",
     marginBottom: "0 auto ",
   },
   Secondtitle: {
     color: "#fff",
     fontSize: "3rem",
     marginTop: "0 ",
+
     marginBottom: "0  ",
   },
   container: {

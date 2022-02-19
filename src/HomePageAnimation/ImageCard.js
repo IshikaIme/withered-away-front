@@ -12,6 +12,8 @@ import Typography from "@material-ui/core/Typography";
 import { Collapse, Zoom } from "@material-ui/core";
 import { useEffect, useState } from "react";
 import CardActions from "@mui/material/CardActions";
+import { Link } from "react-router-dom";
+
 const useStyles = makeStyles({
   allcards: {
     display: "flex",
@@ -54,15 +56,49 @@ export default function ImageCard() {
   return (
     // <Zoom in={checked}>
     <div className={classes.allcards}>
-      <CardActions>
+      <a href="/Formcall">
+        <CardActions>
+          <Card className={classes.root}>
+            <CardMedia
+              style={{ height: 0, paddingTop: "90%" }}
+              className={classes.media}
+              // image={cardnumber.imageUrl}
+              // image={`url(${cardnumber.imageUrl})`}
+              image={JoinImg}
+              title="Registration"
+            />
+
+            <CardContent>
+              <Typography
+                gutterBottom
+                variant="h5"
+                component="h1"
+                className={classes.title}
+              >
+                {" "}
+                Join With us
+              </Typography>
+              <Typography
+                variant="body2"
+                color="textSecondary"
+                component="p"
+                className={classes.desc}
+              >
+                If you want to be a member today, fillup the form here.
+              </Typography>
+            </CardContent>
+          </Card>
+        </CardActions>
+      </a>
+      <a href="/LoginPage">
         <Card className={classes.root}>
           <CardMedia
             style={{ height: 0, paddingTop: "90%" }}
             className={classes.media}
             // image={cardnumber.imageUrl}
             // image={`url(${cardnumber.imageUrl})`}
-            image={JoinImg}
-            title="Registration"
+            image={LoginImg}
+            title="SignIn"
           />
 
           <CardContent>
@@ -73,7 +109,7 @@ export default function ImageCard() {
               className={classes.title}
             >
               {" "}
-              Join With us
+              Login
             </Typography>
             <Typography
               variant="body2"
@@ -81,43 +117,11 @@ export default function ImageCard() {
               component="p"
               className={classes.desc}
             >
-              If you want to be a member today, fillup the form here.
+              If you are already a member, sign in to view your dashboard.
             </Typography>
           </CardContent>
         </Card>
-      </CardActions>
-
-      <Card className={classes.root}>
-        <CardMedia
-          style={{ height: 0, paddingTop: "90%" }}
-          className={classes.media}
-          // image={cardnumber.imageUrl}
-          // image={`url(${cardnumber.imageUrl})`}
-          image={LoginImg}
-          title="SignIn"
-        />
-
-        <CardContent>
-          <Typography
-            gutterBottom
-            variant="h5"
-            component="h1"
-            className={classes.title}
-          >
-            {" "}
-            Login
-          </Typography>
-          <Typography
-            variant="body2"
-            color="textSecondary"
-            component="p"
-            className={classes.desc}
-          >
-            If you are already a member, sign in to view your dashboard.
-          </Typography>
-        </CardContent>
-      </Card>
-
+      </a>
       <Card className={classes.root}>
         <CardMedia
           style={{ height: 0, paddingTop: "90%" }}
@@ -148,6 +152,7 @@ export default function ImageCard() {
           </Typography>
         </CardContent>
       </Card>
+
       <Card className={classes.root}>
         <CardMedia
           style={{ height: 0, paddingTop: "90%" }}

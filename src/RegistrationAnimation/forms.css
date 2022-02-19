@@ -1,0 +1,84 @@
+.YourName {
+  display: table;
+}
+
+::placeholder {
+  color: blue;
+}
+.ww {
+  margin-top: 1rem;
+  margin-right: 4rem;
+}
+.wrap1 {
+  display: table-cell;
+}
+
+.wrap2 {
+  margin-top: 1rem;
+  margin-left: 3rem;
+}
+
+.createAccount {
+  display: table-cell;
+  margin-left: 1rem;
+  margin-right: 3rem;
+}
+.buttondesign {
+  margin-top: 1rem;
+  margin-left: 1rem;
+}
+.btn {
+  margin-top: 1rem;
+  margin-left: 1rem;
+}
+section {
+  display: block;
+}
+label,
+input {
+  font-weight: bolder;
+  display: block;
+}
+
+/* label {
+  margin-bottom: 1rem;
+} */
+
+.radio {
+  margin-left: 50px;
+  margin-right: 50px;
+}
+.Birthdaypicker {
+  margin-left: 1rem;
+  margin-right: 50px;
+}
+
+.closecontact {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.contact {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.bmicontent {
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 2rem;
+}
+.BMI {
+  margin-right: 2rem;
+}
+.table-title {
+  margin-top: 2rem;
+}
+
+.wrap3 {
+  margin-left: 3rem;
+  margin-right: 3rem;
+}
+
+/* .Upperbox {
+  opacity: 0.9;
+} */

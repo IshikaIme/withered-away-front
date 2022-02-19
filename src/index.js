@@ -1,9 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { LoginNavigation } from "./login/LoginNavigation";
-import {App} from "./App";
 
-import "./Tables/table.css";
+import { App } from "./App";
+
 //ReactDOM.render(<Login />, document.getElementById('root'));
 
 ReactDOM.render(
