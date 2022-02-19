@@ -1,17 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { makeStyles } from "@material-ui/styles";
-import {
-  CssBaseline,
-  TextField,
-  Button,
-  FormControlLabel,
-  RadioGroup,
-  Radio,
-} from "@material-ui/core";
+import { CssBaseline, TextField, Button } from "@material-ui/core";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormControl from "@mui/material/FormControl";
+import FormLabel from "@mui/material/FormLabel";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
     // display: "flex",
     // justifyContent: "center",
     // alignItems: "center",
-    marginTop: "-17rem",
+
     marginLeft: "18rem",
     // height: "100vh",
     fontFamily: "Special Elite",
@@ -39,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
     // marginBottom: "50px",
   },
   Title1: {
-    marginTop: "32rem",
+    marginTop: "3rem",
     marginBottom: "1rem",
     justifyContent: "center",
     alignItems: "center",
@@ -50,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
   Title2: {
     justifyContent: "center",
     alignItems: "center",
-    marginBottom: "-1rem",
+    marginBottom: "1rem",
     fontSize: "3rem",
   },
   wrap: {
@@ -64,22 +62,35 @@ const useStyles = makeStyles((theme) => ({
   },
   btn: {
     marginTop: "2rem",
+    marginBottom: "5rem",
   },
 }));
 
 export default function ReqAppointment() {
+  const [item, setItem] = useState([]);
   const classes = useStyles();
   const id = localStorage.getItem("id");
   const { handleSubmit, register, getValues } = useForm();
   // const [data, setData] = useState(null);
   let navigate = useNavigate();
-  const [newvalue, setNewValue] = useState(null);
+
+  useEffect(() => {
+    fetch(`http://localhost:8080/api/doctor`)
+      .then((resp) => resp.json())
+      .then((resp) => {
+        setItem(resp.data);
+
+        console.log(resp.data);
+      });
+  }, []);
+
   const onSubmit = (data, e) => {
     e.preventDefault();
     console.log(data, e);
+    const handleChange = (event) => {
+      setValue(event.target.value);
+    };
 
-    setNewValue(data.appointment_time, id, 1, "F", data.REASON);
-    console.log(newvalue);
     // newvalue.ID = "100";
     // newvalue.APPOINTED_DATE = data.appointment_time;
     // newvalue.PEOPLE_ID = id;
@@ -87,10 +98,10 @@ export default function ReqAppointment() {
     // newvalue.ACCEPTED = "F";
     // newvalue.REASON = data.REASON;
     const tobesent = {
-      APPOINTED_DATE: data.appointment_time,
+      APPOINTED_DATE: data.APPOINTED_DATE,
       REASON: data.reason,
       PEOPLE_ID: id,
-      DOCTOR_ID: "1",
+      DOCTOR_ID: value,
       ACCEPTED: "F",
     };
     console.log(tobesent);
@@ -107,7 +118,10 @@ export default function ReqAppointment() {
   };
 
   const onError = (errors, e) => console.log(errors, e);
-
+  const [value, setValue] = useState();
+  const handleChange = (event) => {
+    setValue(event.target.value);
+  };
   return (
     <div className={classes.root}>
       <form onSubmit={handleSubmit(onSubmit, onError)}>
@@ -117,7 +131,7 @@ export default function ReqAppointment() {
             <h1 className={classes.Title1}>Your Preferrable Schedule</h1>
             <div className={classes.content1}>
               <TextField
-                {...register("appointment_time", {})}
+                {...register("APPOINTED_DATE", {})}
                 type="datetime-local"
                 // placeholder="APPOINTED_DATE"
                 // {...register("APPOINTED_DATE", {})}
@@ -129,6 +143,27 @@ export default function ReqAppointment() {
               />
             </div>
           </div>
+
+          <div className={classes.wrap}>
+            <h1 className={classes.Title2}>Preferrable Doctor</h1>
+            <div className={classes.content2}>
+              <RadioGroup
+                aria-labelledby="DOCTOR_NAME"
+                className="DOCTOR_NAME"
+                onChange={handleChange}
+              >
+                {item.map((doctor) => (
+                  <FormControlLabel
+                    {...register("DOCTOR_ID")}
+                    value={doctor.ID}
+                    control={<Radio />}
+                    label={doctor.NAME}
+                  />
+                ))}
+              </RadioGroup>
+            </div>
+          </div>
+
           <div className={classes.wrap}>
             <h1 className={classes.Title2}>Reason</h1>
             <div className={classes.content2}>

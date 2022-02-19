@@ -37,6 +37,7 @@ import CallBookIssuePeople from "./PeopleDashboard/CallBookIssuePeople";
 import IssuedBooksPeople from "./PeopleDashboard/IssuedBooksPeople";
 import Songs from "./PeopleDashboard/Songs";
 import Movies from "./PeopleDashboard/Movies";
+import Games from "./PeopleDashboard/Games";
 export class NavigateHome extends React.Component {
   constructor(props) {
     super(props);
@@ -132,6 +133,7 @@ export class NavigateHome extends React.Component {
 
           <Route path="/Songs" element={<Songs />}></Route>
           <Route path="/Movies" element={<Movies />}></Route>
+          <Route path="/Games" element={<Games />}></Route>
         </Routes>
       </BrowserRouter>
     );

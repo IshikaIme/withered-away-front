@@ -35,7 +35,7 @@ const useStyles = makeStyles({
 export default function Games() {
   const id = localStorage.getItem("id");
   const [item, setItem] = useState([]);
-
+  const [newvalue, setvalue] = useState([]);
   const classes = useStyles();
   useEffect(() => {
     fetch(
@@ -47,24 +47,25 @@ export default function Games() {
       });
   }, []);
   const columns = [
-    {
-      title: "Game ID",
-      field: "GAME_ID",
-      sorting: true,
-      align: "center",
-      filtering: true,
-      cellStyle: {
-        fontfamily: "corgette",
-        height: 40,
-        maxHeight: 40,
-        width: 20,
-        maxWidth: 20,
-      },
-      headerStyle: { color: "#fff" },
-    },
+    // {
+    //   title: "Game ID",
+    //   field: "ID",
+    //   sorting: true,
+    //   insertable: "never",
+    //   align: "center",
+    //   filtering: true,
+    //   cellStyle: {
+    //     fontfamily: "corgette",
+    //     height: 40,
+    //     maxHeight: 40,
+    //     width: 20,
+    //     maxWidth: 20,
+    //   },
+    //   headerStyle: { color: "#fff" },
+    // },
 
     {
-      title: "Game Name",
+      title: "TITLE",
       field: "TITLE",
       sorting: true,
       align: "center",
@@ -100,40 +101,39 @@ export default function Games() {
 
                   resolve();
                 }, 500);
+                const newItem = {
+                  TITLE: newData.TITLE,
+                };
 
                 axios
                   .post(
-                    `http://localhost:8080/api/game/id/game_favorites/game_id/people_id/${id}`,
+                    `http://localhost:8080/api/game/`,
 
-                    newData
+                    newItem
                   )
                   .then((response) => {
                     // alertService.success("User added",);
                     console.log(response);
+
+                    axios
+                      .post(
+                        `http://localhost:8080/api/game_favorites/`,
+
+                        { PEOPLE_ID: id, GAME_ID: response.data.ID }
+                      )
+                      .then((response) => {
+                        // alertService.success("User added",);
+                        console.log(response);
+                      })
+                      .catch((error) => {
+                        console.log(error);
+                      });
                   })
                   .catch((error) => {
                     console.log(error);
                   });
               }),
-            onRowUpdate: (newData, oldData) =>
-              new Promise((resolve, reject) => {
-                setTimeout(() => {
-                  const dataUpdate = [...item];
-                  const index = oldData.item.id;
-                  dataUpdate[index] = newData;
-                  setItem([...dataUpdate]);
 
-                  resolve();
-                }, 500);
-                axios
-                  .patch(
-                    `http://localhost:8080/api/game/id/game_favorites/game_id/people_id/${id}`,
-                    newData
-                  )
-                  .then((res) => {
-                    // window.location.reload(false);
-                  });
-              }),
             onRowDelete: (oldData) =>
               new Promise((resolve, reject) => {
                 let contactId = oldData.ID;
@@ -144,8 +144,8 @@ export default function Games() {
                   setItem([...dataDelete]);
 
                   resolve();
-                }, 1000);
-                let url = `http://localhost:8080/api/game/id/game_favorites/game_id/people_id/${id}`;
+                }, 100);
+                let url = `http://localhost:8080/api/game_favorites/game_id/${contactId}`;
                 axios.delete(url).then((res) => {
                   //     console.log("res", res);
                 });
