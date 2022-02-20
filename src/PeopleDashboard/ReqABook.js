@@ -12,7 +12,6 @@ import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
-import CustomizedSnackbars from "../CustomizedSnackbars";
 
 const Alert = React.forwardRef(function Alert(props, ref) {
 	return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -75,8 +74,8 @@ export default function ReqABook() {
 	const [item, setItem] = useState([]);
 
 	const [alertOpen, setAlertOpen] = React.useState(false);
-	const [alertMsg, setAlertMsg] = React.useState(false);
-	const [alertType, setAlertType] = React.useState(false);
+	const [alertMsg, setAlertMsg] = React.useState("");
+	const [alertType, setAlertType] = React.useState("");
 
 	const classes = useStyles();
 	const id = localStorage.getItem("id");
@@ -170,7 +169,7 @@ export default function ReqABook() {
 					</div>
 					<div className={classes.wrap}>
 						<h1 className={classes.Title2}>BOOK NAME</h1>
-						<div className={classes.content2}>
+						<div className={classes.content1}>
 							<RadioGroup onChange={handleChangeBookId}>
 								{item.map((book) => (
 									<FormControlLabel

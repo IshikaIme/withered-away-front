@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import loginImg from "../images/redfloweryellow.jpg";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import { makeStyles } from "@material-ui/styles";
@@ -14,11 +13,12 @@ import {
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import CustomizedSnackbars from "../CustomizedSnackbars";
 
 const Alert = React.forwardRef(function Alert(props, ref) {
 	return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
+
+const loginImg = require("../images/redfloweryellow.jpg");
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -78,8 +78,8 @@ export default function LoginPage() {
 	const { handleSubmit, register, getValues } = useForm();
 	// const [data, setData] = useState(null);
 	const [alertOpen, setAlertOpen] = React.useState(false);
-	const [alertMsg, setAlertMsg] = React.useState(false);
-	const [alertType, setAlertType] = React.useState(false);
+	const [alertMsg, setAlertMsg] = React.useState("");
+	const [alertType, setAlertType] = React.useState("");
 	let navigate = useNavigate();
 
 	const onSubmit = (data, e) => {
@@ -107,7 +107,7 @@ export default function LoginPage() {
 					else if (values.role === "doctor") navigate("/DoctorDash");
 					else if (values.role === "staff") navigate("/StaffDash");
 
-					window.location.reload(false);
+					window.location.reload();
 				} else {
 					setAlertType("error");
 					setAlertMsg("Invalid Username or Password");
@@ -137,7 +137,7 @@ export default function LoginPage() {
 				<CssBaseline />
 				<div className={classes.input}>
 					<div className={classes.wrap}>
-						<RadioGroup defaultValue="people" row required>
+						<RadioGroup defaultValue="people" row>
 							<FormControlLabel
 								{...register("role")}
 								value="admin"
@@ -180,7 +180,7 @@ export default function LoginPage() {
 					</div>
 					<div className={classes.wrap}>
 						<h1 className={classes.Title2}>Password</h1>
-						<div className={classes.content2}>
+						<div className={classes.content1}>
 							<TextField
 								{...register("password")}
 								className="password"
