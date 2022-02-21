@@ -11,6 +11,9 @@ import { makeStyles } from "@material-ui/core/styles";
 import { EditText, EditTextarea } from "react-edit-text";
 import MaterialTable from "material-table";
 import BodyDoctorDash from "./BodyDoctorDash";
+import Button from "@mui/material/Button";
+
+import Paper from "@mui/material/Paper";
 const useStyles = makeStyles({
   root: {
     textAlign: "center",
@@ -104,6 +107,26 @@ export default function SeeRequestedAppointments() {
       },
       headerStyle: { color: "#fff" },
     },
+
+    {
+      title: "ACCEPTED",
+      field: "ACCEPTED",
+      type: "button",
+      sorting: true,
+      align: "center",
+      filtering: true,
+      cellStyle: {
+        fontfamily: "corgette",
+        height: 80,
+        maxHeight: 80,
+      },
+      // type: "option",
+      lookup: {
+        T: "Accepted",
+        F: "Pending",
+      },
+      headerStyle: { color: "#fff" },
+    },
   ];
   console.log(item);
   console.log();
@@ -120,6 +143,26 @@ export default function SeeRequestedAppointments() {
           title="Appointments"
           data={filtereditem}
           columns={columns}
+          // components={{
+          //   Toolbar: (props) => (
+          //     <div
+          //       style={{
+          //         display: "flex",
+          //         justifyContent: "flex-end",
+          //         alignItems: "center",
+          //       }}
+          //     >
+          //       <Button
+          //         style={{ height: "fit-content" }}
+          //         color="primary"
+          //         variant="contained"
+          //       >
+          //         Quotations
+          //       </Button>
+          //     </div>
+          //   ),
+          //   Container: (props) => <Paper {...props} elevation={8} />,
+          // }}
           editable={{
             onRowUpdate: (newData, oldData) =>
               new Promise((resolve, reject) => {
