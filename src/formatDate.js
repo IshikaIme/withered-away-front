@@ -6,4 +6,4 @@ function formatDate(value) {
     return day + "-" + month + "-" + year;
 }
 
-exports.formateDate = formatDate;
+exports.formatDate = formatDate;
