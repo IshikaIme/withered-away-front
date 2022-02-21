@@ -19,6 +19,11 @@ const useStyles = makeStyles((theme) => ({
     background: "none",
     fontFamily: "Courgette",
   },
+  para: {
+    color: "#fff",
+    fontSize: "1.2rem",
+    marginTop: "-4rem",
+  },
   AppbarWrapper: {
     width: "80%",
     margin: "0 auto",
@@ -56,9 +61,9 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "1rem",
   },
   goDown: {
-    color: "#000000",
+    color: "#fff",
     fontSize: "large",
-    marginTop: "-5rem",
+    marginTop: "0rem",
   },
 }));
 export default function HomeHeader() {
@@ -95,6 +100,7 @@ export default function HomeHeader() {
               <span className={classes.colortext}>Away </span>
             </h1>
           </h1>
+          <h1 className={classes.para}>Old Home Management System</h1>
           <Scroll to="Navigation card" smooth={true}>
             <IconButton>
               <ExpandCircleDownRoundedIcon
