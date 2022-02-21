@@ -13,7 +13,6 @@ import FormLabel from "@mui/material/FormLabel";
 
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
-import CustomizedSnackbars from "../CustomizedSnackbars";
 
 const Alert = React.forwardRef(function Alert(props, ref) {
 	return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -83,8 +82,8 @@ export default function ReqAppointment() {
 	let navigate = useNavigate();
 
 	const [alertOpen, setAlertOpen] = React.useState(false);
-	const [alertMsg, setAlertMsg] = React.useState(false);
-	const [alertType, setAlertType] = React.useState(false);
+	const [alertMsg, setAlertMsg] = React.useState("");
+	const [alertType, setAlertType] = React.useState("");
 
 	useEffect(() => {
 		fetch(`http://localhost:8080/api/doctor`)
@@ -181,7 +180,7 @@ export default function ReqAppointment() {
 
 					<div className={classes.wrap}>
 						<h1 className={classes.Title2}>Preferrable Doctor</h1>
-						<div className={classes.content2}>
+						<div className={classes.content1}>
 							<RadioGroup
 								aria-labelledby="DOCTOR_NAME"
 								className="DOCTOR_NAME"
@@ -201,7 +200,7 @@ export default function ReqAppointment() {
 
 					<div className={classes.wrap}>
 						<h1 className={classes.Title2}>Reason</h1>
-						<div className={classes.content2}>
+						<div className={classes.content1}>
 							<TextField
 								{...register("reason")}
 								className="reason"
