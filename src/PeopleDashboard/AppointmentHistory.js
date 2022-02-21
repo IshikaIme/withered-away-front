@@ -101,6 +101,20 @@ export default function AppointmentHistory() {
       },
       headerStyle: { color: "#fff" },
     },
+    {
+      title: "REASON",
+      field: "REASON",
+      sorting: true,
+      align: "center",
+      filtering: true,
+      cellStyle: {
+        fontfamily: "corgette",
+        height: 80,
+        maxHeight: 80,
+      },
+
+      headerStyle: { color: "#fff" },
+    },
   ];
   console.log(item);
   console.log();

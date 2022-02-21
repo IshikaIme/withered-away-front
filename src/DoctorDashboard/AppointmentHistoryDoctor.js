@@ -85,6 +85,20 @@ export default function AppointmentHistoryDoctor() {
       headerStyle: { color: "#fff" },
     },
     {
+      title: "REASON",
+      field: "REASON",
+      sorting: true,
+      align: "center",
+      filtering: true,
+      cellStyle: {
+        fontfamily: "corgette",
+        height: 80,
+        maxHeight: 80,
+      },
+
+      headerStyle: { color: "#fff" },
+    },
+    {
       title: "ACCEPTED",
       field: "ACCEPTED",
       sorting: true,
@@ -94,6 +108,10 @@ export default function AppointmentHistoryDoctor() {
         fontfamily: "corgette",
         height: 80,
         maxHeight: 80,
+      },
+      lookup: {
+        T: "Accepted",
+        F: "Pending",
       },
       headerStyle: { color: "#fff" },
     },
