@@ -37,31 +37,33 @@ export default function SeeRequestedAppointments() {
 
   const classes = useStyles();
   useEffect(() => {
-    fetch("http://localhost:8080/api/appointment")
+    fetch(
+      `http://localhost:8080/api/people/id/appointment/people_id/doctor_id/${id}`
+    )
       .then((resp) => resp.json())
       .then((resp) => {
         setItem(resp.data);
       });
   }, []);
   const columns = [
-    {
-      title: "ID",
-      field: "ID",
-      editable: "never",
-      sorting: true,
-      align: "center",
-      filtering: true,
-      cellStyle: {
-        // background: "#009688",
-        fontfamily: "corgette",
-        height: 80,
-        maxHeight: 80,
-      },
-      headerStyle: { color: "#fff" },
-    },
+    // {
+    //   title: "ID",
+    //   field: "ID",
+    //   editable: "never",
+    //   sorting: true,
+    //   align: "center",
+    //   filtering: true,
+    //   cellStyle: {
+    //     // background: "#009688",
+    //     fontfamily: "corgette",
+    //     height: 80,
+    //     maxHeight: 80,
+    //   },
+    //   headerStyle: { color: "#fff" },
+    // },
 
     {
-      title: "APPOINTED_DATE",
+      title: "REQUESTED DATE",
       field: "APPOINTED_DATE",
       sorting: true,
       align: "center",
@@ -76,8 +78,8 @@ export default function SeeRequestedAppointments() {
     },
 
     {
-      title: "PEOPLE ID",
-      field: "PEOPLE_ID",
+      title: "PATIENT NAME",
+      field: "NAME",
       sorting: true,
       editable: "never",
       align: "center",
@@ -107,11 +109,9 @@ export default function SeeRequestedAppointments() {
       },
       headerStyle: { color: "#fff" },
     },
-
     {
-      title: "ACCEPTED",
-      field: "ACCEPTED",
-      type: "button",
+      title: "REASON",
+      field: "REASON",
       sorting: true,
       align: "center",
       filtering: true,
@@ -120,11 +120,7 @@ export default function SeeRequestedAppointments() {
         height: 80,
         maxHeight: 80,
       },
-      // type: "option",
-      lookup: {
-        T: "Accepted",
-        F: "Pending",
-      },
+
       headerStyle: { color: "#fff" },
     },
   ];

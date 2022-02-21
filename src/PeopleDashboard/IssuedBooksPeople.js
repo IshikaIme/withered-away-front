@@ -34,76 +34,79 @@ export default function IssuedBooksPeople() {
 
   const classes = useStyles();
   useEffect(() => {
-    fetch("http://localhost:8080/api/BOOK_ISSUE")
-      .then((resp) => resp.json())
-      .then((resp) => {
-        setItem(resp.data);
-      });
+		fetch(
+			`http://localhost:8080/api/books/id/book_issue/book_id/people_id/${id}`
+		)
+			.then((resp) => resp.json())
+			.then((resp) => {
+				setItem(resp.data);
+				console.log(resp.data);
+			});
   }, []);
   const columns = [
-    {
-      title: "Book ID",
-      field: "BOOK_ID",
-      sorting: true,
-      align: "center",
-      filtering: true,
-      cellStyle: {
-        // background: "#009688",
-        fontfamily: "corgette",
-        height: 80,
-        maxHeight: 80,
-      },
-      headerStyle: { color: "#fff" },
-    },
+		{
+			title: "Book Title",
+			field: "NAME",
+			sorting: true,
+			align: "center",
+			filtering: true,
+			cellStyle: {
+				// background: "#009688",
+				fontfamily: "corgette",
+				height: 80,
+				maxHeight: 80,
+			},
+			headerStyle: { color: "#fff" },
+		},
 
-    {
-      title: "Issue Date",
-      field: "ISSUE_DATE",
-      sorting: true,
-      type: "date",
-      align: "center",
-      filtering: true,
-      cellStyle: {
-        fontfamily: "corgette",
-        height: 80,
-        maxHeight: 80,
-      },
-      headerStyle: { color: "#fff" },
-    },
-    {
-      title: "Return Date",
-      field: "RETURN_DATE",
-      sorting: true,
-      type: "date",
-      align: "center",
-      filtering: true,
-      cellStyle: {
-        fontfamily: "corgette",
-        height: 80,
-        maxHeight: 80,
-      },
-      headerStyle: { color: "#fff" },
-    },
+		{
+			title: "Issue Date",
+			field: "ISSUE_DATE",
+			sorting: true,
+			type: "date",
+			align: "center",
+			filtering: true,
+			cellStyle: {
+				fontfamily: "corgette",
+				height: 80,
+				maxHeight: 80,
+			},
+			headerStyle: { color: "#fff" },
+		},
+		{
+			title: "Return Date",
+			field: "RETURN_DATE",
+			sorting: true,
+			type: "date",
+			align: "center",
+			filtering: true,
+			cellStyle: {
+				fontfamily: "corgette",
+				height: 80,
+				maxHeight: 80,
+			},
+			headerStyle: { color: "#fff" },
+		},
 
-    {
-      title: "Cost",
-      field: "COST",
-      type: "currency",
-      sorting: true,
-      align: "center",
-      filtering: true,
-      cellStyle: {
-        fontfamily: "corgette",
-        height: 80,
-        maxHeight: 80,
-      },
-      headerStyle: { color: "#fff" },
-    },
+		{
+			title: "Cost",
+			field: "COST",
+			type: "currency",
+			sorting: true,
+			align: "center",
+			filtering: true,
+			cellStyle: {
+				fontfamily: "corgette",
+				height: 80,
+				maxHeight: 80,
+			},
+			headerStyle: { color: "#fff" },
+		},
   ];
   console.log(item);
   console.log();
   // var current = new Date();
-  const filtereditem = item.filter((it) => it.PEOPLE_ID == id);
+  // const item = item.filter((it) => it.PEOPLE_ID == id);
 
   // var date = moment("2013-03-24")
   // var current = moment();
@@ -114,52 +117,54 @@ export default function IssuedBooksPeople() {
   //    // date is future
   // }
 
-  // const historyitem = filtereditem.filter((it) =>
+  // const historyitem = item.filter((it) =>
   //   moment(it.APPOINTED_DATE).isAfter(current)
   // );
 
   return (
-    <div className={classes.root}>
-      <BodyPeopleDash />
-      <div className={classes.basic}>
-        <MaterialTable
-          title="Issued Books"
-          data={filtereditem}
-          columns={columns}
-          onSelectionChange={(selectedRows) => console.log(selectedRows)}
-          options={{
-            sorting: true,
-            search: true,
-            searchFieldAlignment: "right",
-            searchAutoFocus: true,
-            searchFieldVariant: "standard",
-            filtering: true,
-            paging: true,
-            pageSizeOptions: [2, 5, 10, 20, 25, 50, 100],
-            pageSize: 5,
-            paginationType: "stepped",
-            showFirstLastPageButtons: false,
-            paginationPosition: "both",
-            exportButton: true,
-            exportAllData: true,
-            // exportFileName: "TableData",
-            addRowPosition: "first",
-            actionsColumnIndex: -1,
-            selection: true,
-            showSelectAllCheckbox: false,
-            showTextRowsSelected: false,
-            selectionProps: (rowData) => ({
-              // disabled: rowData.age == null,
-              // color:"primary"
-            }),
-            grouping: true,
-            columnsButton: true,
-            rowStyle: (data, index) =>
-              index % 2 === 0 ? { background: "#f5f5f5" } : null,
-            headerStyle: { background: "#f44336", color: "#fff" },
-          }}
-        />
-      </div>
-    </div>
+		<div className={classes.root}>
+			<BodyPeopleDash />
+			<div className={classes.basic}>
+				<MaterialTable
+					title="Issued Books"
+					data={item}
+					columns={columns}
+					onSelectionChange={(selectedRows) =>
+						console.log(selectedRows)
+					}
+					options={{
+						sorting: true,
+						search: true,
+						searchFieldAlignment: "right",
+						searchAutoFocus: true,
+						searchFieldVariant: "standard",
+						filtering: true,
+						paging: true,
+						pageSizeOptions: [2, 5, 10, 20, 25, 50, 100],
+						pageSize: 5,
+						paginationType: "stepped",
+						showFirstLastPageButtons: false,
+						paginationPosition: "both",
+						exportButton: true,
+						exportAllData: true,
+						// exportFileName: "TableData",
+						addRowPosition: "first",
+						actionsColumnIndex: -1,
+						selection: true,
+						showSelectAllCheckbox: false,
+						showTextRowsSelected: false,
+						selectionProps: (rowData) => ({
+							// disabled: rowData.age == null,
+							// color:"primary"
+						}),
+						grouping: true,
+						columnsButton: true,
+						rowStyle: (data, index) =>
+							index % 2 === 0 ? { background: "#f5f5f5" } : null,
+						headerStyle: { background: "#f44336", color: "#fff" },
+					}}
+				/>
+			</div>
+		</div>
   );
 }
