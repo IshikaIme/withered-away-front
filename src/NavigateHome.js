@@ -13,6 +13,7 @@ import TablePeople from "./TableAdmin/TablePeople";
 import TableDoctor from "./TableAdmin/TableDoctor";
 import TableStaff from "./TableAdmin/TableStaff";
 import CallInventory from "./AdminDashboard/CallInventory";
+import CallInventoryPeople from "./PeopleDashboard/CallInventoryPeople";
 import AdminDash from "./AdminDashboard/AdminDash";
 import PeopleDash from "./PeopleDashboard/PeopleDash";
 import StaffDash from "./StaffDashboard/StaffDash";
@@ -31,7 +32,8 @@ import CallReqAppointment from "./PeopleDashboard/CallReqAppointment";
 import CallReqABook from "./PeopleDashboard/CallReqABook";
 import SeeRequestedAppointments from "./DoctorDashboard/SeeRequestedAppointments";
 import CallDoctorDash from "./DoctorDashboard/CallDoctorDash";
-
+import TableFoodPeople from "./PeopleDashboard/TableFoodPeople";
+import TableMedicinePeople from "./PeopleDashboard/TableMedicinePeople";
 import CallEntertainment from "./PeopleDashboard/CallEntertainment";
 import CallBookIssuePeople from "./PeopleDashboard/CallBookIssuePeople";
 import IssuedBooksPeople from "./PeopleDashboard/IssuedBooksPeople";
@@ -75,6 +77,10 @@ export class NavigateHome extends React.Component {
           <Route path="/TableDoctor" element={<TableDoctor />}></Route>
           <Route path="/TableStaff" element={<TableStaff />}></Route>
           <Route path="/CallInventory" element={<CallInventory />}></Route>
+          <Route
+            path="/CallInventoryPeople"
+            element={<CallInventoryPeople />}
+          ></Route>
           <Route
             path="/AppointmentPeople"
             element={<AppointmentPeople />}
@@ -130,6 +136,11 @@ export class NavigateHome extends React.Component {
           <Route path="/TableRoom" element={<TableRoom />}></Route>
           <Route path="/TableFood" element={<TableFood />}></Route>
           <Route path="/TableMedicine" element={<TableMedicine />}></Route>
+          <Route path="/TableFoodPeople" element={<TableFoodPeople />}></Route>
+          <Route
+            path="/TableMedicinePeople"
+            element={<TableMedicinePeople />}
+          ></Route>
 
           <Route path="/Songs" element={<Songs />}></Route>
           <Route path="/Movies" element={<Movies />}></Route>

@@ -2,12 +2,16 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import MaterialTable from "material-table";
 import GetAppIcon from "@material-ui/icons/GetApp";
-import BodyAdminDash from "../AdminDashboard/BodyAdminDash";
+import BodyPeopleDash from "../PeopleDashboard/BodyPeopleDash";
 import AddIcon from "@material-ui/icons/Add";
-
-export default function TableMedicine() {
+import { CsvBuilder } from "filefy";
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import jsPDF from "jspdf";
+import "jspdf-autotable";
+export default function TableMedicinePeople() {
   const [TableData, setTableData] = useState([]);
   const [selectedRows, setSelectedRows] = useState([]);
+
   const columns = [
     // {
     //   title: "ID",
@@ -55,9 +59,34 @@ export default function TableMedicine() {
       filterPlaceholder: "filter",
     },
   ];
-  const exportAllSelectedRows = () => {
+  //   const handleBulkDelete = () => {
+  //     const updatedData = TableData.filter((row) => !selectedRows.includes(row));
+  //     setTableData(updatedData);
+  //   };
+  //   const exportAllSelectedRows = () => {
+  //     new CsvBuilder("tableData.csv")
+  //       .setColumns(columns.map((col) => col.title))
+  //       .addRows(
+  //         selectedRows.map((rowData) => columns.map((col) => rowData[col.field]))
+  //       )
+  //       .exportFile();
+  //   };
+
+  var allcost = [null];
+  var sumOfCosts = 0;
+  var i = 0;
+  var x = 0;
+  const BuyAll = () => {
+    selectedRows.map((row) => (allcost[i++] = row.COST));
+    console.log(allcost);
+    while (allcost[x] != null) {
+      sumOfCosts = sumOfCosts + allcost[x];
+      x++;
+    }
+    console.log(sumOfCosts);
+
     const doc = new jsPDF();
-    doc.text("Medicine inventory", 20, 10);
+    doc.text("Your Bill", 20, 10);
 
     doc.autoTable({
       //head: ["Your total Bill is", sumOfCosts],
@@ -67,8 +96,25 @@ export default function TableMedicine() {
       body: selectedRows,
     });
 
-    doc.save("TableMedicine.pdf");
+    doc.save("Bill.pdf");
   };
+  // new CsvBuilder("Bill.csv")
+  //   .setColumns(columns.map((col) => col.title))
+  //   .addRows(
+  //     selectedRows.map((rowData) => columns.map((col) => rowData[col.field]))
+  //   )
+  //   .exportFile();
+
+  //   const downloadPdf = () => {
+  //     const doc = new jsPDF();
+  //     doc.text("Student Details", 20, 10);
+  //     doc.autoTable({
+  //       theme: "grid",
+  //       columns: columns.map((col) => ({ ...col, dataKey: col.field })),
+  //       body: TableData,
+  //     });
+  //     doc.save("table.pdf");
+  //   };
   useEffect(() => {
     fetch("http://localhost:8080/api/medicine")
       .then((resp) => resp.json())
@@ -79,78 +125,28 @@ export default function TableMedicine() {
 
   return (
     <div className="Medicines">
-      <BodyAdminDash />
+      <BodyPeopleDash />
       <MaterialTable
         title="Medicines"
         data={TableData}
         columns={columns}
         actions={[
+          //   {
+          //     icon: "delete",
+          //     tooltip: "Delete all selected rows",
+          //     onClick: () => handleBulkDelete(),
+          //   },
           {
-            icon: () => <GetAppIcon />,
-            tooltip: "Export all selected rows",
-            onClick: () => exportAllSelectedRows(),
-            // isFreeAction:true
+            icon: () => <AddShoppingCartIcon />,
+            tooltip: "Buy selected Items",
+            onClick: () => BuyAll(),
           },
+          //   {
+          //     icon: () => <GetAppIcon />,
+          //     tooltip: "Export all selected rows",
+          //     onClick: () => exportAllSelectedRows(),
+          //   },
         ]}
-        editable={{
-          onRowAdd: (newData) =>
-            new Promise((resolve, reject) => {
-              setTimeout(() => {
-                setTableData([...TableData, newData]);
-
-                resolve();
-              }, 500);
-
-              axios
-                .post(
-                  "http://localhost:8080/api/medicine",
-
-                  newData
-                )
-                .then((response) => {
-                  // alertService.success("User added",);
-                  console.log(response);
-                })
-                .catch((error) => {
-                  console.log(error);
-                });
-            }),
-          onRowUpdate: (newData, oldData) =>
-            new Promise((resolve, reject) => {
-              setTimeout(() => {
-                const dataUpdate = [...TableData];
-                const index = oldData.tableData.id;
-                dataUpdate[index] = newData;
-                setTableData([...dataUpdate]);
-
-                resolve();
-              }, 500);
-              axios
-                .patch(
-                  `http://localhost:8080/api/medicine/id/${newData.ID}`,
-                  newData
-                )
-                .then((res) => {
-                  // window.location.reload(false);
-                });
-            }),
-          onRowDelete: (oldData) =>
-            new Promise((resolve, reject) => {
-              let contactId = oldData.ID;
-              setTimeout(() => {
-                const dataDelete = [...TableData];
-                const index = oldData.tableData.id;
-                dataDelete.splice(index, 1);
-                setTableData([...dataDelete]);
-
-                resolve();
-              }, 1000);
-              let url = `http://localhost:8080/api/medicine/${contactId}`;
-              axios.delete(url).then((res) => {
-                //     console.log("res", res);
-              });
-            }),
-        }}
         onSelectionChange={(rows) => setSelectedRows(rows)}
         options={{
           sorting: true,
@@ -173,10 +169,7 @@ export default function TableMedicine() {
           selection: true,
           showSelectAllCheckbox: false,
           showTextRowsSelected: false,
-          selectionProps: (rowData) => ({
-            // disabled: rowData.age == null,
-            // color:"primary"
-          }),
+          selectionProps: (rowData) => ({}),
           grouping: true,
           columnsButton: true,
           rowStyle: (data, index) =>

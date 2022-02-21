@@ -2,10 +2,15 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import MaterialTable from "material-table";
 import GetAppIcon from "@material-ui/icons/GetApp";
-import BodyAdminDash from "../AdminDashboard/BodyAdminDash";
+import BodyPeopleDash from "../PeopleDashboard/BodyPeopleDash";
 import AddIcon from "@material-ui/icons/Add";
-
-export default function TableMedicine() {
+import Button from "@mui/material/Button";
+import { CsvBuilder } from "filefy";
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import jsPDF from "jspdf";
+import "jspdf-autotable";
+import Paper from "@mui/material/Paper";
+function TableFoodPeople() {
   const [TableData, setTableData] = useState([]);
   const [selectedRows, setSelectedRows] = useState([]);
   const columns = [
@@ -28,22 +33,16 @@ export default function TableMedicine() {
       field: "NAME",
       sorting: true,
       filtering: true,
+
       // cellStyle: { background: "#009688" },
       headerStyle: { color: "#fff" },
     },
     {
-      title: "Time",
-      field: "TIME",
-      sorting: true,
+      title: "Food type",
+      field: "FOOD_TYPE",
       align: "center",
-      filtering: true,
-      cellStyle: {
-        // background: "#009688",
-        fontfamily: "corgette",
-        height: 80,
-        maxHeight: 80,
-      },
-      headerStyle: { color: "#fff" },
+      grouping: true,
+      filterPlaceholder: "filter",
     },
     {
       title: "Cost",
@@ -55,9 +54,22 @@ export default function TableMedicine() {
       filterPlaceholder: "filter",
     },
   ];
-  const exportAllSelectedRows = () => {
+
+  var allcost = [null];
+  var sumOfCosts = 0;
+  var i = 0;
+  var x = 0;
+  const BuyAll = () => {
+    selectedRows.map((row) => (allcost[i++] = row.COST));
+    console.log(allcost);
+    while (allcost[x] != null) {
+      sumOfCosts = sumOfCosts + allcost[x];
+      x++;
+    }
+    console.log(sumOfCosts);
+
     const doc = new jsPDF();
-    doc.text("Medicine inventory", 20, 10);
+    doc.text("Your Bill", 20, 10);
 
     doc.autoTable({
       //head: ["Your total Bill is", sumOfCosts],
@@ -67,10 +79,10 @@ export default function TableMedicine() {
       body: selectedRows,
     });
 
-    doc.save("TableMedicine.pdf");
+    doc.save("Bill.pdf");
   };
   useEffect(() => {
-    fetch("http://localhost:8080/api/medicine")
+    fetch("http://localhost:8080/api/food")
       .then((resp) => resp.json())
       .then((resp) => {
         setTableData(resp.data);
@@ -78,79 +90,49 @@ export default function TableMedicine() {
   }, []);
 
   return (
-    <div className="Medicines">
-      <BodyAdminDash />
+    <div className="TableFood">
+      <BodyPeopleDash />
       <MaterialTable
-        title="Medicines"
+        title="Food"
         data={TableData}
         columns={columns}
+        // components={{
+        //   Toolbar: (props) => (
+        //     <div
+        //       style={{
+        //         display: "flex",
+        //         justifyContent: "flex-end",
+        //         alignItems: "center",
+        //       }}
+        //     >
+        //       <Button
+        //         style={{ height: "fit-content" }}
+        //         color="primary"
+        //         variant="contained"
+        //       >
+        //         Buy
+        //       </Button>
+        //     </div>
+        //   ),
+        //   Container: (props) => <Paper {...props} elevation={8} />,
+        // }}
         actions={[
+          //   {
+          //     icon: "delete",
+          //     tooltip: "Delete all selected rows",
+          //     onClick: () => handleBulkDelete(),
+          //   },
           {
-            icon: () => <GetAppIcon />,
-            tooltip: "Export all selected rows",
-            onClick: () => exportAllSelectedRows(),
-            // isFreeAction:true
+            icon: () => <AddShoppingCartIcon />,
+            tooltip: "Buy selected Items",
+            onClick: () => BuyAll(),
           },
+          //   {
+          //     icon: () => <GetAppIcon />,
+          //     tooltip: "Export all selected rows",
+          //     onClick: () => exportAllSelectedRows(),
+          //   },
         ]}
-        editable={{
-          onRowAdd: (newData) =>
-            new Promise((resolve, reject) => {
-              setTimeout(() => {
-                setTableData([...TableData, newData]);
-
-                resolve();
-              }, 500);
-
-              axios
-                .post(
-                  "http://localhost:8080/api/medicine",
-
-                  newData
-                )
-                .then((response) => {
-                  // alertService.success("User added",);
-                  console.log(response);
-                })
-                .catch((error) => {
-                  console.log(error);
-                });
-            }),
-          onRowUpdate: (newData, oldData) =>
-            new Promise((resolve, reject) => {
-              setTimeout(() => {
-                const dataUpdate = [...TableData];
-                const index = oldData.tableData.id;
-                dataUpdate[index] = newData;
-                setTableData([...dataUpdate]);
-
-                resolve();
-              }, 500);
-              axios
-                .patch(
-                  `http://localhost:8080/api/medicine/id/${newData.ID}`,
-                  newData
-                )
-                .then((res) => {
-                  // window.location.reload(false);
-                });
-            }),
-          onRowDelete: (oldData) =>
-            new Promise((resolve, reject) => {
-              let contactId = oldData.ID;
-              setTimeout(() => {
-                const dataDelete = [...TableData];
-                const index = oldData.tableData.id;
-                dataDelete.splice(index, 1);
-                setTableData([...dataDelete]);
-
-                resolve();
-              }, 1000);
-              let url = `http://localhost:8080/api/medicine/${contactId}`;
-              axios.delete(url).then((res) => {
-                //     console.log("res", res);
-              });
-            }),
-        }}
         onSelectionChange={(rows) => setSelectedRows(rows)}
         options={{
           sorting: true,
@@ -188,3 +170,5 @@ export default function TableMedicine() {
     </div>
   );
 }
+
+export default TableFoodPeople;

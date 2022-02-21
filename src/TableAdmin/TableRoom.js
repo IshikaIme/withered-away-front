@@ -7,7 +7,7 @@ import AddIcon from "@material-ui/icons/Add";
 
 function TableRoom() {
   const [TableData, setTableData] = useState([]);
-
+  const [selectedRows, setSelectedRows] = useState([]);
   const columns = [
     {
       title: "Room ID",
@@ -38,7 +38,20 @@ function TableRoom() {
       headerStyle: { color: "#fff" },
     },
   ];
+  const exportAllSelectedRows = () => {
+    const doc = new jsPDF();
+    doc.text("Rooms", 20, 10);
 
+    doc.autoTable({
+      //head: ["Your total Bill is", sumOfCosts],
+      theme: "grid",
+      columns: columns.map((col) => ({ ...col, dataKey: col.field })),
+
+      body: selectedRows,
+    });
+
+    doc.save("TableRoom.pdf");
+  };
   useEffect(() => {
     fetch("http://localhost:8080/api/room")
       .then((resp) => resp.json())
@@ -57,8 +70,8 @@ function TableRoom() {
         actions={[
           {
             icon: () => <GetAppIcon />,
-            tooltip: "Click me",
-            onClick: (e, data) => console.log(data),
+            tooltip: "Export all selected rows",
+            onClick: () => exportAllSelectedRows(),
             // isFreeAction:true
           },
         ]}
@@ -121,7 +134,7 @@ function TableRoom() {
               });
             }),
         }}
-        onSelectionChange={(selectedRows) => console.log(selectedRows)}
+        onSelectionChange={(rows) => setSelectedRows(rows)}
         options={{
           sorting: true,
           search: true,

@@ -22,6 +22,7 @@ import TheaterComedyIcon from "@mui/icons-material/TheaterComedy";
 import MedicationIcon from "@mui/icons-material/Medication";
 import LogoutIcon from "@mui/icons-material/Logout";
 import InventoryIcon from "@mui/icons-material/Inventory";
+
 import AdminPanelSettingsRoundedIcon from "@mui/icons-material/AdminPanelSettingsRounded";
 import PermContactCalendarRoundedIcon from "@mui/icons-material/PermContactCalendarRounded";
 import DashboardRoundedIcon from "@mui/icons-material/DashboardRounded";
@@ -237,6 +238,18 @@ export default function BodyPeopleDash() {
               <a href="/CallBookIssuePeople">
                 {" "}
                 <ListItemText primary="Books" />
+              </a>
+            </ListItem>
+            <ListItem button key="Inventory">
+              {<InventoryIcon /> && (
+                <ListItemIcon>
+                  <InventoryIcon />
+                </ListItemIcon>
+              )}
+
+              <a href="/CallInventoryPeople">
+                {" "}
+                <ListItemText primary="Inventory" />
               </a>
             </ListItem>
 

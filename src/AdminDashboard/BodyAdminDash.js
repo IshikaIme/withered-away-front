@@ -41,6 +41,7 @@ const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
         duration: theme.transitions.duration.enteringScreen,
       }),
       marginLeft: 0,
+      backgroundcolor: "red",
     }),
   })
 );
@@ -88,6 +89,9 @@ const useStyles = makeStyles((theme) => ({
   bar: {
     background: "black",
   },
+  paper: {
+    background: "blue",
+  },
   clockstyle: {
     alignItems: "right",
     marginLeft: "10rem",
@@ -107,6 +111,10 @@ const useStyles = makeStyles((theme) => ({
   container: {
     textAlign: "center",
   },
+  dd: {
+    background: "#f1f1f1",
+  },
+  listitem: {},
 }));
 
 // function tick() {
@@ -133,18 +141,6 @@ export default function BodyAdminDash() {
     console.log(localStorage.getItem("accessToken"));
   };
 
-  // const itemsList = [
-  //   {
-  //     text: "Your Profile",
-  //     icon: <PermContactCalendarRoundedIcon />,
-  //   },
-  //   {
-  //     text: "Show Tables",
-  //     icon: <AdminPanelSettingsRoundedIcon />,
-  //     //   onClick: () => history.push("/contact")
-  //   },
-  // ];
-
   return (
     <div className={classes.page}>
       <Box className={classes.root} sx={{ display: "flex" }}>
@@ -166,6 +162,8 @@ export default function BodyAdminDash() {
           </Toolbar>
         </AppBar>
         <Drawer
+          className={classes.dd}
+          containerStyle={{ backgroundColor: "black" }}
           sx={{
             width: drawerWidth,
             flexShrink: 0,
@@ -187,9 +185,8 @@ export default function BodyAdminDash() {
               )}
             </IconButton>
           </DrawerHeader>
-          <Divider />
 
-          <List>
+          <List className={classes.list}>
             {/* {itemsList.map((item, index) => {
               const { text, icon, onClick } = item;
               return (
@@ -200,7 +197,7 @@ export default function BodyAdminDash() {
               );
             })} */}
 
-            <ListItem button key="Go To Dashboard">
+            <ListItem className={classes.list} button key="Go To Dashboard">
               {<DashboardRoundedIcon /> && (
                 <ListItemIcon>
                   <DashboardRoundedIcon />
@@ -212,7 +209,7 @@ export default function BodyAdminDash() {
               </a>
             </ListItem>
 
-            <ListItem button key="Show Tables">
+            <ListItem className={classes.list} button key="Show Tables">
               {<AdminPanelSettingsRoundedIcon /> && (
                 <ListItemIcon>
                   {" "}
@@ -225,7 +222,7 @@ export default function BodyAdminDash() {
               </a>
             </ListItem>
 
-            <ListItem button key="Inventory">
+            <ListItem className={classes.list} button key="Inventory">
               {<InventoryIcon /> && (
                 <ListItemIcon>
                   <InventoryIcon />
@@ -238,12 +235,18 @@ export default function BodyAdminDash() {
               </a>
             </ListItem>
 
-            <ListItem button key="Log Out" onClick={Logoutfunction}>
+            <ListItem
+              className={classes.list}
+              button
+              key="Log Out"
+              onClick={Logoutfunction}
+            >
               {<LogoutIcon /> && (
                 <ListItemIcon>
                   <LogoutIcon />
                 </ListItemIcon>
               )}
+              <Divider />
               <a href="/LoginPage">
                 {" "}
                 <ListItemText primary="Log Out" />

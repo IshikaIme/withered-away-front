@@ -4,10 +4,12 @@ import MaterialTable from "material-table";
 import GetAppIcon from "@material-ui/icons/GetApp";
 import BodyAdminDash from "../AdminDashboard/BodyAdminDash";
 import AddIcon from "@material-ui/icons/Add";
-
+import jsPDF from "jspdf";
+import "jspdf-autotable";
+import Paper from "@mui/material/Paper";
 function TableDoctor() {
   const [TableData, setTableData] = useState([]);
-
+  const [selectedRows, setSelectedRows] = useState([]);
   const columns = [
     // {
     //   title: "ID",
@@ -72,7 +74,20 @@ function TableDoctor() {
       filterPlaceholder: "filter",
     },
   ];
+  const exportAllSelectedRows = () => {
+    const doc = new jsPDF();
+    doc.text("Doctor Information", 20, 10);
 
+    doc.autoTable({
+      //head: ["Your total Bill is", sumOfCosts],
+      theme: "grid",
+      columns: columns.map((col) => ({ ...col, dataKey: col.field })),
+
+      body: selectedRows,
+    });
+
+    doc.save("TableDoctor.pdf");
+  };
   useEffect(() => {
     fetch("http://localhost:8080/api/doctor")
       .then((resp) => resp.json())
@@ -85,14 +100,14 @@ function TableDoctor() {
     <div className="TablePeople">
       <BodyAdminDash />
       <MaterialTable
-        title="People Information"
+        title="Doctor Information"
         data={TableData}
         columns={columns}
         actions={[
           {
             icon: () => <GetAppIcon />,
-            tooltip: "Click me",
-            onClick: (e, data) => console.log(data),
+            tooltip: "Export all selected rows",
+            onClick: () => exportAllSelectedRows(),
             // isFreeAction:true
           },
         ]}
@@ -155,7 +170,7 @@ function TableDoctor() {
               });
             }),
         }}
-        onSelectionChange={(selectedRows) => console.log(selectedRows)}
+        onSelectionChange={(rows) => setSelectedRows(rows)}
         options={{
           sorting: true,
           search: true,

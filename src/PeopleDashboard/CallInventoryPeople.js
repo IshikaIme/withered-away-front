@@ -2,8 +2,8 @@ import React from "react";
 import HomeImg from "../images/wleafedit.jpg";
 import { makeStyles } from "@material-ui/styles";
 import { CssBaseline } from "@material-ui/core";
-import BodyAdminDash from "./BodyAdminDash";
-import ShowInventory from "./ShowInventory";
+import BodyPeopleDash from "./BodyPeopleDash";
+import ShowInventoryPeople from "./ShowInventoryPeople";
 const useStyles = makeStyles((theme) => ({
   root: {
     minHeight: "100vh",
@@ -13,13 +13,13 @@ const useStyles = makeStyles((theme) => ({
     backgroundAttachment: "fixed",
   },
 }));
-export default function CallInventory() {
+export default function CallInventoryPeople() {
   const classes = useStyles();
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <BodyAdminDash />
-      <ShowInventory />
+      <BodyPeopleDash />
+      <ShowInventoryPeople />
     </div>
   );
 }

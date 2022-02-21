@@ -102,7 +102,7 @@ const useStyles = makeStyles({
   title6: {
     fontFamily: "Permanent Marker",
 
-    fontSize: "2.5rem",
+    fontSize: "1.8rem",
     color: "green",
     background: "black",
   },
@@ -196,7 +196,7 @@ export default function CardsPeople() {
             component="h1"
             className={classes.title6}
           >
-            <a href="/HomeAni"> HOME </a>
+            <a href="/CallInventoryPeople">Inventory </a>
           </Typography>
         </CardContent>
       </Card>
