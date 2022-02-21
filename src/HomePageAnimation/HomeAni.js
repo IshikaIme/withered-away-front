@@ -1,5 +1,5 @@
 import React from "react";
-import HomeImg from "../images/hh.jpg";
+import HomeImg from "../images/myblast1.jpg";
 import { makeStyles } from "@material-ui/styles";
 import { CssBaseline } from "@material-ui/core";
 import HomeHeader from "./HomeHeader";
