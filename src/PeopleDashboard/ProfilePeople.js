@@ -77,12 +77,14 @@ const ProfilePeople = () => {
 	const [itemContact, setItemContact] = useState([]);
 	const [itemHealth, setItemHealth] = useState([]);
 	const [itemMis, setItemMis] = useState([]);
-	const [isEditingBasic, setIsEditingBasic] = useState(false);
-	const [isEditingContact, setIsEditingContact] = useState(false);
-	const [isEditingHealth, setIsEditingHealth] = useState(false);
-	const [isEditingMis, setIsEditingMis] = useState(false);
-	const classes = useStyles();
-	useEffect(() => {
+  const [itemRoom, setItemRoom] = useState([]);
+  const [itemDoc, setItemDoc] = useState([]);
+  const [isEditingBasic, setIsEditingBasic] = useState(false);
+  const [isEditingContact, setIsEditingContact] = useState(false);
+  const [isEditingHealth, setIsEditingHealth] = useState(false);
+  const [isEditingMis, setIsEditingMis] = useState(false);
+  const classes = useStyles();
+  useEffect(() => {
 		fetch(`http://localhost:8080/api/people/${id}`)
 			.then((resp) => resp.json())
 			.then((resp) => {
@@ -94,9 +96,9 @@ const ProfilePeople = () => {
 				setItemBasic(resp.data[0]);
 				console.log(resp.data[0]);
 			});
-	}, []);
+  }, []);
 
-	useEffect(() => {
+  useEffect(() => {
 		fetch(
 			`http://localhost:8080/api/contact/id/connection/contact_id/people_id/${id}`
 		)
@@ -105,29 +107,51 @@ const ProfilePeople = () => {
 				setItemContact(resp.data[0]);
 				console.log(resp.data[0]);
 			});
-	}, []);
+  }, []);
 
-	useEffect(() => {
+  useEffect(() => {
 		fetch(`http://localhost:8080/api/health_record/people_id/${id}`)
 			.then((resp) => resp.json())
 			.then((resp) => {
 				setItemHealth(resp.data[0]);
 				console.log(resp.data[0]);
 			});
-	}, []);
+  }, []);
 
-	useEffect(() => {
+  useEffect(() => {
 		fetch(`http://localhost:8080/api/account/people_id/${id}`)
 			.then((resp) => resp.json())
 			.then((resp) => {
 				setItemMis(resp.data[0]);
 				console.log(resp.data[0]);
 			});
-	}, []);
+  }, []);
 
-	// const filtereditem = accountitem.filter((it) => it.PEOPLE_ID == id);
-	// setItemMis(filtereditem);
-	return (
+  useEffect(() => {
+		fetch(
+			`http://localhost:8080/api/bed_room/room_id/room_allotment/room_id/people_id/${id}`
+		)
+			.then((resp) => resp.json())
+			.then((resp) => {
+				setItemRoom(resp.data[0]);
+				console.log(resp.data[0]);
+			});
+  }, []);
+
+  useEffect(() => {
+		fetch(
+			`http://localhost:8080/api/doctor/id/diagnosed_by/doctor_id/people_id/${id}`
+		)
+			.then((resp) => resp.json())
+			.then((resp) => {
+				setItemDoc(resp.data[0]);
+				console.log(resp.data[0]);
+			});
+  }, []);
+
+  // const filtereditem = accountitem.filter((it) => it.PEOPLE_ID == id);
+  // setItemMis(filtereditem);
+  return (
 		<div>
 			<Card className={classes.cardimg}>
 				<CardMedia
@@ -625,8 +649,28 @@ const ProfilePeople = () => {
 						</button>
 					)}
 				</div>
+
+				<h1 className={classes.header}>ROOM</h1>
+				<div className={classes.basic}>
+					<List>
+						<ListItem>
+							<h1 className={classes.head}>Room No:</h1>
+							<ListItemText primary={itemRoom.ROOM_ID} />
+						</ListItem>
+					</List>
+				</div>
+
+				<h1 className={classes.header}>DOCTOR ASSIGNED</h1>
+				<div className={classes.basic}>
+					<List>
+						<ListItem>
+							<h1 className={classes.head}>Doctor Name:</h1>
+							<ListItemText primary={itemDoc.NAME} />
+						</ListItem>
+					</List>
+				</div>
 			</div>
 		</div>
-	);
+  );
 };
 export default ProfilePeople;
