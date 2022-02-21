@@ -4,7 +4,9 @@ import MaterialTable from "material-table";
 import GetAppIcon from "@material-ui/icons/GetApp";
 import BodyAdminDash from "../AdminDashboard/BodyAdminDash";
 import AddIcon from "@material-ui/icons/Add";
-
+import jsPDF from "jspdf";
+import "jspdf-autotable";
+import Paper from "@mui/material/Paper";
 export default function TableMedicine() {
   const [TableData, setTableData] = useState([]);
   const [selectedRows, setSelectedRows] = useState([]);
