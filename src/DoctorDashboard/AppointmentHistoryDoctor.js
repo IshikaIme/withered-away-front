@@ -6,6 +6,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import React, { Component } from "react";
 import axios from "axios";
+import BodyDoctorDash from "./BodyDoctorDash";
 import "react-edit-text/dist/index.css";
 import { makeStyles } from "@material-ui/core/styles";
 import { EditText, EditTextarea } from "react-edit-text";

@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-
+    marginLeft: "0rem",
     height: "100vh",
     fontFamily: "Courgette",
   },
@@ -37,13 +37,13 @@ const useStyles = makeStyles((theme) => ({
   title: {
     color: "#fff",
     fontSize: "6.5rem",
-    marginTop: "20rem",
+    marginTop: "27rem",
     marginBottom: "0 auto ",
   },
   Secondtitle: {
     color: "#fff",
     fontSize: "3rem",
-    marginTop: "0 ",
+    marginTop: "-1.5rem ",
 
     marginBottom: "0  ",
   },
@@ -56,9 +56,9 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "1rem",
   },
   goDown: {
-    color: "#8b0000",
+    color: "#000000",
     fontSize: "large",
-    marginTop: "0 auto",
+    marginTop: "-5rem",
   },
 }));
 export default function HomeHeader() {

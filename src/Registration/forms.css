@@ -1,0 +1,13 @@
+::placeholder {
+  color: blue;
+}
+::basicdatepicker {
+  color: blue;
+}
+.health {
+  margin-left: 3rem;
+}
+.table-title {
+  margin-top: 2rem;
+  font-family: "Roboto";
+}
