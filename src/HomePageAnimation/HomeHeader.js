@@ -100,7 +100,7 @@ export default function HomeHeader() {
               <span className={classes.colortext}>Away </span>
             </h1>
           </h1>
-          <h1 className={classes.para}>Old Home Management System</h1>
+          <h1 className={classes.para}>Old Age Home Management System</h1>
           <Scroll to="Navigation card" smooth={true}>
             <IconButton>
               <ExpandCircleDownRoundedIcon

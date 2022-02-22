@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import CardActions from "@mui/material/CardActions";
 import womanimg from "../images/w.jpg";
 import dimg from "../images/dd.jpg";
+import don from "../images/don.jpg";
 import staffimg from "../images/staff.jpg";
 import CardContent from "@material-ui/core/CardContent";
 import BodyAdminDash from "./BodyAdminDash";
@@ -19,7 +20,7 @@ const useStyles = makeStyles({
     display: "flex",
   },
   root: {
-    maxWidth: 300,
+    maxWidth: 250,
     height: 350,
     background: "rgba(0,0,0,0.8)",
     margin: "20px",
@@ -129,6 +130,31 @@ export default function ShowTableAdmin() {
             >
               {" "}
               <a href="/TableStaff">Staff Information</a>
+            </Typography>
+          </CardContent>
+        </Card>
+      </CardActions>
+
+      <CardActions>
+        <Card className={classes.root}>
+          <CardMedia
+            style={{ height: 0, paddingTop: "80%" }}
+            className={classes.media}
+            // image={cardnumber.imageUrl}
+            // image={`url(${cardnumber.imageUrl})`}
+            image={don}
+            title="TableDonations"
+          />
+
+          <CardContent>
+            <Typography
+              gutterBottom
+              variant="h5"
+              component="h1"
+              className={classes.title}
+            >
+              {" "}
+              <a href="/TableDonation">Donation Information</a>
             </Typography>
           </CardContent>
         </Card>
