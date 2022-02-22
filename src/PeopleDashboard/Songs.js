@@ -171,6 +171,8 @@ export default function Songs() {
                 axios.delete(url).then((res) => {
                   //     console.log("res", res);
                 });
+                window.location.reload();
+
               }),
           }}
           options={{
