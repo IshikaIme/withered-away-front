@@ -163,21 +163,24 @@ export default function SeeRequestedAppointments() {
             onRowUpdate: (newData, oldData) =>
               new Promise((resolve, reject) => {
                 setTimeout(() => {
-                  const dataUpdate = [...filtereditem];
-                  const index = oldData.filtereditem.id;
-                  dataUpdate[index] = newData;
-                  setItem([...dataUpdate]);
+					const dataUpdate = [...filtereditem];
+					if (oldData.filtereditem) {
+						const index = oldData.filtereditem.id;
+						dataUpdate[index] = newData;
+					}
+					setItem([...dataUpdate]);
 
-                  resolve();
-                }, 500);
-                axios
-                  .patch(
-                    `http://localhost:8080/api/appointment/id/${newData.ID}`,
-                    newData
-                  )
-                  .then((res) => {
-                    // window.location.reload(false);
-                  });
+					resolve();
+				}, 500);
+				console.log(newData);
+				axios
+					.patch(
+						`http://localhost:8080/api/appointment/id/${newData.ID_1}`,
+						newData
+					)
+					.then((res) => {
+						// window.location.reload(false);
+					});
               }),
           }}
           onSelectionChange={(selectedRows) => console.log(selectedRows)}

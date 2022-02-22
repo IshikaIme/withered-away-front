@@ -156,16 +156,18 @@ export default function Songs() {
             //   }),
             onRowDelete: (oldData) =>
               new Promise((resolve, reject) => {
-                let contactId = oldData.ID;
-                setTimeout(() => {
-                  const dataDelete = [...item];
-                  const index = oldData.item.id;
-                  dataDelete.splice(index, 1);
-                  setItem([...dataDelete]);
+                let songId = oldData.ID;
+				setTimeout(() => {
+					let dataDelete = [...item];
+					if (oldData.item) {
+						const index = oldData.item.id;
+						dataDelete.splice(index, 1);
+					}
+					setItem([...dataDelete]);
 
-                  resolve();
-                }, 1000);
-                let url = `http://localhost:8080/api/song_favorites/song_id/${contactId}`;
+					resolve();
+				}, 500);
+				let url = `http://localhost:8080/api/song_favorites/song_id/${songId}`;
                 axios.delete(url).then((res) => {
                   //     console.log("res", res);
                 });
