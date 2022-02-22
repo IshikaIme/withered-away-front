@@ -9,6 +9,13 @@ import { CsvBuilder } from "filefy";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
+
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 
@@ -68,6 +75,10 @@ function TableFoodPeople() {
 	const [alertMsg, setAlertMsg] = React.useState("");
 	const [alertType, setAlertType] = React.useState("");
 
+	const [dialogOpen, setDialogOpen] = React.useState(false);
+	const [dialogMsg, setDialogMsg] = React.useState("");
+	const [dialogTitle, setDialogTitle] = React.useState("");
+
 	const handleClose = (event, reason) => {
 		if (reason === "clickaway") {
 			return;
@@ -87,12 +98,20 @@ function TableFoodPeople() {
 		if (sumOfCosts >= item.BALANCE) {
 			// snackbar
 			setAlertType("error");
-			setAlertMsg("Insufficient Balance");
+			setAlertMsg(
+				`Insufficient Balance. Your bill is total ${sumOfCosts} and you have ${item.BALANCE}`
+			);
 			setAlertOpen(true);
 			console.log("Insufficient Balance");
 		} else {
 			// dialog box
-			downloadPdf();
+			setDialogTitle("Are you sure?");
+			setDialogMsg(
+				`Your bill is total ${sumOfCosts} and you have ${
+					item.BALANCE
+				}. After purchasing you'll have ${item.BALANCE - sumOfCosts}`
+			);
+			setDialogOpen(true);
 		}
 	};
 	const downloadPdf = () => {
@@ -208,6 +227,37 @@ function TableFoodPeople() {
 					{alertMsg}
 				</Alert>
 			</Snackbar>
+			<Dialog
+				open={dialogOpen}
+				onClose={handleClose}
+				aria-labelledby="alert-dialog-title"
+				aria-describedby="alert-dialog-description"
+			>
+				<DialogTitle id="alert-dialog-title">{dialogTitle}</DialogTitle>
+				<DialogContent>
+					<DialogContentText id="alert-dialog-description">
+						{dialogMsg}
+					</DialogContentText>
+				</DialogContent>
+				<DialogActions>
+					<Button
+						onClick={(event, reason) => {
+							setDialogOpen(false);
+						}}
+					>
+						NO
+					</Button>
+					<Button
+						onClick={(event, reason) => {
+							setDialogOpen(false);
+							downloadPdf();
+						}}
+						autoFocus
+					>
+						YES
+					</Button>
+				</DialogActions>
+			</Dialog>
 		</div>
 	);
 }
