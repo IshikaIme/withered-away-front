@@ -186,19 +186,18 @@ export default function SeeRequestedAppointments() {
 
             onRowDelete: (oldData) =>
               new Promise((resolve, reject) => {
-                let contactId = oldData.ID;
+                let contactId = oldData.ID_1;
                 setTimeout(() => {
                   const dataDelete = [...filtereditem];
                   if (oldData.filtereditem) {
                     const index = oldData.filtereditem.id;
                     dataDelete.splice(index, 1);
                   }
-
                   setItem([...dataDelete]);
 
                   resolve();
                 }, 500);
-                let url = `http://localhost:8080/api/appointment/id/${contactId}`;
+                let url = `http://localhost:8080/api/appointment/${contactId}`;
                 axios.delete(url).then((res) => {
                   //     console.log("res", res);
                 });
