@@ -13,6 +13,8 @@ import FormLabel from "@mui/material/FormLabel";
 
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
+import jsPDF from "jspdf";
+import "jspdf-autotable";
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -125,6 +127,20 @@ export default function ReqAppointment() {
       PEOPLE_ID: id,
       DOCTOR_ID: value,
     };
+    const downloadPdf = () => {
+      const doc = new jsPDF();
+      doc.text("Your Appointment Receipt", 20, 10);
+
+      doc.autoTable({
+        //head: ["Your total Bill is", sumOfCosts],
+        theme: "grid",
+        // columns: columns.map((col) => ({ ...col, dataKey: col.field })),
+
+        body: tobesent,
+      });
+
+      doc.save("Bill.pdf");
+    };
 
     let reqdoctor = item.filter((it) => it.ID == value);
     // console.log(item[0].ID);
@@ -139,6 +155,7 @@ export default function ReqAppointment() {
           .then((response) => {
             if (response) {
               console.log(response);
+
               setAlertType("success");
               setAlertMsg(
                 "Appointment Requested Successfully. Doctor's fee " +
@@ -213,7 +230,7 @@ export default function ReqAppointment() {
                     {...register("DOCTOR_ID")}
                     value={doctor.ID}
                     control={<Radio />}
-                    label={doctor.NAME}
+                    label={doctor.NAME + " ,Fee - " + doctor.FEE}
                   />
                 ))}
               </RadioGroup>

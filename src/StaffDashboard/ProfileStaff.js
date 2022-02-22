@@ -24,11 +24,12 @@ const useStyles = makeStyles({
   },
   header: {
     marginBottom: "10 rem",
+    marginLeft: "4rem",
   },
   head: {
     fontSize: "1.5rem",
-    marginRight: " 2.5rem",
-    marginLeft: "20rem",
+    marginRight: " .7rem",
+    marginLeft: "26rem",
   },
   btn: {
     height: "7vh",

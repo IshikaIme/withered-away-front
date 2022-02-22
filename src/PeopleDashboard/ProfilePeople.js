@@ -19,8 +19,8 @@ const dateformat = require("../formatDate");
 const useStyles = makeStyles({
   root: {
     fontFamily: "Nunito",
-    marginLeft: "20rem",
-    textAlign: "center",
+    marginLeft: "50rem",
+    //textAlign: "center",
     marginTop: "-172rem",
   },
   header: {
@@ -28,9 +28,11 @@ const useStyles = makeStyles({
   },
   head: {
     fontSize: "1.5rem",
-    marginRight: " 2.5rem",
-    marginLeft: "20rem",
+
+    marginRight: " 0.8rem",
+    marginLeft: "-0.8rem",
   },
+
   btn: {
     height: "7vh",
     width: "7vh",
@@ -175,8 +177,9 @@ const ProfilePeople = () => {
 
               <ListItemText primary={itemBasic.ID} />
             </ListItem>
-            <ListItem>
+            <ListItem className={classes.val}>
               <h1 className={classes.head}>Name:</h1>
+
               {isEditingBasic === true ? (
                 <input
                   type="text"

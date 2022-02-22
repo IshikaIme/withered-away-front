@@ -138,20 +138,20 @@ export default function Games() {
               new Promise((resolve, reject) => {
                 let contactId = oldData.ID;
                 setTimeout(() => {
-					const dataDelete = [...item];
-					if (oldData.item) {
-						const index = oldData.item.id;
-						dataDelete.splice(index, 1);
-					}
-					setItem([...dataDelete]);
+                  const dataDelete = [...item];
+                  if (oldData.item) {
+                    const index = oldData.item.id;
+                    dataDelete.splice(index, 1);
+                  }
+                  setItem([...dataDelete]);
 
-					resolve();
-				}, 100);
-				let url = `http://localhost:8080/api/game_favorites/game_id/${contactId}`;
-				axios.delete(url).then((res) => {
-					//     console.log("res", res);
-				});
-				window.location.reload();
+                  resolve();
+                }, 100);
+                let url = `http://localhost:8080/api/game_favorites/game_id/${contactId}`;
+                axios.delete(url).then((res) => {
+                  //     console.log("res", res);
+                });
+                window.location.reload();
               }),
           }}
           options={{
@@ -163,7 +163,7 @@ export default function Games() {
             filtering: true,
             paging: true,
             pageSizeOptions: [2, 5, 10, 20, 25, 50, 100],
-            pageSize: 5,
+            pageSize: 10,
             paginationType: "stepped",
             showFirstLastPageButtons: false,
             paginationPosition: "both",
