@@ -86,16 +86,18 @@ function TableFoodPeople() {
 
     setAlertOpen(false);
   };
-
+  const [costOfFood, setCostOfFood] = useState();
   const BuyAll = () => {
     selectedRows.map((row) => (allcost[i++] = row.COST));
 
-    var medics = selectedRows.map((row) => row.NAME.trim());
-    console.log(medics.join(","));
+    // var medics = selectedRows.map((row) => row.NAME.trim());
+    // console.log(medics.join(","));
     while (allcost[x] != null) {
       sumOfCosts = sumOfCosts + allcost[x];
       x++;
     }
+
+    setCostOfFood(sumOfCosts);
     console.log(sumOfCosts);
     if (sumOfCosts >= item.BALANCE) {
       // snackbar
@@ -248,6 +250,29 @@ function TableFoodPeople() {
           <Button
             onClick={(event, reason) => {
               setDialogOpen(false);
+              axios
+                .patch(`http://localhost:8080/api/account/people_id/${id}`, {
+                  BALANCE: item.BALANCE - costOfFood,
+                })
+                .then((res) => {
+                  console.log(item.BALANCE - costOfFood);
+                  var medics = selectedRows.map((row) => row.NAME.trim());
+                  //console.log(medics.join(","));
+                  axios
+                    .post(`http://localhost:8080/api/transactions`, {
+                      BANK_ACCOUNT_NO: item.BANK_ACCOUNT_NO,
+                      PEOPLE_ID: id,
+                      TRX_TYPE: "BUYING FOOD",
+                      DETAILS: "Buying Food " + medics.join(","),
+                      TRX_DATE: new Date(),
+                      AMOUNT: costOfFood.toString(),
+                      IN_OUT: "OUT",
+                    })
+                    .then((res) => {
+                      // window.location.reload(false);
+                    });
+                  // window.location.reload(false);
+                });
               downloadPdf();
             }}
             autoFocus
