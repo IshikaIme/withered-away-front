@@ -119,7 +119,7 @@ export default function AppointmentHistory() {
           editable={{
             onRowDelete: (oldData) =>
               new Promise((resolve, reject) => {
-                let contactId = oldData.ID;
+                let contactId = oldData.ID_1;
                 setTimeout(() => {
                   let dataDelete = [...filtereditem];
                   if (oldData.item) {
@@ -131,10 +131,12 @@ export default function AppointmentHistory() {
 
                   resolve();
                 }, 500);
+                console.log(contactId);
                 let url = `http://localhost:8080/api/appointment/id/${contactId}`;
                 axios.delete(url).then((res) => {
                   //     console.log("res", res);
                 });
+                window.location.reload();
               }),
           }}
           onSelectionChange={(selectedRows) => console.log(selectedRows)}

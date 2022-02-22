@@ -163,24 +163,24 @@ export default function SeeRequestedAppointments() {
             onRowUpdate: (newData, oldData) =>
               new Promise((resolve, reject) => {
                 setTimeout(() => {
-					const dataUpdate = [...filtereditem];
-					if (oldData.filtereditem) {
-						const index = oldData.filtereditem.id;
-						dataUpdate[index] = newData;
-					}
-					setItem([...dataUpdate]);
+                  const dataUpdate = [...filtereditem];
+                  if (oldData.filtereditem) {
+                    const index = oldData.filtereditem.id;
+                    dataUpdate[index] = newData;
+                  }
+                  setItem([...dataUpdate]);
 
-					resolve();
-				}, 500);
-				console.log(newData);
-				axios
-					.patch(
-						`http://localhost:8080/api/appointment/id/${newData.ID_1}`,
-						newData
-					)
-					.then((res) => {
-						// window.location.reload(false);
-					});
+                  resolve();
+                }, 500);
+                console.log(newData);
+                axios
+                  .patch(
+                    `http://localhost:8080/api/appointment/id/${newData.ID_1}`,
+                    newData
+                  )
+                  .then((res) => {
+                    // window.location.reload(false);
+                  });
               }),
 
             onRowDelete: (oldData) =>
@@ -188,17 +188,43 @@ export default function SeeRequestedAppointments() {
                 let contactId = oldData.ID;
                 setTimeout(() => {
                   const dataDelete = [...filtereditem];
-                  const index = oldData.filtereditem.id;
-                  dataDelete.splice(index, 1);
+                  if (oldData.item) {
+                    const index = oldData.item.id;
+                    dataDelete.splice(index, 1);
+                  }
+
                   setItem([...dataDelete]);
 
                   resolve();
                 }, 500);
-                let url = `http://localhost:8080/api/appointment/${contactId}`;
+                let url = `http://localhost:8080/api/appointment/id/${contactId}`;
                 axios.delete(url).then((res) => {
                   //     console.log("res", res);
                 });
+                window.location.reload();
               }),
+
+            // onRowDelete: (oldData) =>
+            //   new Promise((resolve, reject) => {
+            //     let contactId = oldData.ID_1;
+            //     setTimeout(() => {
+            //       let dataDelete = [...filtereditem];
+            //       if (oldData.item) {
+            //         const index = oldData.item.id;
+            //         dataDelete.splice(index, 1);
+            //       }
+
+            //       setItem([...dataDelete]);
+
+            //       resolve();
+            //     }, 500);
+            //     console.log(contactId);
+            //     let url = `http://localhost:8080/api/appointment/id/${contactId}`;
+            //     axios.delete(url).then((res) => {
+            //       //     console.log("res", res);
+            //     });
+            //     window.location.reload();
+            //   }),
           }}
           onSelectionChange={(selectedRows) => console.log(selectedRows)}
           options={{
