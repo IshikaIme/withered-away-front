@@ -11,51 +11,51 @@ export default function TableMedicine() {
   const [TableData, setTableData] = useState([]);
   const [selectedRows, setSelectedRows] = useState([]);
   const columns = [
-    // {
-    //   title: "ID",
-    //   field: "ID",
-    //   sorting: true,
-    //   align: "center",
-    //   filtering: true,
-    //   cellStyle: {
-    //     // background: "#009688",
-    //     fontfamily: "corgette",
-    //     height: 80,
-    //     maxHeight: 80,
-    //   },
-    //   headerStyle: { color: "#fff" },
-    // },
-    {
-      title: "Name",
-      field: "NAME",
-      sorting: true,
-      filtering: true,
-      // cellStyle: { background: "#009688" },
-      headerStyle: { color: "#fff" },
-    },
-    {
-      title: "Time",
-      field: "TIME",
-      sorting: true,
-      align: "center",
-      filtering: true,
-      cellStyle: {
-        // background: "#009688",
-        fontfamily: "corgette",
-        height: 80,
-        maxHeight: 80,
-      },
-      headerStyle: { color: "#fff" },
-    },
-    {
-      title: "Cost",
-      field: "COST",
-      align: "center",
-      type: "currency",
+		// {
+		//   title: "ID",
+		//   field: "ID",
+		//   sorting: true,
+		//   align: "center",
+		//   filtering: true,
+		//   cellStyle: {
+		//     // background: "#009688",
+		//     fontfamily: "corgette",
+		//     height: 80,
+		//     maxHeight: 80,
+		//   },
+		//   headerStyle: { color: "#fff" },
+		// },
+		{
+			title: "Name",
+			field: "NAME",
+			sorting: true,
+			filtering: true,
+			// cellStyle: { background: "#009688" },
+			headerStyle: { color: "#fff" },
+		},
+		// {
+		//   title: "Time",
+		//   field: "TIME",
+		//   sorting: true,
+		//   align: "center",
+		//   filtering: true,
+		//   cellStyle: {
+		//     // background: "#009688",
+		//     fontfamily: "corgette",
+		//     height: 80,
+		//     maxHeight: 80,
+		//   },
+		//   headerStyle: { color: "#fff" },
+		// },
+		{
+			title: "Cost",
+			field: "COST",
+			align: "center",
+			type: "currency",
 
-      grouping: false,
-      filterPlaceholder: "filter",
-    },
+			grouping: false,
+			filterPlaceholder: "filter",
+		},
   ];
   const exportAllSelectedRows = () => {
     const doc = new jsPDF();

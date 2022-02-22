@@ -9,24 +9,10 @@ import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 export default function TableMedicinePeople() {
-  const [TableData, setTableData] = useState([]);
+  const [tableData, setTableData] = useState([]);
   const [selectedRows, setSelectedRows] = useState([]);
 
   const columns = [
-    // {
-    //   title: "ID",
-    //   field: "ID",
-    //   sorting: true,
-    //   align: "center",
-    //   filtering: true,
-    //   cellStyle: {
-    //     // background: "#009688",
-    //     fontfamily: "corgette",
-    //     height: 80,
-    //     maxHeight: 80,
-    //   },
-    //   headerStyle: { color: "#fff" },
-    // },
     {
       title: "Name",
       field: "NAME",
@@ -106,7 +92,8 @@ export default function TableMedicinePeople() {
     fetch("http://localhost:8080/api/medicine")
       .then((resp) => resp.json())
       .then((resp) => {
-        setTableData(resp.data);
+        const r = resp.data.filter((d) => d.COST !== null);
+        setTableData(r);
       });
   }, []);
 
@@ -115,7 +102,7 @@ export default function TableMedicinePeople() {
       <BodyPeopleDash />
       <MaterialTable
         title="Medicines"
-        data={TableData}
+        data={tableData}
         columns={columns}
         actions={[
           //   {
