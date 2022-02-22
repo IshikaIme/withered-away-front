@@ -9,55 +9,55 @@ import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 export default function TableMedicinePeople() {
-  const [TableData, setTableData] = useState([]);
+  const [tableData, setTableData] = useState([]);
   const [selectedRows, setSelectedRows] = useState([]);
 
   const columns = [
-    // {
-    //   title: "ID",
-    //   field: "ID",
-    //   sorting: true,
-    //   align: "center",
-    //   filtering: true,
-    //   cellStyle: {
-    //     // background: "#009688",
-    //     fontfamily: "corgette",
-    //     height: 80,
-    //     maxHeight: 80,
-    //   },
-    //   headerStyle: { color: "#fff" },
-    // },
-    {
-      title: "Name",
-      field: "NAME",
-      sorting: true,
-      filtering: true,
-      // cellStyle: { background: "#009688" },
-      headerStyle: { color: "#fff" },
-    },
-    {
-      title: "Time",
-      field: "TIME",
-      sorting: true,
-      align: "center",
-      filtering: true,
-      cellStyle: {
-        // background: "#009688",
-        fontfamily: "corgette",
-        height: 80,
-        maxHeight: 80,
-      },
-      headerStyle: { color: "#fff" },
-    },
-    {
-      title: "Cost",
-      field: "COST",
-      align: "center",
-      type: "currency",
+		// {
+		//   title: "ID",
+		//   field: "ID",
+		//   sorting: true,
+		//   align: "center",
+		//   filtering: true,
+		//   cellStyle: {
+		//     // background: "#009688",
+		//     fontfamily: "corgette",
+		//     height: 80,
+		//     maxHeight: 80,
+		//   },
+		//   headerStyle: { color: "#fff" },
+		// },
+		{
+			title: "Name",
+			field: "NAME",
+			sorting: true,
+			filtering: true,
+			// cellStyle: { background: "#009688" },
+			headerStyle: { color: "#fff" },
+		},
+		// {
+		//   title: "Time",
+		//   field: "TIME",
+		//   sorting: true,
+		//   align: "center",
+		//   filtering: true,
+		//   cellStyle: {
+		//     // background: "#009688",
+		//     fontfamily: "corgette",
+		//     height: 80,
+		//     maxHeight: 80,
+		//   },
+		//   headerStyle: { color: "#fff" },
+		// },
+		{
+			title: "Cost",
+			field: "COST",
+			align: "center",
+			type: "currency",
 
-      grouping: false,
-      filterPlaceholder: "filter",
-    },
+			grouping: false,
+			filterPlaceholder: "filter",
+		},
   ];
   //   const handleBulkDelete = () => {
   //     const updatedData = TableData.filter((row) => !selectedRows.includes(row));
@@ -77,26 +77,26 @@ export default function TableMedicinePeople() {
   var i = 0;
   var x = 0;
   const BuyAll = () => {
-    selectedRows.map((row) => (allcost[i++] = row.COST));
-    console.log(allcost);
-    while (allcost[x] != null) {
-      sumOfCosts = sumOfCosts + allcost[x];
-      x++;
-    }
-    console.log(sumOfCosts);
+		selectedRows.map((row) => (allcost[i++] = row.COST));
+		console.log(allcost);
+		while (allcost[x] != null) {
+			sumOfCosts = sumOfCosts + allcost[x];
+			x++;
+		}
+		console.log(sumOfCosts);
 
-    const doc = new jsPDF();
-    doc.text("Your Bill", 20, 10);
+		const doc = new jsPDF();
+		doc.text("Your Bill", 20, 10);
 
-    doc.autoTable({
-      //head: ["Your total Bill is", sumOfCosts],
-      theme: "grid",
-      columns: columns.map((col) => ({ ...col, dataKey: col.field })),
+		doc.autoTable({
+			//head: ["Your total Bill is", sumOfCosts],
+			theme: "grid",
+			columns: columns.map((col) => ({ ...col, dataKey: col.field })),
 
-      body: selectedRows,
-    });
+			body: selectedRows,
+		});
 
-    doc.save("Bill.pdf");
+		doc.save("Bill.pdf");
   };
   // new CsvBuilder("Bill.csv")
   //   .setColumns(columns.map((col) => col.title))
@@ -116,68 +116,69 @@ export default function TableMedicinePeople() {
   //     doc.save("table.pdf");
   //   };
   useEffect(() => {
-    fetch("http://localhost:8080/api/medicine")
-      .then((resp) => resp.json())
-      .then((resp) => {
-        setTableData(resp.data);
-      });
+		fetch("http://localhost:8080/api/medicine")
+			.then((resp) => resp.json())
+			.then((resp) => {
+				const r = resp.data.filter((d) => d.COST !== null);
+				setTableData(r);
+			});
   }, []);
 
   return (
-    <div className="Medicines">
-      <BodyPeopleDash />
-      <MaterialTable
-        title="Medicines"
-        data={TableData}
-        columns={columns}
-        actions={[
-          //   {
-          //     icon: "delete",
-          //     tooltip: "Delete all selected rows",
-          //     onClick: () => handleBulkDelete(),
-          //   },
-          {
-            icon: () => <AddShoppingCartIcon />,
-            tooltip: "Buy selected Items",
-            onClick: () => BuyAll(),
-          },
-          //   {
-          //     icon: () => <GetAppIcon />,
-          //     tooltip: "Export all selected rows",
-          //     onClick: () => exportAllSelectedRows(),
-          //   },
-        ]}
-        onSelectionChange={(rows) => setSelectedRows(rows)}
-        options={{
-          sorting: true,
-          search: true,
-          searchFieldAlignment: "right",
-          searchAutoFocus: true,
-          searchFieldVariant: "standard",
-          filtering: true,
-          paging: true,
-          pageSizeOptions: [2, 5, 10, 20, 25, 50, 100],
-          pageSize: 5,
-          paginationType: "stepped",
-          showFirstLastPageButtons: false,
-          paginationPosition: "both",
-          exportButton: true,
-          exportAllData: true,
-          exportFileName: "TableData",
-          addRowPosition: "first",
-          actionsColumnIndex: -1,
-          selection: true,
-          showSelectAllCheckbox: false,
-          showTextRowsSelected: false,
-          selectionProps: (rowData) => ({}),
-          grouping: true,
-          columnsButton: true,
-          rowStyle: (data, index) =>
-            index % 2 === 0 ? { background: "#f5f5f5" } : null,
-          headerStyle: { background: "#f44336", color: "#fff" },
-        }}
-        icons={{ Add: () => <AddIcon /> }}
-      />
-    </div>
+		<div className="Medicines">
+			<BodyPeopleDash />
+			<MaterialTable
+				title="Medicines"
+				data={tableData}
+				columns={columns}
+				actions={[
+					//   {
+					//     icon: "delete",
+					//     tooltip: "Delete all selected rows",
+					//     onClick: () => handleBulkDelete(),
+					//   },
+					{
+						icon: () => <AddShoppingCartIcon />,
+						tooltip: "Buy selected Items",
+						onClick: () => BuyAll(),
+					},
+					//   {
+					//     icon: () => <GetAppIcon />,
+					//     tooltip: "Export all selected rows",
+					//     onClick: () => exportAllSelectedRows(),
+					//   },
+				]}
+				onSelectionChange={(rows) => setSelectedRows(rows)}
+				options={{
+					sorting: true,
+					search: true,
+					searchFieldAlignment: "right",
+					searchAutoFocus: true,
+					searchFieldVariant: "standard",
+					filtering: true,
+					paging: true,
+					pageSizeOptions: [2, 5, 10, 20, 25, 50, 100],
+					pageSize: 5,
+					paginationType: "stepped",
+					showFirstLastPageButtons: false,
+					paginationPosition: "both",
+					exportButton: true,
+					exportAllData: true,
+					exportFileName: "TableData",
+					addRowPosition: "first",
+					actionsColumnIndex: -1,
+					selection: true,
+					showSelectAllCheckbox: false,
+					showTextRowsSelected: false,
+					selectionProps: (rowData) => ({}),
+					grouping: true,
+					columnsButton: true,
+					rowStyle: (data, index) =>
+						index % 2 === 0 ? { background: "#f5f5f5" } : null,
+					headerStyle: { background: "#f44336", color: "#fff" },
+				}}
+				icons={{ Add: () => <AddIcon /> }}
+			/>
+		</div>
   );
 }
