@@ -179,6 +179,23 @@ export default function SeeRequestedAppointments() {
                     // window.location.reload(false);
                   });
               }),
+
+            onRowDelete: (oldData) =>
+              new Promise((resolve, reject) => {
+                let contactId = oldData.ID;
+                setTimeout(() => {
+                  const dataDelete = [...filtereditem];
+                  const index = oldData.filtereditem.id;
+                  dataDelete.splice(index, 1);
+                  setItem([...dataDelete]);
+
+                  resolve();
+                }, 500);
+                let url = `http://localhost:8080/api/appointment/${contactId}`;
+                axios.delete(url).then((res) => {
+                  //     console.log("res", res);
+                });
+              }),
           }}
           onSelectionChange={(selectedRows) => console.log(selectedRows)}
           options={{
