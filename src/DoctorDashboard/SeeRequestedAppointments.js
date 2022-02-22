@@ -113,6 +113,7 @@ export default function SeeRequestedAppointments() {
       title: "REASON",
       field: "REASON",
       sorting: true,
+      editable: "never",
       align: "center",
       filtering: true,
       cellStyle: {
@@ -186,21 +187,21 @@ export default function SeeRequestedAppointments() {
             onRowDelete: (oldData) =>
               new Promise((resolve, reject) => {
                 let contactId = oldData.ID_1;
-				setTimeout(() => {
-					const dataDelete = [...filtereditem];
-					if (oldData.filtereditem) {
-						const index = oldData.filtereditem.id;
-						dataDelete.splice(index, 1);
-					}
-					setItem([...dataDelete]);
+                setTimeout(() => {
+                  const dataDelete = [...filtereditem];
+                  if (oldData.filtereditem) {
+                    const index = oldData.filtereditem.id;
+                    dataDelete.splice(index, 1);
+                  }
+                  setItem([...dataDelete]);
 
-					resolve();
-				}, 500);
-				let url = `http://localhost:8080/api/appointment/${contactId}`;
-				axios.delete(url).then((res) => {
-					//     console.log("res", res);
-				});
-				window.location.reload();
+                  resolve();
+                }, 500);
+                let url = `http://localhost:8080/api/appointment/${contactId}`;
+                axios.delete(url).then((res) => {
+                  //     console.log("res", res);
+                });
+                window.location.reload();
               }),
 
             // onRowDelete: (oldData) =>
