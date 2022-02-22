@@ -43,37 +43,41 @@ const DissabilitiesForm = (props) => {
   }
 
   return (
-    <>
-      <div className="table-title">Dissabilities You Might Have</div>
+		<>
+			<div className="table-title">Dissabilities You Might Have</div>
 			<div className="table-content">
 				<div className="table-body">
 					{dissabilities.map((item, index) => (
 						<div className="table-row" key={index}>
 							<div className="table-data">
-							<TextField
-								name="name"
-								label="Dissabilities"
-								variant="outlined"
-								placeholder={"Dissabilitie " + (index + 1)}
-								value={item.name}
-								onChange={(event) =>
-									handleDissabilitieChange(index, event)
-								}
-								// fullWidth
-								margin="normal"
-							/>
+								<TextField
+									name="name"
+									label="Dissabilities"
+									variant="outlined"
+									placeholder={"Dissabilitie " + (index + 1)}
+									value={item.name}
+									onChange={(event) =>
+										handleDissabilitieChange(index, event)
+									}
+									fullWidth
+									margin="normal"
+								/>
 							</div>
 						</div>
 					))}
-          <Button
-            variant="contained"
-            className={classes.button}
-            onClick={handleAddDissabilitie}
-          >+</Button>
-          <GetRemoveDissabilitieButton />
+					<center>
+						<Button
+							variant="contained"
+							className={classes.button}
+							onClick={handleAddDissabilitie}
+						>
+							+
+						</Button>
+						<GetRemoveDissabilitieButton />
+					</center>
 				</div>
 			</div>
-    </>
+		</>
   );
 }
 

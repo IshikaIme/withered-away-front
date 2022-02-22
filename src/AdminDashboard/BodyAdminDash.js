@@ -137,8 +137,8 @@ export default function BodyAdminDash() {
     setOpen(false);
   };
   const Logoutfunction = () => {
-    localStorage.removeItem("accessToken");
-    console.log(localStorage.getItem("accessToken"));
+		localStorage.removeItem("accessToken");
+		// console.log(localStorage.getItem("accessToken"));
   };
 
   return (

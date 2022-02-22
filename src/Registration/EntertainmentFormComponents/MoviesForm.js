@@ -43,37 +43,41 @@ const MoviesForm = (props) => {
   }
 
   return (
-    <>
-      <div className="table-title">Movies You Might Have</div>
+		<>
+			<div className="table-title">Movies You Watch</div>
 			<div className="table-content">
 				<div className="table-body">
 					{movies.map((item, index) => (
 						<div className="table-row" key={index}>
 							<div className="table-data">
-							<TextField
-								name="name"
-								label="Movies"
-								variant="outlined"
-								placeholder={"Movie " + (index + 1)}
-								value={item.name}
-								onChange={(event) =>
-									handleMovieChange(index, event)
-								}
-								// fullWidth
-								margin="normal"
-							/>
+								<TextField
+									name="name"
+									label="Movies"
+									variant="outlined"
+									placeholder={"Movie " + (index + 1)}
+									value={item.name}
+									onChange={(event) =>
+										handleMovieChange(index, event)
+									}
+									fullWidth
+									margin="normal"
+								/>
 							</div>
 						</div>
 					))}
-          <Button
-            variant="contained"
-            className={classes.button}
-            onClick={handleAddMovie}
-          >+</Button>
-          <GetRemoveMovieButton />
+					<center>
+						<Button
+							variant="contained"
+							className={classes.button}
+							onClick={handleAddMovie}
+						>
+							+
+						</Button>
+						<GetRemoveMovieButton />
+					</center>
 				</div>
 			</div>
-    </>
+		</>
   );
 }
 

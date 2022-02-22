@@ -67,68 +67,75 @@ const MedicinesForm = (props) => {
 									onChange={(event) =>
 										handleMedicineChange(index, event)
 									}
-									// fullWidth
+									fullWidth
 									margin="normal"
 								/>
 							</div>
-							<label>Time</label>
-							{/* <Controller
+							<center>
+								<label>Time</label>&emsp;&emsp;
+								{/* <Controller
 								// control={control}
 								name=""
 								render={({ field }) => ( */}
-									<Select
-                  name="time"
-                  onChange={(event) => handleMedicineChange(index, event)}
-                  >
-										<MenuItem
-											value="Before-Breakfast"
-											// selected={(event) => handleMedicineChange(index, event)}
-										>
-											Before-Breakfast
-										</MenuItem>
-										<MenuItem
-											value="Before-Lunch"
-											// selected={(event) => handleMedicineChange(index, event)}
-										>
-											Before-Lunch
-										</MenuItem>
-										<MenuItem
-											value="Before-Dinner"
-											// selected={(event) => handleMedicineChange(index, event)}
-										>
-											Before-Dinner
-										</MenuItem>
-										<MenuItem
-											value="After-Breakfast"
-											// selected={(event) => handleMedicineChange(index, event)}
-										>
-											After-Breakfast
-										</MenuItem>
-										<MenuItem
-											value="After-Lunch"
-											// selected={(event) => handleMedicineChange(index, event)}
-										>
-											After-Lunch
-										</MenuItem>
-										<MenuItem
-											value="After-Dinner"
-											// selected={(event) => handleMedicineChange(index, event)}
-										>
-											After-Dinner
-										</MenuItem>
-									</Select>
-								{/* )}
+								<Select
+									name="time"
+									onChange={(event) =>
+										handleMedicineChange(index, event)
+									}
+								>
+									<MenuItem
+										value="Before-Breakfast"
+										// selected={(event) => handleMedicineChange(index, event)}
+									>
+										Before-Breakfast
+									</MenuItem>
+									<MenuItem
+										value="Before-Lunch"
+										// selected={(event) => handleMedicineChange(index, event)}
+									>
+										Before-Lunch
+									</MenuItem>
+									<MenuItem
+										value="Before-Dinner"
+										// selected={(event) => handleMedicineChange(index, event)}
+									>
+										Before-Dinner
+									</MenuItem>
+									<MenuItem
+										value="After-Breakfast"
+										// selected={(event) => handleMedicineChange(index, event)}
+									>
+										After-Breakfast
+									</MenuItem>
+									<MenuItem
+										value="After-Lunch"
+										// selected={(event) => handleMedicineChange(index, event)}
+									>
+										After-Lunch
+									</MenuItem>
+									<MenuItem
+										value="After-Dinner"
+										// selected={(event) => handleMedicineChange(index, event)}
+									>
+										After-Dinner
+									</MenuItem>
+								</Select>
+							</center>
+							{/* )}
 							/> */}
 						</div>
 					))}
-					<Button
-						variant="contained"
-						className={classes.button}
-						onClick={handleAddMedicine}
-					>
-						+
-					</Button>
-					<GetRemoveMedicineButton />
+					<center>
+						<br />
+						<Button
+							variant="contained"
+							className={classes.button}
+							onClick={handleAddMedicine}
+						>
+							+
+						</Button>
+						<GetRemoveMedicineButton />
+					</center>
 				</div>
 			</div>
 		</>

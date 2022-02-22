@@ -47,37 +47,41 @@ const DiseasesForm = (props) => {
   };
 
   return (
-    <>
-      <div className="table-title">Diseases You Might Have</div>
-      <div className="table-content">
-        <div className="table-body">
-          {diseases.map((item, index) => (
-            <div className="table-row" key={index}>
-              <div className="table-data">
-                <TextField
-                  name="name"
-                  label="Diseases"
-                  variant="outlined"
-                  placeholder={"Disease " + (index + 1)}
-                  value={item.name}
-                  onChange={(event) => handleDiseaseChange(index, event)}
-                  // fullWidth
-                  margin="normal"
-                />
-              </div>
-            </div>
-          ))}
-          <Button
-            variant="contained"
-            className={classes.button}
-            onClick={handleAddDisease}
-          >
-            +
-          </Button>
-          <GetRemoveDiseaseButton />
-        </div>
-      </div>
-    </>
+		<>
+			<div className="table-title">Diseases You Might Have</div>
+			<div className="table-content">
+				<div className="table-body">
+					{diseases.map((item, index) => (
+						<div className="table-row" key={index}>
+							<div className="table-data">
+								<TextField
+									name="name"
+									label="Diseases"
+									variant="outlined"
+									placeholder={"Disease " + (index + 1)}
+									value={item.name}
+									onChange={(event) =>
+										handleDiseaseChange(index, event)
+									}
+									fullWidth
+									margin="normal"
+								/>
+							</div>
+						</div>
+					))}
+					<center>
+						<Button
+							variant="contained"
+							className={classes.button}
+							onClick={handleAddDisease}
+						>
+							+
+						</Button>
+						<GetRemoveDiseaseButton />
+					</center>
+				</div>
+			</div>
+		</>
   );
 };
 

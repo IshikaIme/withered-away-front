@@ -43,37 +43,41 @@ const SongsForm = (props) => {
   }
 
   return (
-    <>
-      <div className="table-title">Songs You Might Have</div>
+		<>
+			<div className="table-title">Songs You Absolutely Love</div>
 			<div className="table-content">
 				<div className="table-body">
 					{songs.map((item, index) => (
 						<div className="table-row" key={index}>
 							<div className="table-data">
-							<TextField
-								name="name"
-								label="Songs"
-								variant="outlined"
-								placeholder={"Song " + (index + 1)}
-								value={item.name}
-								onChange={(event) =>
-									handleSongChange(index, event)
-								}
-								// fullWidth
-								margin="normal"
-							/>
+								<TextField
+									name="name"
+									label="Songs"
+									variant="outlined"
+									placeholder={"Song " + (index + 1)}
+									value={item.name}
+									onChange={(event) =>
+										handleSongChange(index, event)
+									}
+									fullWidth
+									margin="normal"
+								/>
 							</div>
 						</div>
 					))}
-          <Button
-            variant="contained"
-            className={classes.button}
-            onClick={handleAddSong}
-          >+</Button>
-          <GetRemoveSongButton />
+					<center>
+						<Button
+							variant="contained"
+							className={classes.button}
+							onClick={handleAddSong}
+						>
+							+
+						</Button>
+						<GetRemoveSongButton />
+					</center>
 				</div>
 			</div>
-    </>
+		</>
   );
 }
 
