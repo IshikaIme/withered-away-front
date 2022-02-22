@@ -75,7 +75,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ReqAppointment() {
   const [item, setItem] = useState([]);
-
+  const [doc, setDoc] = useState([]);
   const [acc, setAcc] = useState([]);
   const classes = useStyles();
   const id = localStorage.getItem("id");
@@ -96,6 +96,13 @@ export default function ReqAppointment() {
         console.log(resp.data);
       });
   }, []);
+  useEffect(() => {
+    fetch(`http://localhost:8080/api/account/people_id/${id}`)
+      .then((resp) => resp.json())
+      .then((resp) => {
+        setAcc(resp.data[0]);
+      });
+  }, []);
 
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {
@@ -112,12 +119,6 @@ export default function ReqAppointment() {
       setValue(event.target.value);
     };
 
-    // newvalue.ID = "100";
-    // newvalue.APPOINTED_DATE = data.appointment_time;
-    // newvalue.PEOPLE_ID = id;
-    // newvalue.DOCTOR_ID = 1;
-    // newvalue.ACCEPTED = "F";
-    // newvalue.REASON = data.REASON;
     const tobesent = {
       APPOINTED_DATE: data.APPOINTED_DATE,
       REASON: data.reason,
@@ -125,38 +126,49 @@ export default function ReqAppointment() {
       DOCTOR_ID: value,
       ACCEPTED: "F",
     };
-    console.log(tobesent);
-    try {
-      axios
-        .post("http://localhost:8080/api/appointment", tobesent)
-        .then((response) => {
-          if (response) {
-            console.log(response);
-            setAlertType("success");
-            setAlertMsg("Appointment Requested Successfully");
+
+    let reqdoctor = item.filter((it) => it.ID == value);
+    // console.log(item[0].ID);
+    console.log(reqdoctor);
+    console.log(reqdoctor[0].FEE);
+    // console.log(value);
+    // console.log(item);
+    if (reqdoctor[0].FEE < acc.BALANCE) {
+      try {
+        axios
+          .post("http://localhost:8080/api/appointment", tobesent)
+          .then((response) => {
+            if (response) {
+              console.log(response);
+              setAlertType("success");
+              setAlertMsg("Appointment Requested Successfully");
+              setAlertOpen(true);
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+            setAlertType("error");
+            setAlertMsg("Couldn't add this Appointment");
             setAlertOpen(true);
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-          setAlertType("error");
-          setAlertMsg("Couldn't add this Appointment");
-          setAlertOpen(true);
-        });
-    } catch (e) {
-      console.log(e);
+          });
+      } catch (e) {
+        console.log(e);
+        setAlertType("error");
+        setAlertMsg("Couldn't add this Appointment");
+        setAlertOpen(true);
+      }
+    } else {
       setAlertType("error");
-      setAlertMsg("Couldn't add this Appointment");
+      setAlertMsg(
+        "Insufficient Balance,  Current balance " +
+          acc.BALANCE +
+          "/= . You Need At least " +
+          reqdoctor[0].FEE +
+          " /=  for Requesting To This Doctor."
+      );
       setAlertOpen(true);
     }
   };
-  useEffect(() => {
-    fetch(`http://localhost:8080/api/account/people_id/${id}`)
-      .then((resp) => resp.json())
-      .then((resp) => {
-        setAcc(resp.data[0]);
-      });
-  }, []);
 
   const onError = (errors, e) => console.log(errors, e);
   const [value, setValue] = useState();
@@ -228,6 +240,11 @@ export default function ReqAppointment() {
                 color="inherit"
                 variant="contained"
                 fullWidth
+                // onClick={
+                //   ()=>{
+                //     setDoc(item.filter((it) => it.ID == value))
+                //   }
+                // }
               >
                 SUBMIT
               </Button>
