@@ -9,25 +9,14 @@ import { CsvBuilder } from "filefy";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
-import Paper from "@mui/material/Paper";
+
 function TableFoodPeople() {
   const [TableData, setTableData] = useState([]);
   const [selectedRows, setSelectedRows] = useState([]);
+  const id = localStorage.getItem("id");
+  const [item, setItem] = useState([]);
+
   const columns = [
-    // {
-    //   title: "ID",
-    //   field: "ID",
-    //   sorting: true,
-    //   align: "center",
-    //   filtering: true,
-    //   cellStyle: {
-    //     // background: "#009688",
-    //     fontfamily: "corgette",
-    //     height: 80,
-    //     maxHeight: 80,
-    //   },
-    //   headerStyle: { color: "#fff" },
-    // },
     {
       title: "Name",
       field: "NAME",
@@ -55,10 +44,20 @@ function TableFoodPeople() {
     },
   ];
 
+  useEffect(() => {
+    fetch(`http://localhost:8080/api/account/people_id/${id}`)
+      .then((resp) => resp.json())
+      .then((resp) => {
+        setItem(resp.data[0]);
+      });
+  }, []);
+
+  console.log(item.BALANCE);
   var allcost = [null];
   var sumOfCosts = 0;
   var i = 0;
   var x = 0;
+
   const BuyAll = () => {
     selectedRows.map((row) => (allcost[i++] = row.COST));
     console.log(allcost);
@@ -67,7 +66,13 @@ function TableFoodPeople() {
       x++;
     }
     console.log(sumOfCosts);
-
+    if (sumOfCosts >= item.BALANCE) {
+      console.log("Insufficient Balance");
+    } else {
+      downloadPdf();
+    }
+  };
+  const downloadPdf = () => {
     const doc = new jsPDF();
     doc.text("Your Bill", 20, 10);
 

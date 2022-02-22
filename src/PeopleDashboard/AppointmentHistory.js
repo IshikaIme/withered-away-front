@@ -43,21 +43,6 @@ export default function AppointmentHistory() {
       });
   }, []);
   const columns = [
-    // {
-    //   title: "ID",
-    //   field: "ID",
-    //   sorting: true,
-    //   align: "center",
-    //   filtering: true,
-    //   cellStyle: {
-    //     // background: "#009688",
-    //     fontfamily: "corgette",
-    //     height: 80,
-    //     maxHeight: 80,
-    //   },
-    //   headerStyle: { color: "#fff" },
-    // },
-
     {
       title: "APPOINTED_DATE",
       field: "APPOINTED_DATE",

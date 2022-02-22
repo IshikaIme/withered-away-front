@@ -71,107 +71,107 @@ const useStyles = makeStyles({
 });
 
 const ProfilePeople = () => {
-	const id = localStorage.getItem("id");
-	const [itemBasic, setItemBasic] = useState([]);
-	const [itemContact, setItemContact] = useState([]);
-	const [itemHealth, setItemHealth] = useState([]);
-	const [itemMis, setItemMis] = useState([]);
-	const [itemRoom, setItemRoom] = useState([]);
-	const [itemDoc, setItemDoc] = useState([]);
-	const [isEditingBasic, setIsEditingBasic] = useState(false);
-	const [isEditingContact, setIsEditingContact] = useState(false);
-	const [isEditingHealth, setIsEditingHealth] = useState(false);
-	const [isEditingMis, setIsEditingMis] = useState(false);
-	const classes = useStyles();
-	useEffect(() => {
-		fetch(`http://localhost:8080/api/people/${id}`)
-			.then((resp) => resp.json())
-			.then((resp) => {
-				if (resp.data[0].BIRTHDAY) {
-					resp.data[0].BIRTHDAY = dateformat.formatDate(
-						resp.data[0].BIRTHDAY.toString()
-					);
-				}
-				setItemBasic(resp.data[0]);
-				console.log(resp.data[0]);
-			});
-	}, []);
+  const id = localStorage.getItem("id");
+  const [itemBasic, setItemBasic] = useState([]);
+  const [itemContact, setItemContact] = useState([]);
+  const [itemHealth, setItemHealth] = useState([]);
+  const [itemMis, setItemMis] = useState([]);
+  const [itemRoom, setItemRoom] = useState([]);
+  const [itemDoc, setItemDoc] = useState([]);
+  const [isEditingBasic, setIsEditingBasic] = useState(false);
+  const [isEditingContact, setIsEditingContact] = useState(false);
+  const [isEditingHealth, setIsEditingHealth] = useState(false);
+  const [isEditingMis, setIsEditingMis] = useState(false);
+  const classes = useStyles();
+  useEffect(() => {
+    fetch(`http://localhost:8080/api/people/${id}`)
+      .then((resp) => resp.json())
+      .then((resp) => {
+        if (resp.data[0].BIRTHDAY) {
+          resp.data[0].BIRTHDAY = dateformat.formatDate(
+            resp.data[0].BIRTHDAY.toString()
+          );
+        }
+        setItemBasic(resp.data[0]);
+        console.log(resp.data[0]);
+      });
+  }, []);
 
-	useEffect(() => {
-		fetch(
-			`http://localhost:8080/api/contact/id/connection/contact_id/people_id/${id}`
-		)
-			.then((resp) => resp.json())
-			.then((resp) => {
-				setItemContact(resp.data[0]);
-				console.log(resp.data[0]);
-			});
-	}, []);
+  useEffect(() => {
+    fetch(
+      `http://localhost:8080/api/contact/id/connection/contact_id/people_id/${id}`
+    )
+      .then((resp) => resp.json())
+      .then((resp) => {
+        setItemContact(resp.data[0]);
+        console.log(resp.data[0]);
+      });
+  }, []);
 
-	useEffect(() => {
-		fetch(`http://localhost:8080/api/health_record/people_id/${id}`)
-			.then((resp) => resp.json())
-			.then((resp) => {
-				setItemHealth(resp.data[0]);
-				console.log(resp.data[0]);
-			});
-	}, []);
+  useEffect(() => {
+    fetch(`http://localhost:8080/api/health_record/people_id/${id}`)
+      .then((resp) => resp.json())
+      .then((resp) => {
+        setItemHealth(resp.data[0]);
+        console.log(resp.data[0]);
+      });
+  }, []);
 
-	useEffect(() => {
-		fetch(`http://localhost:8080/api/account/people_id/${id}`)
-			.then((resp) => resp.json())
-			.then((resp) => {
-				setItemMis(resp.data[0]);
-				console.log(resp.data[0]);
-			});
-	}, []);
+  useEffect(() => {
+    fetch(`http://localhost:8080/api/account/people_id/${id}`)
+      .then((resp) => resp.json())
+      .then((resp) => {
+        setItemMis(resp.data[0]);
+        console.log(resp.data[0]);
+      });
+  }, []);
 
-	useEffect(() => {
-		fetch(
-			`http://localhost:8080/api/bed_room/room_id/room_allotment/room_id/people_id/${id}`
-		)
-			.then((resp) => resp.json())
-			.then((resp) => {
-				setItemRoom(resp.data[0]);
-				console.log(resp.data[0]);
-			});
-	}, []);
+  useEffect(() => {
+    fetch(
+      `http://localhost:8080/api/bed_room/room_id/room_allotment/room_id/people_id/${id}`
+    )
+      .then((resp) => resp.json())
+      .then((resp) => {
+        setItemRoom(resp.data[0]);
+        console.log(resp.data[0]);
+      });
+  }, []);
 
-	useEffect(() => {
-		fetch(
-			`http://localhost:8080/api/doctor/id/diagnosed_by/doctor_id/people_id/${id}`
-		)
-			.then((resp) => resp.json())
-			.then((resp) => {
-				setItemDoc(resp.data[0]);
-				console.log(resp.data[0]);
-			});
-	}, []);
+  useEffect(() => {
+    fetch(
+      `http://localhost:8080/api/doctor/id/diagnosed_by/doctor_id/people_id/${id}`
+    )
+      .then((resp) => resp.json())
+      .then((resp) => {
+        setItemDoc(resp.data[0]);
+        console.log(resp.data[0]);
+      });
+  }, []);
 
-	// const filtereditem = accountitem.filter((it) => it.PEOPLE_ID == id);
-	// setItemMis(filtereditem);
-	return (
-		<div>
-			<Card className={classes.cardimg}>
-				<CardMedia
-					className={classes.img}
-					style={{ paddingTop: "200%" }}
-					image={HomeImg}
-				/>
-			</Card>
-			<Card className={classes.cardimg2}>
-				<CardMedia
-					className={classes.img}
-					style={{ paddingTop: "200%" }}
-					image={HomeImg}
-				/>
-			</Card>
-			<div className={classes.root}>
-				<h1 className={classes.header}>BASIC INFORMATION</h1>
-				<div className={classes.basic}>
-					<List>
-						<ListItem>
-							<h1 className={classes.head}>ID:</h1>
+  // const filtereditem = accountitem.filter((it) => it.PEOPLE_ID == id);
+  // setItemMis(filtereditem);
+  return (
+    <div>
+      <Card className={classes.cardimg}>
+        <CardMedia
+          className={classes.img}
+          style={{ paddingTop: "200%" }}
+          image={HomeImg}
+        />
+      </Card>
+      <Card className={classes.cardimg2}>
+        <CardMedia
+          className={classes.img}
+          style={{ paddingTop: "200%" }}
+          image={HomeImg}
+        />
+      </Card>
+      <div className={classes.root}>
+        <h1 className={classes.header}>BASIC INFORMATION</h1>
+        <div className={classes.basic}>
+          <List>
+            <ListItem>
+              <h1 className={classes.head}>ID:</h1>
 
               <ListItemText primary={itemBasic.ID} />
             </ListItem>
@@ -551,16 +551,33 @@ const ProfilePeople = () => {
                 <ListItemText primary={itemMis.BANK_ACCOUNT_NO} />
               )}
             </ListItem>
+
             <ListItem>
+              {" "}
+              <h1 className={classes.head}>Balance:</h1>
+              {isEditingMis === true ? (
+                <input
+                  type="text"
+                  defaultValue={itemMis.BALANCE}
+                  name="balance"
+                  placeholder="Balance"
+                  onChange={(e) => (itemMis.BALANCE = e.target.value)}
+                />
+              ) : (
+                <ListItemText primary={itemMis.BALANCE} />
+              )}
+            </ListItem>
+
+            {/* <ListItem>
               {" "}
               <h1 className={classes.head}>Balance: </h1>
               <ListItemText primary={itemMis.BALANCE} />
-            </ListItem>
-            <ListItem>
+            </ListItem> */}
+            {/* <ListItem>
               {" "}
               <h1 className={classes.head}>Transaction History: </h1>
               <ListItemText primary={itemMis.TRANSACTION_HISTORY} />
-            </ListItem>
+            </ListItem> */}
           </List>
           {isEditingMis === true ? (
             <div>
@@ -606,41 +623,39 @@ const ProfilePeople = () => {
           )}
         </div>
 
-				{itemRoom === null ? (
-					<>
-						<h1 className={classes.header}>ROOM</h1>
-						<div className={classes.basic}>
-							<List>
-								<ListItem>
-									<h1 className={classes.head}>Room No:</h1>
-									<ListItemText primary={itemRoom.ROOM_ID} />
-								</ListItem>
-							</List>
-						</div>
-					</>
-				) : (
-					<></>
-				)}
+        {itemRoom === null ? (
+          <>
+            <h1 className={classes.header}>ROOM</h1>
+            <div className={classes.basic}>
+              <List>
+                <ListItem>
+                  <h1 className={classes.head}>Room No:</h1>
+                  <ListItemText primary={itemRoom.ROOM_ID} />
+                </ListItem>
+              </List>
+            </div>
+          </>
+        ) : (
+          <></>
+        )}
 
-				{itemDoc === null ? (
-					<>
-						<h1 className={classes.header}>DOCTOR ASSIGNED</h1>
-						<div className={classes.basic}>
-							<List>
-								<ListItem>
-									<h1 className={classes.head}>
-										Doctor Name:
-									</h1>
-									<ListItemText primary={itemDoc.NAME} />
-								</ListItem>
-							</List>
-						</div>
-					</>
-				) : (
-					<></>
-				)}
-			</div>
-		</div>
-	);
+        {itemDoc === null ? (
+          <>
+            <h1 className={classes.header}>DOCTOR ASSIGNED</h1>
+            <div className={classes.basic}>
+              <List>
+                <ListItem>
+                  <h1 className={classes.head}>Doctor Name:</h1>
+                  <ListItemText primary={itemDoc.NAME} />
+                </ListItem>
+              </List>
+            </div>
+          </>
+        ) : (
+          <></>
+        )}
+      </div>
+    </div>
+  );
 };
 export default ProfilePeople;

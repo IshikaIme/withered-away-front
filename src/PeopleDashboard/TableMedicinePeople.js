@@ -35,20 +35,7 @@ export default function TableMedicinePeople() {
       // cellStyle: { background: "#009688" },
       headerStyle: { color: "#fff" },
     },
-    {
-      title: "Time",
-      field: "TIME",
-      sorting: true,
-      align: "center",
-      filtering: true,
-      cellStyle: {
-        // background: "#009688",
-        fontfamily: "corgette",
-        height: 80,
-        maxHeight: 80,
-      },
-      headerStyle: { color: "#fff" },
-    },
+
     {
       title: "Cost",
       field: "COST",
