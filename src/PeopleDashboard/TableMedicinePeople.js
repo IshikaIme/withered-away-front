@@ -11,7 +11,8 @@ import "jspdf-autotable";
 export default function TableMedicinePeople() {
   const [tableData, setTableData] = useState([]);
   const [selectedRows, setSelectedRows] = useState([]);
-
+  const id = localStorage.getItem("id");
+  const [item, setItem] = useState([]);
   const columns = [
     {
       title: "Name",
@@ -44,11 +45,18 @@ export default function TableMedicinePeople() {
   //       )
   //       .exportFile();
   //   };
-
+  useEffect(() => {
+    fetch(`http://localhost:8080/api/account/people_id/${id}`)
+      .then((resp) => resp.json())
+      .then((resp) => {
+        setItem(resp.data[0]);
+      });
+  }, []);
   var allcost = [null];
   var sumOfCosts = 0;
   var i = 0;
   var x = 0;
+
   const BuyAll = () => {
     selectedRows.map((row) => (allcost[i++] = row.COST));
     console.log(allcost);
@@ -57,7 +65,13 @@ export default function TableMedicinePeople() {
       x++;
     }
     console.log(sumOfCosts);
-
+    if (sumOfCosts > item.BALANCE) {
+      console.log("Insufficient Balance");
+    } else {
+      downloadPdf();
+    }
+  };
+  const downloadPdf = () => {
     const doc = new jsPDF();
     doc.text("Your Bill", 20, 10);
 
@@ -71,6 +85,7 @@ export default function TableMedicinePeople() {
 
     doc.save("Bill.pdf");
   };
+
   // new CsvBuilder("Bill.csv")
   //   .setColumns(columns.map((col) => col.title))
   //   .addRows(

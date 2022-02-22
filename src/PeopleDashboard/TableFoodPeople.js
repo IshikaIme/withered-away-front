@@ -66,7 +66,7 @@ function TableFoodPeople() {
       x++;
     }
     console.log(sumOfCosts);
-    if (sumOfCosts >= item.BALANCE) {
+    if (sumOfCosts > item.BALANCE) {
       console.log("Insufficient Balance");
     } else {
       downloadPdf();
