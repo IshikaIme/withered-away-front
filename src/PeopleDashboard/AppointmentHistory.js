@@ -116,6 +116,27 @@ export default function AppointmentHistory() {
           title="Appointment History"
           data={filtereditem}
           columns={columns}
+          editable={{
+            onRowDelete: (oldData) =>
+              new Promise((resolve, reject) => {
+                let contactId = oldData.ID;
+                setTimeout(() => {
+                  let dataDelete = [...filtereditem];
+                  if (oldData.item) {
+                    const index = oldData.item.id;
+                    dataDelete.splice(index, 1);
+                  }
+
+                  setItem([...dataDelete]);
+
+                  resolve();
+                }, 500);
+                let url = `http://localhost:8080/api/appointment/id/${contactId}`;
+                axios.delete(url).then((res) => {
+                  //     console.log("res", res);
+                });
+              }),
+          }}
           onSelectionChange={(selectedRows) => console.log(selectedRows)}
           options={{
             sorting: true,
