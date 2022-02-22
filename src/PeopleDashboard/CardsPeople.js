@@ -70,6 +70,13 @@ const useStyles = makeStyles({
     marginLeft: "880px",
     background: "rgba(255,255,255,0)",
   },
+  root8: {
+    maxWidth: 210,
+    height: 80,
+    marginTop: "-230px",
+    marginLeft: "577px",
+    background: "rgba(255,28,255,0)",
+  },
   title: {
     fontFamily: "Permanent Marker",
     fontWeight: "bold",
@@ -110,6 +117,13 @@ const useStyles = makeStyles({
     fontFamily: "Permanent Marker",
 
     fontSize: "2.5rem",
+    color: "green",
+    background: "black",
+  },
+  title8: {
+    fontFamily: "Permanent Marker",
+
+    fontSize: "1.2rem",
     color: "green",
     background: "black",
   },
@@ -209,6 +223,19 @@ export default function CardsPeople() {
             className={classes.title7}
           >
             <a href="/CallBookIssuePeople">Books</a>
+          </Typography>
+        </CardContent>
+      </Card>
+
+      <Card className={classes.root8}>
+        <CardContent>
+          <Typography
+            gutterBottom
+            variant="h5"
+            component="h1"
+            className={classes.title8}
+          >
+            <a href="/Transactions">Your Transactions</a>
           </Typography>
         </CardContent>
       </Card>

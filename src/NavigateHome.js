@@ -33,6 +33,7 @@ import CallReqABook from "./PeopleDashboard/CallReqABook";
 import SeeRequestedAppointments from "./DoctorDashboard/SeeRequestedAppointments";
 import CallDoctorDash from "./DoctorDashboard/CallDoctorDash";
 import TableFoodPeople from "./PeopleDashboard/TableFoodPeople";
+import TableDonation from "./TableAdmin/TableDonation";
 import TableMedicinePeople from "./PeopleDashboard/TableMedicinePeople";
 import CallEntertainment from "./PeopleDashboard/CallEntertainment";
 import CallBookIssuePeople from "./PeopleDashboard/CallBookIssuePeople";
@@ -40,6 +41,8 @@ import IssuedBooksPeople from "./PeopleDashboard/IssuedBooksPeople";
 import Songs from "./PeopleDashboard/Songs";
 import Movies from "./PeopleDashboard/Movies";
 import Games from "./PeopleDashboard/Games";
+import CallDonations from "./HomePageAnimation/CallDonations";
+import Transactions from "./PeopleDashboard/Transactions";
 export class NavigateHome extends React.Component {
   constructor(props) {
     super(props);
@@ -137,6 +140,7 @@ export class NavigateHome extends React.Component {
           <Route path="/TableFood" element={<TableFood />}></Route>
           <Route path="/TableMedicine" element={<TableMedicine />}></Route>
           <Route path="/TableFoodPeople" element={<TableFoodPeople />}></Route>
+          <Route path="/TableDonation" element={<TableDonation />}></Route>
           <Route
             path="/TableMedicinePeople"
             element={<TableMedicinePeople />}
@@ -145,6 +149,9 @@ export class NavigateHome extends React.Component {
           <Route path="/Songs" element={<Songs />}></Route>
           <Route path="/Movies" element={<Movies />}></Route>
           <Route path="/Games" element={<Games />}></Route>
+
+          <Route path="/CallDonations" element={<CallDonations />}></Route>
+          <Route path="/Transactions" element={<Transactions />}></Route>
         </Routes>
       </BrowserRouter>
     );

@@ -6,13 +6,14 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import React, { Component } from "react";
 import axios from "axios";
+import BodyAdminDash from "../AdminDashboard/BodyAdminDash";
 import "react-edit-text/dist/index.css";
 import { makeStyles } from "@material-ui/core/styles";
 import { EditText, EditTextarea } from "react-edit-text";
 import MaterialTable from "material-table";
-import BodyPeopleDash from "./BodyPeopleDash";
 const useStyles = makeStyles({
   root: {
+    fontFamily: "Roboto",
     textAlign: "center",
   },
   header: {
@@ -28,42 +29,25 @@ const useStyles = makeStyles({
   },
 });
 // const axios = require("axios");
-export default function AppointmentHistory() {
+export default function TableDonation() {
   const id = localStorage.getItem("id");
   const [item, setItem] = useState([]);
 
   const classes = useStyles();
   useEffect(() => {
-    fetch(
-      `http://localhost:8080/api/doctor/id/appointment/doctor_id/people_id/${id}`
-    )
+    fetch(`http://localhost:8080/api/donation`)
       .then((resp) => resp.json())
       .then((resp) => {
         setItem(resp.data);
       });
   }, []);
   const columns = [
-    // {
-    //   title: "ID",
-    //   field: "ID",
-    //   sorting: true,
-    //   align: "center",
-    //   filtering: true,
-    //   cellStyle: {
-    //     // background: "#009688",
-    //     fontfamily: "corgette",
-    //     height: 80,
-    //     maxHeight: 80,
-    //   },
-    //   headerStyle: { color: "#fff" },
-    // },
-
     {
-      title: "APPOINTED_DATE",
-      field: "APPOINTED_DATE",
+      title: "DONATING_DATE",
+      field: "DONATING_DATE",
+      type: "date",
       sorting: true,
       align: "center",
-      type: "date",
       filtering: true,
       cellStyle: {
         fontfamily: "corgette",
@@ -74,7 +58,7 @@ export default function AppointmentHistory() {
     },
 
     {
-      title: "Doctor's Name",
+      title: "NAME",
       field: "NAME",
       sorting: true,
       align: "center",
@@ -87,8 +71,8 @@ export default function AppointmentHistory() {
       headerStyle: { color: "#fff" },
     },
     {
-      title: "ACCEPTED",
-      field: "ACCEPTED",
+      title: "PHONE_NO",
+      field: "PHONE_NO",
       sorting: true,
       align: "center",
       filtering: true,
@@ -97,39 +81,69 @@ export default function AppointmentHistory() {
         height: 80,
         maxHeight: 80,
       },
-      type: "option",
-      lookup: {
-        T: "Accepted",
-        F: "Pending",
+      headerStyle: { color: "#fff" },
+    },
+    {
+      title: "SOURCE",
+      field: "SOURCE",
+      sorting: true,
+      align: "center",
+      filtering: true,
+      cellStyle: {
+        fontfamily: "corgette",
+        height: 80,
+        maxHeight: 80,
+      },
+      headerStyle: { color: "#fff" },
+    },
+    {
+      title: "SUGGESTIONS",
+      field: "SUGGESTIONS",
+      sorting: true,
+      align: "center",
+      filtering: true,
+      cellStyle: {
+        fontfamily: "corgette",
+        height: 80,
+        maxHeight: 80,
+      },
+      headerStyle: { color: "#fff" },
+    },
+    {
+      title: "AMOUNT",
+      field: "AMOUNT",
+      sorting: true,
+      align: "center",
+      filtering: true,
+      cellStyle: {
+        fontfamily: "corgette",
+        height: 80,
+        maxHeight: 80,
+      },
+      headerStyle: { color: "#fff" },
+    },
+    {
+      title: "TRANSACTION ID",
+      field: "TRX_ID",
+      sorting: true,
+      align: "center",
+      filtering: true,
+      cellStyle: {
+        fontfamily: "corgette",
+        height: 80,
+        maxHeight: 80,
       },
       headerStyle: { color: "#fff" },
     },
   ];
-  console.log(item);
-  console.log();
-  // var current = new Date();
-  const filtereditem = item.filter((it) => it.PEOPLE_ID == id);
-
-  // var date = moment("2013-03-24")
-  // var current = moment();
-
-  // if (now > date) {
-  //    // date is past
-  // } else {
-  //    // date is future
-  // }
-
-  // const historyitem = filtereditem.filter((it) =>
-  //   moment(it.APPOINTED_DATE).isAfter(current)
-  // );
 
   return (
     <div className={classes.root}>
-      <BodyPeopleDash />
       <div className={classes.basic}>
+        <BodyAdminDash />
         <MaterialTable
-          title="Appointment History"
-          data={filtereditem}
+          title="Donations"
+          data={item}
           columns={columns}
           onSelectionChange={(selectedRows) => console.log(selectedRows)}
           options={{
