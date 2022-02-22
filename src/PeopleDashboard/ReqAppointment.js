@@ -120,13 +120,10 @@ export default function ReqAppointment() {
     };
 
     const tobesent = {
-		// APPOINTED_DATE: data.APPOINTED_DATE,
-		// REASON: data.reason,
-		// PEOPLE_ID: id,
-		// DOCTOR_ID: value,
-		// ACCEPTED: "F",
-		appointedDate: data.APPOINTED_DATE,
-		reason: data.reason,
+		APPOINTED_DATE: data.APPOINTED_DATE,
+		REASON: data.reason,
+		PEOPLE_ID: id,
+		DOCTOR_ID: value,
 	};
 
 	let reqdoctor = item.filter((it) => it.ID == value);
@@ -138,11 +135,7 @@ export default function ReqAppointment() {
 	if (reqdoctor[0].FEE < acc.BALANCE) {
 		try {
 			axios
-				// .post("http://localhost:8080/api/appointment", tobesent)
-				.patch(
-					`http://localhost:8080/api/reqappointment/${id}/${value}`,
-					tobesent
-				)
+				.patch(`http://localhost:8080/api/reqappointment`, tobesent)
 				.then((response) => {
 					if (response) {
 						console.log(response);

@@ -108,26 +108,26 @@ export default function ReqABook() {
     // console.log(values);
     try {
       axios
-        .post("http://localhost:8080/api/book_issue", {
-          BOOK_ID: data.BOOK_ID,
-          PEOPLE_ID: id,
-          ISSUE_DATE: new Date(),
-          RETURN_DATE: data.RETURN_DATE,
-        })
-        .then((response) => {
-          if (response) {
-            console.log(response);
-            setAlertType("success");
-            setAlertMsg("Book Added Successfully");
-            setAlertOpen(true);
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-          setAlertType("error");
-          setAlertMsg("Couldn't add this Book");
-          setAlertOpen(true);
-        });
+			.patch(`http://localhost:8080/api/issuebook/`, {
+				BOOK_ID: data.BOOK_ID,
+				PEOPLE_ID: id,
+				ISSUE_DATE: new Date(),
+				RETURN_DATE: data.RETURN_DATE,
+			})
+			.then((response) => {
+				if (response) {
+					console.log(response);
+					setAlertType("success");
+					setAlertMsg("Book Added Successfully");
+					setAlertOpen(true);
+				}
+			})
+			.catch((error) => {
+				console.log(error);
+				setAlertType("error");
+				setAlertMsg("Couldn't add this Book");
+				setAlertOpen(true);
+			});
     } catch (e) {
       console.log(e);
       setAlertType("error");
