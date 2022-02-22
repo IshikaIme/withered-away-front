@@ -66,6 +66,7 @@ const HealthInfoForm = (props) => {
       <Controller
         control={control}
         name="bloodGroup"
+        fullWidth
         render={({ field }) => (
           <Select {...field}>
             <MenuItem value="O+" onChange={field.onChange}>

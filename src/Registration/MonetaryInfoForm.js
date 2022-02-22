@@ -1,6 +1,7 @@
 import { TextField } from "@material-ui/core";
 import { Controller, useFormContext } from "react-hook-form";
 
+import { Radio, RadioGroup, FormControlLabel } from "@material-ui/core";
 const MonetaryInfoForm = () => {
   const {
     control,
@@ -62,7 +63,7 @@ const MonetaryInfoForm = () => {
           />
         )}
       />
-      <Controller
+      {/* <Controller
         control={control}
         name="membershipId"
         rules={{ required: "this field is required." }}
@@ -78,6 +79,24 @@ const MonetaryInfoForm = () => {
             error={Boolean(errors?.membershipId)}
             helperText={errors.membershipId?.message}
           />
+        )}
+      /> */}
+      <label>Enter Your Membership Plan</label>
+      <Controller
+        control={control}
+        name="membershipId"
+        rules={{ required: "this field is required." }}
+        render={({ field }) => (
+          <RadioGroup
+            row
+            {...field}
+            error={Boolean(errors?.membershipId)}
+            helperText={errors.membershipId?.message}
+          >
+            <FormControlLabel value="1" control={<Radio />} label="Basic" />
+            <FormControlLabel value="2" control={<Radio />} label="Premium" />
+            <FormControlLabel value="3" control={<Radio />} label="Gold" />
+          </RadioGroup>
         )}
       />
     </>

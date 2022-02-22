@@ -34,71 +34,76 @@ export default function AppointmentHistory() {
 
   const classes = useStyles();
   useEffect(() => {
-		fetch(
-			`http://localhost:8080/api/doctor/id/appointment/doctor_id/people_id/${id}`
-		)
-			.then((resp) => resp.json())
-			.then((resp) => {
-				setItem(resp.data);
-			});
+    fetch(
+      `http://localhost:8080/api/doctor/id/appointment/doctor_id/people_id/${id}`
+    )
+      .then((resp) => resp.json())
+      .then((resp) => {
+        setItem(resp.data);
+      });
   }, []);
   const columns = [
-		// {
-		//   title: "ID",
-		//   field: "ID",
-		//   sorting: true,
-		//   align: "center",
-		//   filtering: true,
-		//   cellStyle: {
-		//     // background: "#009688",
-		//     fontfamily: "corgette",
-		//     height: 80,
-		//     maxHeight: 80,
-		//   },
-		//   headerStyle: { color: "#fff" },
-		// },
+    // {
+    //   title: "ID",
+    //   field: "ID",
+    //   sorting: true,
+    //   align: "center",
+    //   filtering: true,
+    //   cellStyle: {
+    //     // background: "#009688",
+    //     fontfamily: "corgette",
+    //     height: 80,
+    //     maxHeight: 80,
+    //   },
+    //   headerStyle: { color: "#fff" },
+    // },
 
-		{
-			title: "APPOINTED_DATE",
-			field: "APPOINTED_DATE",
-			sorting: true,
-			align: "center",
-			type: "date",
-			filtering: true,
-			cellStyle: {
-				fontfamily: "corgette",
-				height: 80,
-				maxHeight: 80,
-			},
-			headerStyle: { color: "#fff" },
-		},
+    {
+      title: "APPOINTED_DATE",
+      field: "APPOINTED_DATE",
+      sorting: true,
+      align: "center",
+      type: "date",
+      filtering: true,
+      cellStyle: {
+        fontfamily: "corgette",
+        height: 80,
+        maxHeight: 80,
+      },
+      headerStyle: { color: "#fff" },
+    },
 
-		{
-			title: "Doctor's Name",
-			field: "NAME",
-			sorting: true,
-			align: "center",
-			filtering: true,
-			cellStyle: {
-				fontfamily: "corgette",
-				height: 80,
-				maxHeight: 80,
-			},
-			headerStyle: { color: "#fff" },
-		},
-		{
-			title: "ACCEPTED",
-			field: "ACCEPTED",
-			sorting: true,
-			align: "center",
-			filtering: true,
-			cellStyle: {
-				fontfamily: "corgette",
-				height: 80,
-				maxHeight: 80,
-			},
-			headerStyle: { color: "#fff" },
-		},
+    {
+      title: "Doctor's Name",
+      field: "NAME",
+      sorting: true,
+      align: "center",
+      filtering: true,
+      cellStyle: {
+        fontfamily: "corgette",
+        height: 80,
+        maxHeight: 80,
+      },
+      headerStyle: { color: "#fff" },
+    },
+    {
+      title: "ACCEPTED",
+      field: "ACCEPTED",
+      sorting: true,
+      align: "center",
+      filtering: true,
+      cellStyle: {
+        fontfamily: "corgette",
+        height: 80,
+        maxHeight: 80,
+      },
+      type: "option",
+      lookup: {
+        T: "Accepted",
+        F: "Pending",
+      },
+      headerStyle: { color: "#fff" },
+    },
   ];
   console.log(item);
   console.log();

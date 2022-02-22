@@ -22,7 +22,7 @@ import TheaterComedyIcon from "@mui/icons-material/TheaterComedy";
 import MedicationIcon from "@mui/icons-material/Medication";
 import LogoutIcon from "@mui/icons-material/Logout";
 import InventoryIcon from "@mui/icons-material/Inventory";
-
+import ReceiptLongOutlinedIcon from "@mui/icons-material/ReceiptLongOutlined";
 import AdminPanelSettingsRoundedIcon from "@mui/icons-material/AdminPanelSettingsRounded";
 import PermContactCalendarRoundedIcon from "@mui/icons-material/PermContactCalendarRounded";
 import DashboardRoundedIcon from "@mui/icons-material/DashboardRounded";
@@ -250,6 +250,19 @@ export default function BodyPeopleDash() {
               <a href="/CallInventoryPeople">
                 {" "}
                 <ListItemText primary="Inventory" />
+              </a>
+            </ListItem>
+
+            <ListItem button key="Transactions">
+              {<ReceiptLongOutlinedIcon /> && (
+                <ListItemIcon>
+                  <ReceiptLongOutlinedIcon />
+                </ListItemIcon>
+              )}
+
+              <a href="/Transactions">
+                {" "}
+                <ListItemText primary="Transactions" />
               </a>
             </ListItem>
 

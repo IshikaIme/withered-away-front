@@ -42,6 +42,7 @@ import Songs from "./PeopleDashboard/Songs";
 import Movies from "./PeopleDashboard/Movies";
 import Games from "./PeopleDashboard/Games";
 import CallDonations from "./HomePageAnimation/CallDonations";
+import Transactions from "./PeopleDashboard/Transactions";
 export class NavigateHome extends React.Component {
   constructor(props) {
     super(props);
@@ -150,6 +151,7 @@ export class NavigateHome extends React.Component {
           <Route path="/Games" element={<Games />}></Route>
 
           <Route path="/CallDonations" element={<CallDonations />}></Route>
+          <Route path="/Transactions" element={<Transactions />}></Route>
         </Routes>
       </BrowserRouter>
     );
