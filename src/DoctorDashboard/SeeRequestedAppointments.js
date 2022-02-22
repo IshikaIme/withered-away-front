@@ -180,6 +180,7 @@ export default function SeeRequestedAppointments() {
                     newData
                   )
                   .then((res) => {
+                    window.location.reload();
                     // window.location.reload(false);
                   });
               }),
