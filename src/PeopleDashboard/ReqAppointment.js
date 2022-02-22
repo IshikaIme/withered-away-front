@@ -120,60 +120,64 @@ export default function ReqAppointment() {
     };
 
     const tobesent = {
-		// APPOINTED_DATE: data.APPOINTED_DATE,
-		// REASON: data.reason,
-		// PEOPLE_ID: id,
-		// DOCTOR_ID: value,
-		// ACCEPTED: "F",
-		appointedDate: data.APPOINTED_DATE,
-		reason: data.reason,
-	};
+      // APPOINTED_DATE: data.APPOINTED_DATE,
+      // REASON: data.reason,
+      // PEOPLE_ID: id,
+      // DOCTOR_ID: value,
+      // ACCEPTED: "F",
+      appointedDate: data.APPOINTED_DATE,
+      reason: data.reason,
+    };
 
-	let reqdoctor = item.filter((it) => it.ID == value);
-	// console.log(item[0].ID);
-	console.log(reqdoctor);
-	console.log(reqdoctor[0].FEE);
-	// console.log(value);
-	// console.log(item);
-	if (reqdoctor[0].FEE < acc.BALANCE) {
-		try {
-			axios
-				// .post("http://localhost:8080/api/appointment", tobesent)
-				.patch(
-					`http://localhost:8080/api/reqappointment/${id}/${value}`,
-					tobesent
-				)
-				.then((response) => {
-					if (response) {
-						console.log(response);
-						setAlertType("success");
-						setAlertMsg("Appointment Requested Successfully");
-						setAlertOpen(true);
-					}
-				})
-				.catch((error) => {
-					console.log(error);
-					setAlertType("error");
-					setAlertMsg("Couldn't add this Appointment");
-					setAlertOpen(true);
-				});
-		} catch (e) {
-			console.log(e);
-			setAlertType("error");
-			setAlertMsg("Couldn't add this Appointment");
-			setAlertOpen(true);
-		}
-	} else {
-		setAlertType("error");
-		setAlertMsg(
-			"Insufficient Balance,  Current balance " +
-				acc.BALANCE +
-				"/= . You Need At least " +
-				reqdoctor[0].FEE +
-				" /=  for Requesting To This Doctor."
-		);
-		setAlertOpen(true);
-	}
+    let reqdoctor = item.filter((it) => it.ID == value);
+    // console.log(item[0].ID);
+    console.log(reqdoctor);
+    console.log(reqdoctor[0].FEE);
+    // console.log(value);
+    // console.log(item);
+    if (reqdoctor[0].FEE < acc.BALANCE) {
+      try {
+        axios
+          // .post("http://localhost:8080/api/appointment", tobesent)
+          .patch(
+            `http://localhost:8080/api/reqappointment/${id}/${value}`,
+            tobesent
+          )
+          .then((response) => {
+            if (response) {
+              console.log(response);
+              setAlertType("success");
+              setAlertMsg(
+                "Appointment Requested Successfully. Doctor's fee " +
+                  reqdoctor[0].FEE +
+                  " was deducted from your account "
+              );
+              setAlertOpen(true);
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+            setAlertType("error");
+            setAlertMsg("Couldn't add this Appointment");
+            setAlertOpen(true);
+          });
+      } catch (e) {
+        console.log(e);
+        setAlertType("error");
+        setAlertMsg("Couldn't add this Appointment");
+        setAlertOpen(true);
+      }
+    } else {
+      setAlertType("error");
+      setAlertMsg(
+        "Insufficient Balance,  Current balance " +
+          acc.BALANCE +
+          "/= . You Need At least " +
+          reqdoctor[0].FEE +
+          " /=  for Requesting To This Doctor."
+      );
+      setAlertOpen(true);
+    }
   };
 
   const onError = (errors, e) => console.log(errors, e);
