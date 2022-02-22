@@ -113,6 +113,7 @@ export default function SeeRequestedAppointments() {
       title: "REASON",
       field: "REASON",
       sorting: true,
+      editable: "never",
       align: "center",
       filtering: true,
       cellStyle: {
@@ -188,8 +189,8 @@ export default function SeeRequestedAppointments() {
                 let contactId = oldData.ID;
                 setTimeout(() => {
                   const dataDelete = [...filtereditem];
-                  if (oldData.item) {
-                    const index = oldData.item.id;
+                  if (oldData.filtereditem) {
+                    const index = oldData.filtereditem.id;
                     dataDelete.splice(index, 1);
                   }
 
