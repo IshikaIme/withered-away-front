@@ -196,30 +196,27 @@ export default function ReqAppointment() {
     setValue(event.target.value);
   };
   return (
-		<div className={classes.root}>
-			<form onSubmit={handleSubmit(onSubmit, onError)}>
-				<CssBaseline />
-				<div className={classes.input}>
-					<div className={classes.wrap}>
-						<h1 className={classes.Title1}>
-							Your Preferrable Schedule
-						</h1>
-						<div className={classes.content1}>
-							<TextField
-								{...register("APPOINTED_DATE", {})}
-								type="datetime-local"
-								// placeholder="APPOINTED_DATE"
-								// {...register("APPOINTED_DATE", {})}
-								className="appointment_time"
-								// label="appointment_time"
-								color="secondary"
-								fullWidth
-								required
-							/>
-						</div>
-					</div>
+    <div className={classes.root}>
+      <form onSubmit={handleSubmit(onSubmit, onError)}>
+        <CssBaseline />
+        <div className={classes.input}>
+          <div className={classes.wrap}>
+            <h1 className={classes.Title1}>Your Preferrable Schedule</h1>
+            <div className={classes.content1}>
+              <TextField
+                {...register("APPOINTED_DATE", {})}
+                type="datetime-local"
+                // placeholder="APPOINTED_DATE"
+                // {...register("APPOINTED_DATE", {})}
+                className="appointment_time"
+                // label="appointment_time"
+                color="secondary"
+                fullWidth
+                required
+              />
+            </div>
+          </div>
 
-<<<<<<< HEAD
           <div className={classes.wrap}>
             <h1 className={classes.Title2}>Preferrable Doctor</h1>
             <div className={classes.content1}>
@@ -233,82 +230,57 @@ export default function ReqAppointment() {
                     {...register("DOCTOR_ID")}
                     value={doctor.ID}
                     control={<Radio />}
-                    label={doctor.NAME + " ,Fee - " + doctor.FEE}
+                    label={doctor.NAME + " - " + doctor.FEE}
                   />
                 ))}
               </RadioGroup>
             </div>
           </div>
-=======
-					<div className={classes.wrap}>
-						<h1 className={classes.Title2}>Preferrable Doctor</h1>
-						<div className={classes.content1}>
-							<RadioGroup
-								aria-labelledby="DOCTOR_NAME"
-								className="DOCTOR_NAME"
-								onChange={handleChange}
-							>
-								{item.map((doctor) => (
-									<FormControlLabel
-										{...register("DOCTOR_ID")}
-										value={doctor.ID}
-										control={<Radio />}
-										label={doctor.NAME + " - " + doctor.FEE}
-									/>
-								))}
-							</RadioGroup>
-						</div>
-					</div>
->>>>>>> 71ddf02e04d07efddce3f6e4495bc018f4e46f9a
 
-					<div className={classes.wrap}>
-						<h1 className={classes.Title2}>Reason</h1>
-						<div className={classes.content1}>
-							<TextField
-								{...register("reason")}
-								className="reason"
-								label="reason"
-								color="secondary"
-								placeholder="Enter reason"
-								type="reason"
-								fullWidth
-								required
-							/>
-						</div>
-					</div>
-					<div className={classes.wrap}>
-						<div className={classes.btn}>
-							<Button
-								className="btn"
-								type="submit"
-								color="inherit"
-								variant="contained"
-								fullWidth
-								// onClick={
-								//   ()=>{
-								//     setDoc(item.filter((it) => it.ID == value))
-								//   }
-								// }
-							>
-								SUBMIT
-							</Button>
-						</div>
-					</div>
-				</div>
-			</form>
-			<Snackbar
-				open={alertOpen}
-				autoHideDuration={6000}
-				onClose={handleClose}
-			>
-				<Alert
-					onClose={handleClose}
-					severity={alertType}
-					sx={{ width: "100%" }}
-				>
-					{alertMsg}
-				</Alert>
-			</Snackbar>
-		</div>
+          <div className={classes.wrap}>
+            <h1 className={classes.Title2}>Reason</h1>
+            <div className={classes.content1}>
+              <TextField
+                {...register("reason")}
+                className="reason"
+                label="reason"
+                color="secondary"
+                placeholder="Enter reason"
+                type="reason"
+                fullWidth
+                required
+              />
+            </div>
+          </div>
+          <div className={classes.wrap}>
+            <div className={classes.btn}>
+              <Button
+                className="btn"
+                type="submit"
+                color="inherit"
+                variant="contained"
+                fullWidth
+                // onClick={
+                //   ()=>{
+                //     setDoc(item.filter((it) => it.ID == value))
+                //   }
+                // }
+              >
+                SUBMIT
+              </Button>
+            </div>
+          </div>
+        </div>
+      </form>
+      <Snackbar open={alertOpen} autoHideDuration={6000} onClose={handleClose}>
+        <Alert
+          onClose={handleClose}
+          severity={alertType}
+          sx={{ width: "100%" }}
+        >
+          {alertMsg}
+        </Alert>
+      </Snackbar>
+    </div>
   );
 }
