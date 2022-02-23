@@ -114,6 +114,18 @@ const ProfilePeople = () => {
     fetch(`http://localhost:8080/api/health_record/people_id/${id}`)
       .then((resp) => resp.json())
       .then((resp) => {
+        
+        resp.data[0].DISABILITY = resp.data[0].DISABILITY.split(",")
+			.filter((d) => d.trim() != "")
+			.join(", ");
+
+		resp.data[0].ALLERGY = resp.data[0].ALLERGY.split(",")
+			.filter((d) => d.trim() != "")
+			.join(", ");
+
+		resp.data[0].VACCINE = resp.data[0].VACCINE.split(",")
+			.filter((d) => d.trim() != "")
+			.join(", ");
         setItemHealth(resp.data[0]);
         console.log(resp.data[0]);
       });
