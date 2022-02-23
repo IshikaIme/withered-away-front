@@ -625,41 +625,39 @@ const ProfilePeople = () => {
           )}
         </div>
 
-				{itemRoom != null ? (
-					<>
-						<h1 className={classes.header}>ROOM</h1>
-						<div className={classes.basic}>
-							<List>
-								<ListItem>
-									<h1 className={classes.head}>Room No:</h1>
-									<ListItemText primary={itemRoom.ROOM_ID} />
-								</ListItem>
-							</List>
-						</div>
-					</>
-				) : (
-					<></>
-				)}
+        {itemRoom != null ? (
+          <>
+            <h1 className={classes.header}>ROOM</h1>
+            <div className={classes.basic}>
+              <List>
+                <ListItem>
+                  <h1 className={classes.head}>Room No:</h1>
+                  <ListItemText primary={itemRoom.ROOM_ID} />
+                </ListItem>
+              </List>
+            </div>
+          </>
+        ) : (
+          <></>
+        )}
 
-				{itemDoc != null ? (
-					<>
-						<h1 className={classes.header}>DOCTOR ASSIGNED</h1>
-						<div className={classes.basic}>
-							<List>
-								<ListItem>
-									<h1 className={classes.head}>
-										Doctor Name:
-									</h1>
-									<ListItemText primary={itemDoc.NAME} />
-								</ListItem>
-							</List>
-						</div>
-					</>
-				) : (
-					<></>
-				)}
-			</div>
-		</div>
+        {itemDoc != null ? (
+          <>
+            <h1 className={classes.header}>DOCTOR ASSIGNED</h1>
+            <div className={classes.basic}>
+              <List>
+                <ListItem>
+                  <h1 className={classes.head}>Doctor Name:</h1>
+                  <ListItemText primary={itemDoc.NAME} />
+                </ListItem>
+              </List>
+            </div>
+          </>
+        ) : (
+          <></>
+        )}
+      </div>
+    </div>
   );
 };
 export default ProfilePeople;

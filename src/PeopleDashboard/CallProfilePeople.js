@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
     // backgroundImage: `url(${HomeImg})`,
-    backgroundColor: "	rgb(222,184,135)",
+    backgroundColor: "	rgba(222,184,135,0.6)",
     backgroundAttachment: "fixed",
   },
   img: {

@@ -38,8 +38,8 @@ const CredentialsInfoForm = () => {
         rules={{
           required: "this field is required.",
           minLength: {
-            value: 8,
-            message: "Password must have at least 8 characters",
+            value: 4,
+            message: "Password must have at least 4 characters",
           },
         }}
         render={({ field }) => (

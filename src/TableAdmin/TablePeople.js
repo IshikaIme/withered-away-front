@@ -41,9 +41,9 @@ function TablePeople() {
       filterPlaceholder: "filter",
       type: "radio",
       lookup: {
-        male: "Male",
-        female: "Female",
-        other: "Other",
+        MALE: "Male",
+        FEMALE: "Female",
+        OTHER: "Other",
       },
     },
     {

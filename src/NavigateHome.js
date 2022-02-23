@@ -155,6 +155,7 @@ export class NavigateHome extends React.Component {
           <Route path="/CallDonations" element={<CallDonations />}></Route>
           <Route path="/CallServices" element={<CallServices />}></Route>
           <Route path="/Transactions" element={<Transactions />}></Route>
+          <Route path="/*" element={<HomeAni />}></Route>
         </Routes>
       </BrowserRouter>
     );
