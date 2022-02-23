@@ -1,5 +1,5 @@
 import React from "react";
-import HomeImg from "../images/paper.jpg";
+import HomeImg from "../images/bg.jpg";
 import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
@@ -13,8 +13,9 @@ const useStyles = makeStyles((theme) => ({
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
     backgroundImage: `url(${HomeImg})`,
-    fontFamily: "Special Elite",
+    fontFamily: "Nunito",
     backgroundAttachment: "fixed",
+    //marginTop: "-2rem",
   },
   //   img: {
   //     height: "100vh",
@@ -25,6 +26,7 @@ export default function CallServices() {
   const classes = useStyles();
   return (
     <div className={classes.root}>
+      <CssBaseline />
       <Services />
     </div>
   );

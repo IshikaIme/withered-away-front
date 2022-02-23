@@ -27,6 +27,15 @@ const useStyles = makeStyles({
     marginLeft: "2rem",
     marginRight: "2rem",
   },
+  root1: {
+    maxWidth: 250,
+    height: 450,
+    background: "rgba(0,0,0,0.5)",
+    margin: "20px",
+
+    marginLeft: "2rem",
+    marginRight: "2rem",
+  },
   media: {
     height: 100,
   },
@@ -122,7 +131,7 @@ export default function ImageCard() {
           </CardContent>
         </Card>
       </a>
-      <Card className={classes.root}>
+      <Card className={classes.root1}>
         <a href="CallServices">
           {" "}
           <CardMedia
@@ -141,7 +150,7 @@ export default function ImageCard() {
               className={classes.title}
             >
               {" "}
-              Services
+              Our Services
             </Typography>
             <Typography
               variant="body2"
@@ -149,8 +158,7 @@ export default function ImageCard() {
               component="p"
               className={classes.desc}
             >
-              We have different kind of services for the nourishment of the
-              senior citizens.See Details.
+              We have different kind of services .See Details.
             </Typography>
           </CardContent>
         </a>
@@ -188,6 +196,34 @@ export default function ImageCard() {
           </CardContent>
         </Card>
       </a>
+
+      <Card className={classes.root}>
+        <CardContent>
+          <Typography
+            gutterBottom
+            variant="h5"
+            component="h1"
+            className={classes.title}
+          >
+            {" "}
+            Made By:
+          </Typography>
+          <Typography
+            variant="body2"
+            color="textSecondary"
+            component="p"
+            className={classes.desc}
+          >
+            <ul type="none">
+              <li>1805092</li>
+              <li>Ishika Tarin Ime</li>
+              <br></br>
+              <li>1805093</li>
+              <li>Nazmul Islam Ananto</li>
+            </ul>
+          </Typography>
+        </CardContent>
+      </Card>
     </div>
   );
 }
