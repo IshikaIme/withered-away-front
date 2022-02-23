@@ -230,7 +230,7 @@ export default function ReqAppointment() {
                     {...register("DOCTOR_ID")}
                     value={doctor.ID}
                     control={<Radio />}
-                    label={doctor.NAME + " - " + doctor.FEE}
+                    label={doctor.NAME + " . fee: " + doctor.FEE}
                   />
                 ))}
               </RadioGroup>
