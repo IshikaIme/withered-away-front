@@ -44,6 +44,7 @@ import Games from "./PeopleDashboard/Games";
 import CallDonations from "./HomePageAnimation/CallDonations";
 import Transactions from "./PeopleDashboard/Transactions";
 import CallServices from "./HomePageAnimation/CallServices";
+import PeopleProtectedRoute from "./Auth/PeopleProtectedRoute";
 export class NavigateHome extends React.Component {
   constructor(props) {
     super(props);

@@ -177,9 +177,8 @@ const ProfilePeople = () => {
 
               <ListItemText primary={itemBasic.ID} />
             </ListItem>
-            <ListItem className={classes.val}>
+            <ListItem>
               <h1 className={classes.head}>Name:</h1>
-
               {isEditingBasic === true ? (
                 <input
                   type="text"
@@ -626,7 +625,7 @@ const ProfilePeople = () => {
           )}
         </div>
 
-        {itemRoom === null ? (
+        {itemRoom !== null ? (
           <>
             <h1 className={classes.header}>ROOM</h1>
             <div className={classes.basic}>
@@ -642,7 +641,7 @@ const ProfilePeople = () => {
           <></>
         )}
 
-        {itemDoc === null ? (
+        {itemDoc !== null ? (
           <>
             <h1 className={classes.header}>DOCTOR ASSIGNED</h1>
             <div className={classes.basic}>

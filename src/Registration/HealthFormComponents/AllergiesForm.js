@@ -43,37 +43,41 @@ const AllergiesForm = (props) => {
   }
 
   return (
-    <>
-      <div className="table-title">Allergies You Might Have</div>
+		<>
+			<div className="table-title">Allergies You Might Have</div>
 			<div className="table-content">
 				<div className="table-body">
 					{allergies.map((item, index) => (
 						<div className="table-row" key={index}>
 							<div className="table-data">
-							<TextField
-								name="name"
-								label="Allergies"
-								variant="outlined"
-								placeholder={"Allergie " + (index + 1)}
-								value={item.name}
-								onChange={(event) =>
-									handleAllergieChange(index, event)
-								}
-								// fullWidth
-								margin="normal"
-							/>
+								<TextField
+									name="name"
+									label="Allergies"
+									variant="outlined"
+									placeholder={"Allergie " + (index + 1)}
+									value={item.name}
+									onChange={(event) =>
+										handleAllergieChange(index, event)
+									}
+									fullWidth
+									margin="normal"
+								/>
 							</div>
 						</div>
 					))}
-          <Button
-            variant="contained"
-            className={classes.button}
-            onClick={handleAddAllergie}
-          >+</Button>
-          <GetRemoveAllergieButton />
+					<center>
+						<Button
+							variant="contained"
+							className={classes.button}
+							onClick={handleAddAllergie}
+						>
+							+
+						</Button>
+						<GetRemoveAllergieButton />
+					</center>
 				</div>
 			</div>
-    </>
+		</>
   );
 }
 
