@@ -205,6 +205,19 @@ export default function LoginPage() {
               </Button>
             </div>
           </div>
+          <div className={classes.wrap}>
+            <div className={classes.btn}>
+              <Button
+                className="btn"
+                type="submit"
+                color="inherit"
+                variant="contained"
+                fullWidth
+              >
+                <a href="./HomeAni">Back </a>
+              </Button>
+            </div>
+          </div>
         </div>
       </form>
       <Snackbar open={alertOpen} autoHideDuration={6000} onClose={handleClose}>

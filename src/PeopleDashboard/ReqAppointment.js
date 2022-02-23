@@ -13,6 +13,8 @@ import FormLabel from "@mui/material/FormLabel";
 
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
+import jsPDF from "jspdf";
+import "jspdf-autotable";
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -125,6 +127,20 @@ export default function ReqAppointment() {
       PEOPLE_ID: id,
       DOCTOR_ID: value,
     };
+    const downloadPdf = () => {
+      const doc = new jsPDF();
+      doc.text("Your Appointment Receipt", 20, 10);
+
+      doc.autoTable({
+        //head: ["Your total Bill is", sumOfCosts],
+        theme: "grid",
+        // columns: columns.map((col) => ({ ...col, dataKey: col.field })),
+
+        body: tobesent,
+      });
+
+      doc.save("Bill.pdf");
+    };
 
     let reqdoctor = item.filter((it) => it.ID == value);
     // console.log(item[0].ID);
@@ -139,6 +155,7 @@ export default function ReqAppointment() {
           .then((response) => {
             if (response) {
               console.log(response);
+
               setAlertType("success");
               setAlertMsg(
                 "Appointment Requested Successfully. Doctor's fee " +
@@ -202,6 +219,27 @@ export default function ReqAppointment() {
 						</div>
 					</div>
 
+<<<<<<< HEAD
+          <div className={classes.wrap}>
+            <h1 className={classes.Title2}>Preferrable Doctor</h1>
+            <div className={classes.content1}>
+              <RadioGroup
+                aria-labelledby="DOCTOR_NAME"
+                className="DOCTOR_NAME"
+                onChange={handleChange}
+              >
+                {item.map((doctor) => (
+                  <FormControlLabel
+                    {...register("DOCTOR_ID")}
+                    value={doctor.ID}
+                    control={<Radio />}
+                    label={doctor.NAME + " ,Fee - " + doctor.FEE}
+                  />
+                ))}
+              </RadioGroup>
+            </div>
+          </div>
+=======
 					<div className={classes.wrap}>
 						<h1 className={classes.Title2}>Preferrable Doctor</h1>
 						<div className={classes.content1}>
@@ -221,6 +259,7 @@ export default function ReqAppointment() {
 							</RadioGroup>
 						</div>
 					</div>
+>>>>>>> 71ddf02e04d07efddce3f6e4495bc018f4e46f9a
 
 					<div className={classes.wrap}>
 						<h1 className={classes.Title2}>Reason</h1>
