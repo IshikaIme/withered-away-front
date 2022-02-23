@@ -625,7 +625,7 @@ const ProfilePeople = () => {
           )}
         </div>
 
-        {itemRoom !== null ? (
+        {itemRoom != null ? (
           <>
             <h1 className={classes.header}>ROOM</h1>
             <div className={classes.basic}>
@@ -641,7 +641,7 @@ const ProfilePeople = () => {
           <></>
         )}
 
-        {itemDoc !== null ? (
+        {itemDoc != null ? (
           <>
             <h1 className={classes.header}>DOCTOR ASSIGNED</h1>
             <div className={classes.basic}>
