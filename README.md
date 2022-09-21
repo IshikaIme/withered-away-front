@@ -1,6 +1,7 @@
 # Withered Away (Front End)
 
-The backend could be found [here](https://github.com/niananto/withered-away-back).
+The backend could be found [here](https://github.com/niananto/withered-away-back).  
+Find the video demonstration [here](https://youtu.be/2lR1TBinnHY).
 
 ## Get started locally
 
