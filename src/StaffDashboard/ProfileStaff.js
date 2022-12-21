@@ -78,7 +78,7 @@ const ProfileStaff = () => {
 
   const classes = useStyles();
   useEffect(() => {
-    fetch(`http://localhost:8080/api/staff/${id}`)
+    fetch("http://localhost:8080" + `/api/staff/${id}`)
       .then((resp) => resp.json())
       .then((resp) => {
         setItemBasic(resp.data[0]);
@@ -149,7 +149,7 @@ const ProfileStaff = () => {
                   setIsEditingBasic(false);
                   axios
                     .patch(
-                      `http://localhost:8080/api/staff/id/${id}`,
+                      "http://localhost:8080" + `/api/staff/id/${id}`,
                       itemBasic
                     )
                     .then((res) => {

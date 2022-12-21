@@ -35,7 +35,7 @@ export default function AppointmentHistory() {
   const classes = useStyles();
   useEffect(() => {
     fetch(
-      `http://localhost:8080/api/doctor/id/appointment/doctor_id/people_id/${id}`
+      "http://localhost:8080" + `/api/doctor/id/appointment/doctor_id/people_id/${id}`
     )
       .then((resp) => resp.json())
       .then((resp) => {
@@ -147,7 +147,7 @@ export default function AppointmentHistory() {
                   resolve();
                 }, 500);
                 console.log(contactId);
-                let url = `http://localhost:8080/api/appointment/id/${contactId}`;
+                let url = "http://localhost:8080" + `/api/appointment/id/${contactId}`;
                 axios.delete(url).then((res) => {
                   //     console.log("res", res);
                 });

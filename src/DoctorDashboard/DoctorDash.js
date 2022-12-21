@@ -10,7 +10,7 @@ export default function DoctorDash() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/auth/check-doctor", {
+      .get("http://localhost:8080" + "/auth/check-doctor", {
         headers: AuthHeader(),
       })
       .then(function (response) {

@@ -88,7 +88,7 @@ const ProfilePeople = () => {
   const [isEditingMis, setIsEditingMis] = useState(false);
   const classes = useStyles();
   useEffect(() => {
-		fetch(`http://localhost:8080/api/people/${id}`)
+		fetch("http://localhost:8080" + `/api/people/${id}`)
 			.then((resp) => resp.json())
 			.then((resp) => {
 				if (resp.data[0].BIRTHDAY) {
@@ -103,7 +103,7 @@ const ProfilePeople = () => {
 
   useEffect(() => {
 		fetch(
-			`http://localhost:8080/api/contact/id/connection/contact_id/people_id/${id}`
+			"http://localhost:8080" + `/api/contact/id/connection/contact_id/people_id/${id}`
 		)
 			.then((resp) => resp.json())
 			.then((resp) => {
@@ -113,7 +113,7 @@ const ProfilePeople = () => {
   }, []);
 
   useEffect(() => {
-		fetch(`http://localhost:8080/api/health_record/people_id/${id}`)
+		fetch("http://localhost:8080" + `/api/health_record/people_id/${id}`)
 			.then((resp) => resp.json())
 			.then((resp) => {
 				resp.data[0].DISABILITY = resp.data[0].DISABILITY.split(",")
@@ -134,7 +134,7 @@ const ProfilePeople = () => {
 
   useEffect(() => {
 		fetch(
-			`http://localhost:8080/api/disease/id/suffer_from/disease_id/people_id/${id}`
+			"http://localhost:8080" + `/api/disease/id/suffer_from/disease_id/people_id/${id}`
 		)
 			.then((resp) => resp.json())
 			.then((resp) => {
@@ -145,7 +145,7 @@ const ProfilePeople = () => {
 
   useEffect(() => {
 		fetch(
-			`http://localhost:8080/api/medicine/id/takes_medicine/medicine_id/people_id/${id}`
+			"http://localhost:8080" + `/api/medicine/id/takes_medicine/medicine_id/people_id/${id}`
 		)
 			.then((resp) => resp.json())
 			.then((resp) => {
@@ -155,7 +155,7 @@ const ProfilePeople = () => {
   }, []);
 
   useEffect(() => {
-		fetch(`http://localhost:8080/api/account/people_id/${id}`)
+		fetch("http://localhost:8080" + `/api/account/people_id/${id}`)
 			.then((resp) => resp.json())
 			.then((resp) => {
 				setItemMis(resp.data[0]);
@@ -165,7 +165,7 @@ const ProfilePeople = () => {
 
   useEffect(() => {
 		fetch(
-			`http://localhost:8080/api/bed_room/room_id/room_allotment/room_id/people_id/${id}`
+			"http://localhost:8080" + `/api/bed_room/room_id/room_allotment/room_id/people_id/${id}`
 		)
 			.then((resp) => resp.json())
 			.then((resp) => {
@@ -176,7 +176,7 @@ const ProfilePeople = () => {
 
   useEffect(() => {
 		fetch(
-			`http://localhost:8080/api/doctor/id/diagnosed_by/doctor_id/people_id/${id}`
+			"http://localhost:8080" + `/api/doctor/id/diagnosed_by/doctor_id/people_id/${id}`
 		)
 			.then((resp) => resp.json())
 			.then((resp) => {
@@ -287,7 +287,7 @@ const ProfilePeople = () => {
 									setIsEditingBasic(false);
 									axios
 										.patch(
-											`http://localhost:8080/api/people/id/${id}`,
+											"http://localhost:8080" + `/api/people/id/${id}`,
 											itemBasic
 										)
 										.then((res) => {
@@ -385,7 +385,7 @@ const ProfilePeople = () => {
 									setIsEditingContact(false);
 									axios
 										.patch(
-											`http://localhost:8080/api/contact/id/${itemContact.ID}`,
+											"http://localhost:8080" + `/api/contact/id/${itemContact.ID}`,
 											itemContact
 										)
 										.then((res) => {
@@ -560,7 +560,7 @@ const ProfilePeople = () => {
 									setIsEditingHealth(false);
 									axios
 										.patch(
-											`http://localhost:8080/api/health_record/people_id/${id}`,
+											"http://localhost:8080" + `/api/health_record/people_id/${id}`,
 											itemHealth
 										)
 										.then((res) => {
@@ -673,7 +673,7 @@ const ProfilePeople = () => {
 									setIsEditingMis(false);
 									axios
 										.patch(
-											`http://localhost:8080/api/account/people_id/${id}`,
+											"http://localhost:8080" + `/api/account/people_id/${id}`,
 											itemMis
 										)
 										.then((res) => {

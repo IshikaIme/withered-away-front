@@ -53,7 +53,7 @@ function TableStaff() {
     doc.save("TableStaff.pdf");
   };
   useEffect(() => {
-    fetch("http://localhost:8080/api/staff")
+    fetch("http://localhost:8080" + "/api/staff")
       .then((resp) => resp.json())
       .then((resp) => {
         setTableData(resp.data);
@@ -86,7 +86,7 @@ function TableStaff() {
 
               axios
                 .post(
-                  "http://localhost:8080/api/staff",
+                  "http://localhost:8080" + "/api/staff",
 
                   newData
                 )
@@ -110,7 +110,7 @@ function TableStaff() {
               }, 500);
               axios
                 .patch(
-                  `http://localhost:8080/api/staff/id/${newData.ID}`,
+                  "http://localhost:8080" + `/api/staff/id/${newData.ID}`,
                   newData
                 )
                 .then((res) => {
@@ -128,7 +128,7 @@ function TableStaff() {
 
                 resolve();
               }, 1000);
-              let url = `http://localhost:8080/api/staff/${contactId}`;
+              let url = "http://localhost:8080" + `/api/staff/${contactId}`;
               axios.delete(url).then((res) => {
                 //     console.log("res", res);
               });

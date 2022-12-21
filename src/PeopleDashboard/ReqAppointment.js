@@ -90,7 +90,7 @@ export default function ReqAppointment() {
   const [alertType, setAlertType] = React.useState("");
 
   useEffect(() => {
-    fetch(`http://localhost:8080/api/doctor`)
+    fetch("http://localhost:8080" + `/api/doctor`)
       .then((resp) => resp.json())
       .then((resp) => {
         setItem(resp.data);
@@ -99,7 +99,7 @@ export default function ReqAppointment() {
       });
   }, []);
   useEffect(() => {
-    fetch(`http://localhost:8080/api/account/people_id/${id}`)
+    fetch("http://localhost:8080" + `/api/account/people_id/${id}`)
       .then((resp) => resp.json())
       .then((resp) => {
         setAcc(resp.data[0]);
@@ -151,7 +151,7 @@ export default function ReqAppointment() {
     if (reqdoctor[0].FEE < acc.BALANCE) {
       try {
         axios
-          .patch(`http://localhost:8080/api/reqappointment`, tobesent)
+          .patch("http://localhost:8080" + `/api/reqappointment`, tobesent)
           .then((response) => {
             if (response) {
               console.log(response);

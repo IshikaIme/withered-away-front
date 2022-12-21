@@ -144,7 +144,7 @@ export default function Donations() {
     console.log(data, e);
 
     // axios
-    // .post("http://localhost:8080/api/book_issue", {
+    // .post("http://localhost:8080" + "/api/book_issue", {
     //   BOOK_ID: data.BOOK_ID,
     //   PEOPLE_ID: id,
     //   ISSUE_DATE: new Date(),
@@ -164,7 +164,7 @@ export default function Donations() {
     console.log(tobesent);
 
     axios
-      .post("http://localhost:8080/api/donation", tobesent)
+      .post("http://localhost:8080" + "/api/donation", tobesent)
       .then((response) => {
         if (response) {
           console.log(response);

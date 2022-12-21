@@ -66,7 +66,7 @@ function TableFood() {
   };
 
   useEffect(() => {
-    fetch("http://localhost:8080/api/food")
+    fetch("http://localhost:8080" + "/api/food")
       .then((resp) => resp.json())
       .then((resp) => {
         setTableData(resp.data);
@@ -99,7 +99,7 @@ function TableFood() {
 
               axios
                 .post(
-                  "http://localhost:8080/api/food",
+                  "http://localhost:8080" + "/api/food",
 
                   newData
                 )
@@ -123,7 +123,7 @@ function TableFood() {
               }, 500);
               axios
                 .patch(
-                  `http://localhost:8080/api/food/id/${newData.ID}`,
+                  "http://localhost:8080" + `/api/food/id/${newData.ID}`,
                   newData
                 )
                 .then((res) => {
@@ -141,7 +141,7 @@ function TableFood() {
 
                 resolve();
               }, 1000);
-              let url = `http://localhost:8080/api/food/${contactId}`;
+              let url = "http://localhost:8080" + `/api/food/${contactId}`;
               axios.delete(url).then((res) => {
                 //     console.log("res", res);
               });

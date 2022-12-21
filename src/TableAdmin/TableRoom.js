@@ -55,7 +55,7 @@ function TableRoom() {
     doc.save("TableRoom.pdf");
   };
   useEffect(() => {
-    fetch("http://localhost:8080/api/room")
+    fetch("http://localhost:8080" + "/api/room")
       .then((resp) => resp.json())
       .then((resp) => {
         setTableData(resp.data);
@@ -88,7 +88,7 @@ function TableRoom() {
 
               axios
                 .post(
-                  "http://localhost:8080/api/room",
+                  "http://localhost:8080" + "/api/room",
 
                   newData
                 )
@@ -112,7 +112,7 @@ function TableRoom() {
               }, 500);
               axios
                 .patch(
-                  `http://localhost:8080/api/room/id/${newData.ID}`,
+                  "http://localhost:8080" + `/api/room/id/${newData.ID}`,
                   newData
                 )
                 .then((res) => {
@@ -130,7 +130,7 @@ function TableRoom() {
 
                 resolve();
               }, 1000);
-              let url = `http://localhost:8080/api/room/${contactId}`;
+              let url = "http://localhost:8080" + `/api/room/${contactId}`;
               axios.delete(url).then((res) => {
                 //     console.log("res", res);
               });

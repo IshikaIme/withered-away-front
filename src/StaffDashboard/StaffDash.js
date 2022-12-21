@@ -10,7 +10,7 @@ export default function StaffDash() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/auth/check-staff", {
+      .get("http://localhost:8080" + "/auth/check-staff", {
         headers: AuthHeader(),
       })
       .then(function (response) {

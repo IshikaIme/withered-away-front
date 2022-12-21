@@ -83,7 +83,7 @@ export default function ReqABook() {
   let navigate = useNavigate();
 
   useEffect(() => {
-    fetch(`http://localhost:8080/api/books`)
+    fetch("http://localhost:8080" + `/api/books`)
       .then((resp) => resp.json())
       .then((resp) => {
         setItem(resp.data);
@@ -108,7 +108,7 @@ export default function ReqABook() {
     // console.log(values);
     try {
       axios
-			.patch(`http://localhost:8080/api/issuebook/`, {
+			.patch("http://localhost:8080" + `/api/issuebook/`, {
 				BOOK_ID: data.BOOK_ID,
 				PEOPLE_ID: id,
 				ISSUE_DATE: new Date(),

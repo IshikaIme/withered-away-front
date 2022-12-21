@@ -92,7 +92,7 @@ export default function LoginPage() {
     console.log(values);
 
     axios
-      .post("http://localhost:8080/auth/users/login", values)
+      .post("http://localhost:8080" + "/auth/users/login", values)
       .then((response) => {
         if (response.data.accessToken) {
           setAlertType("success");

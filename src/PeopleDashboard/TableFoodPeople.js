@@ -58,7 +58,7 @@ function TableFoodPeople() {
   ];
 
   useEffect(() => {
-    fetch(`http://localhost:8080/api/account/people_id/${id}`)
+    fetch("http://localhost:8080" + `/api/account/people_id/${id}`)
       .then((resp) => resp.json())
       .then((resp) => {
         setItem(resp.data[0]);
@@ -133,7 +133,7 @@ function TableFoodPeople() {
     doc.save("Bill.pdf");
   };
   useEffect(() => {
-    fetch("http://localhost:8080/api/food")
+    fetch("http://localhost:8080" + "/api/food")
       .then((resp) => resp.json())
       .then((resp) => {
         setTableData(resp.data);
@@ -251,7 +251,7 @@ function TableFoodPeople() {
             onClick={(event, reason) => {
               setDialogOpen(false);
               axios
-                .patch(`http://localhost:8080/api/account/people_id/${id}`, {
+                .patch("http://localhost:8080" + `/api/account/people_id/${id}`, {
                   BALANCE: item.BALANCE - costOfFood,
                 })
                 .then((res) => {
@@ -259,7 +259,7 @@ function TableFoodPeople() {
                   var medics = selectedRows.map((row) => row.NAME.trim());
                   //console.log(medics.join(","));
                   axios
-                    .post(`http://localhost:8080/api/transactions`, {
+                    .post("http://localhost:8080" + `/api/transactions`, {
                       BANK_ACCOUNT_NO: item.BANK_ACCOUNT_NO,
                       PEOPLE_ID: id,
                       TRX_TYPE: "BUYING FOOD",

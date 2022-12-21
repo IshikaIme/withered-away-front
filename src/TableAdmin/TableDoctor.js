@@ -89,7 +89,7 @@ function TableDoctor() {
     doc.save("TableDoctor.pdf");
   };
   useEffect(() => {
-    fetch("http://localhost:8080/api/doctor")
+    fetch("http://localhost:8080" + "/api/doctor")
       .then((resp) => resp.json())
       .then((resp) => {
         setTableData(resp.data);
@@ -122,7 +122,7 @@ function TableDoctor() {
 
               axios
                 .post(
-                  "http://localhost:8080/api/doctor",
+                  "http://localhost:8080" + "/api/doctor",
 
                   newData
                 )
@@ -146,7 +146,7 @@ function TableDoctor() {
               }, 500);
               axios
                 .patch(
-                  `http://localhost:8080/api/doctor/id/${newData.ID}`,
+                  "http://localhost:8080" + `/api/doctor/id/${newData.ID}`,
                   newData
                 )
                 .then((res) => {
@@ -164,7 +164,7 @@ function TableDoctor() {
 
                 resolve();
               }, 1000);
-              let url = `http://localhost:8080/api/doctor/id/${contactId}`;
+              let url = "http://localhost:8080" + `/api/doctor/id/${contactId}`;
               axios.delete(url).then((res) => {
                 //     console.log("res", res);
               });
