@@ -1,5 +1,6 @@
 # Withered Away (Front End)
 
+Sample deployment [here](https://withered-away-front-build.onrender.com/)
 The backend could be found [here](https://github.com/niananto/withered-away-back).  
 Find the video demonstration [here](https://youtu.be/2lR1TBinnHY).
 
