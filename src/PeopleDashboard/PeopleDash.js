@@ -9,7 +9,7 @@ export default function PeopleDash() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080" + "/auth/check-people", {
+      .get("https://withered-away-back-postgres.onrender.com" + "/auth/check-people", {
         headers: AuthHeader(),
       })
       .then(function (response) {

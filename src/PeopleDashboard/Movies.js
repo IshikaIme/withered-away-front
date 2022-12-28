@@ -39,7 +39,7 @@ export default function Songs() {
   const classes = useStyles();
   useEffect(() => {
     fetch(
-      "http://localhost:8080" + `/api/movie/id/movie_favorites/movie_id/people_id/${id}`
+      "https://withered-away-back-postgres.onrender.com" + `/api/movie/id/movie_favorites/movie_id/people_id/${id}`
     )
       .then((resp) => resp.json())
       .then((resp) => {
@@ -105,7 +105,7 @@ export default function Songs() {
                 };
                 axios
                   .post(
-                    "http://localhost:8080" + `/api/movie/`,
+                    "https://withered-away-back-postgres.onrender.com" + `/api/movie/`,
 
                     newItem
                   )
@@ -115,7 +115,7 @@ export default function Songs() {
 
                     axios
                       .post(
-                        "http://localhost:8080" + `/api/movie_favorites/`,
+                        "https://withered-away-back-postgres.onrender.com" + `/api/movie_favorites/`,
 
                         { PEOPLE_ID: id, MOVIE_ID: response.data.ID }
                       )
@@ -145,7 +145,7 @@ export default function Songs() {
 
                   resolve();
                 }, 1000);
-                let url = "http://localhost:8080" + `/api/movie_favorites/movie_id/${contactId}`;
+                let url = "https://withered-away-back-postgres.onrender.com" + `/api/movie_favorites/movie_id/${contactId}`;
                 axios.delete(url).then((res) => {
                   //     console.log("res", res);
                 });

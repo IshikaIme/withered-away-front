@@ -60,7 +60,7 @@ function ScheduleStaff() {
   ];
 
   useEffect(() => {
-    fetch("http://localhost:8080" + "/api/staff_schedule")
+    fetch("https://withered-away-back-postgres.onrender.com" + "/api/staff_schedule")
       .then((resp) => resp.json())
       .then((resp) => {
         setTableData(resp.data);

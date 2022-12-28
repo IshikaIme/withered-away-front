@@ -72,7 +72,7 @@ export default function TableMedicine() {
     doc.save("TableMedicine.pdf");
   };
   useEffect(() => {
-    fetch("http://localhost:8080" + "/api/medicine")
+    fetch("https://withered-away-back-postgres.onrender.com" + "/api/medicine")
       .then((resp) => resp.json())
       .then((resp) => {
         setTableData(resp.data);
@@ -105,7 +105,7 @@ export default function TableMedicine() {
 
               axios
                 .post(
-                  "http://localhost:8080" + "/api/medicine",
+                  "https://withered-away-back-postgres.onrender.com" + "/api/medicine",
 
                   newData
                 )
@@ -129,7 +129,7 @@ export default function TableMedicine() {
               }, 500);
               axios
                 .patch(
-                  "http://localhost:8080" + `/api/medicine/id/${newData.ID}`,
+                  "https://withered-away-back-postgres.onrender.com" + `/api/medicine/id/${newData.ID}`,
                   newData
                 )
                 .then((res) => {
@@ -147,7 +147,7 @@ export default function TableMedicine() {
 
                 resolve();
               }, 1000);
-              let url = "http://localhost:8080" + `/api/medicine/${contactId}`;
+              let url = "https://withered-away-back-postgres.onrender.com" + `/api/medicine/${contactId}`;
               axios.delete(url).then((res) => {
                 //     console.log("res", res);
               });

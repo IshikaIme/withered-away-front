@@ -5,7 +5,7 @@ import AuthHeader from "./AuthHeader";
 
 const checkPeople = () => {
 	axios
-		.get("http://localhost:8080" + "/auth/check-people", AuthHeader())
+		.get("https://withered-away-back-postgres.onrender.com" + "/auth/check-people", AuthHeader())
 		.then((res) => {
 			console.log(res);
 		})

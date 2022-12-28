@@ -35,7 +35,7 @@ export default function TableDonation() {
 
   const classes = useStyles();
   useEffect(() => {
-    fetch("http://localhost:8080" + `/api/donation`)
+    fetch("https://withered-away-back-postgres.onrender.com" + `/api/donation`)
       .then((resp) => resp.json())
       .then((resp) => {
         setItem(resp.data);

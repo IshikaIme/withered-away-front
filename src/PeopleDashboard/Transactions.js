@@ -82,7 +82,7 @@ function Transactions() {
     doc.save("Transactions.pdf");
   };
   useEffect(() => {
-    fetch("http://localhost:8080" + "/api/transactions")
+    fetch("https://withered-away-back-postgres.onrender.com" + "/api/transactions")
       .then((resp) => resp.json())
       .then((resp) => {
         setTableData(resp.data);

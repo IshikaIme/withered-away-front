@@ -73,7 +73,7 @@ const ProfileDoctor = () => {
 
   const classes = useStyles();
   useEffect(() => {
-    fetch("http://localhost:8080" + `/api/doctor/${id}`)
+    fetch("https://withered-away-back-postgres.onrender.com" + `/api/doctor/${id}`)
       .then((resp) => resp.json())
       .then((resp) => {
         setItemBasic(resp.data[0]);
@@ -190,7 +190,7 @@ const ProfileDoctor = () => {
                   setIsEditingBasic(false);
                   axios
                     .patch(
-                      "http://localhost:8080" + `/api/doctor/id/${id}`,
+                      "https://withered-away-back-postgres.onrender.com" + `/api/doctor/id/${id}`,
                       itemBasic
                     )
                     .then((res) => {

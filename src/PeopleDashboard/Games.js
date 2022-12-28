@@ -39,7 +39,7 @@ export default function Games() {
   const classes = useStyles();
   useEffect(() => {
     fetch(
-      "http://localhost:8080" + `/api/game/id/game_favorites/game_id/people_id/${id}`
+      "https://withered-away-back-postgres.onrender.com" + `/api/game/id/game_favorites/game_id/people_id/${id}`
     )
       .then((resp) => resp.json())
       .then((resp) => {
@@ -107,7 +107,7 @@ export default function Games() {
 
                 axios
                   .post(
-                    "http://localhost:8080" + `/api/game/`,
+                    "https://withered-away-back-postgres.onrender.com" + `/api/game/`,
 
                     newItem
                   )
@@ -117,7 +117,7 @@ export default function Games() {
 
                     axios
                       .post(
-                        "http://localhost:8080" + `/api/game_favorites/`,
+                        "https://withered-away-back-postgres.onrender.com" + `/api/game_favorites/`,
 
                         { PEOPLE_ID: id, GAME_ID: response.data.ID }
                       )
@@ -147,7 +147,7 @@ export default function Games() {
 
                   resolve();
                 }, 100);
-                let url = "http://localhost:8080" + `/api/game_favorites/game_id/${contactId}`;
+                let url = "https://withered-away-back-postgres.onrender.com" + `/api/game_favorites/game_id/${contactId}`;
                 axios.delete(url).then((res) => {
                   //     console.log("res", res);
                 });

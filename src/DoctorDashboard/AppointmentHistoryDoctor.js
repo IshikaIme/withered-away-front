@@ -36,7 +36,7 @@ export default function AppointmentHistoryDoctor() {
   const classes = useStyles();
   useEffect(() => {
     fetch(
-      "http://localhost:8080" + `/api/people/id/appointment/people_id/doctor_id/${id}`
+      "https://withered-away-back-postgres.onrender.com" + `/api/people/id/appointment/people_id/doctor_id/${id}`
     )
       .then((resp) => resp.json())
       .then((resp) => {

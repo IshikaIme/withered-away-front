@@ -38,7 +38,7 @@ export default function SeeRequestedAppointments() {
   const classes = useStyles();
   useEffect(() => {
     fetch(
-      "http://localhost:8080" + `/api/people/id/appointment/people_id/doctor_id/${id}`
+      "https://withered-away-back-postgres.onrender.com" + `/api/people/id/appointment/people_id/doctor_id/${id}`
     )
       .then((resp) => resp.json())
       .then((resp) => {
@@ -176,7 +176,7 @@ export default function SeeRequestedAppointments() {
                 console.log(newData);
                 axios
                   .patch(
-                    "http://localhost:8080" + `/api/appointment/id/${newData.ID_1}`,
+                    "https://withered-away-back-postgres.onrender.com" + `/api/appointment/id/${newData.ID_1}`,
                     newData
                   )
                   .then((res) => {
@@ -198,7 +198,7 @@ export default function SeeRequestedAppointments() {
 
                   resolve();
                 }, 500);
-                let url = "http://localhost:8080" + `/api/appointment/${contactId}`;
+                let url = "https://withered-away-back-postgres.onrender.com" + `/api/appointment/${contactId}`;
                 axios.delete(url).then((res) => {
                   //     console.log("res", res);
                 });
@@ -220,7 +220,7 @@ export default function SeeRequestedAppointments() {
             //       resolve();
             //     }, 500);
             //     console.log(contactId);
-            //     let url = "http://localhost:8080" + `/api/appointment/id/${contactId}`;
+            //     let url = "https://withered-away-back-postgres.onrender.com" + `/api/appointment/id/${contactId}`;
             //     axios.delete(url).then((res) => {
             //       //     console.log("res", res);
             //     });

@@ -39,7 +39,7 @@ export default function Songs() {
   const classes = useStyles();
   useEffect(() => {
     fetch(
-      "http://localhost:8080" + `/api/song/id/song_favorites/song_id/people_id/${id}`
+      "https://withered-away-back-postgres.onrender.com" + `/api/song/id/song_favorites/song_id/people_id/${id}`
     )
       .then((resp) => resp.json())
       .then((resp) => {
@@ -109,7 +109,7 @@ export default function Songs() {
                 console.log(newItem);
                 axios
                   .post(
-                    "http://localhost:8080" + `/api/song/`,
+                    "https://withered-away-back-postgres.onrender.com" + `/api/song/`,
 
                     newItem
                   )
@@ -119,7 +119,7 @@ export default function Songs() {
 
                     axios
                       .post(
-                        "http://localhost:8080" + `/api/song_favorites/`,
+                        "https://withered-away-back-postgres.onrender.com" + `/api/song_favorites/`,
 
                         { PEOPLE_ID: id, SONG_ID: response.data.ID }
                       )
@@ -147,7 +147,7 @@ export default function Songs() {
             //     }, 500);
             //     axios
             //       .patch(
-            //         "http://localhost:8080" + `/api/song/id/song_favorites/song_id/people_id/${id}/${newData.ID}`,
+            //         "https://withered-away-back-postgres.onrender.com" + `/api/song/id/song_favorites/song_id/people_id/${id}/${newData.ID}`,
             //         newData
             //       )
             //       .then((res) => {
@@ -167,7 +167,7 @@ export default function Songs() {
 
                   resolve();
                 }, 500);
-                let url = "http://localhost:8080" + `/api/song_favorites/song_id/${songId}`;
+                let url = "https://withered-away-back-postgres.onrender.com" + `/api/song_favorites/song_id/${songId}`;
                 axios.delete(url).then((res) => {
                   //     console.log("res", res);
                 });

@@ -61,7 +61,7 @@ export default function TableMedicinePeople() {
   //       .exportFile();
   //   };
   useEffect(() => {
-    fetch("http://localhost:8080" + `/api/account/people_id/${id}`)
+    fetch("https://withered-away-back-postgres.onrender.com" + `/api/account/people_id/${id}`)
       .then((resp) => resp.json())
       .then((resp) => {
         setItem(resp.data[0]);
@@ -149,7 +149,7 @@ export default function TableMedicinePeople() {
   //     doc.save("table.pdf");
   //   };
   useEffect(() => {
-    fetch("http://localhost:8080" + "/api/medicine")
+    fetch("https://withered-away-back-postgres.onrender.com" + "/api/medicine")
       .then((resp) => resp.json())
       .then((resp) => {
         const r = resp.data.filter((d) => d.COST !== null);
@@ -245,7 +245,7 @@ export default function TableMedicinePeople() {
             onClick={(event, reason) => {
               setDialogOpen(false);
               axios
-                .patch("http://localhost:8080" + `/api/account/people_id/${id}`, {
+                .patch("https://withered-away-back-postgres.onrender.com" + `/api/account/people_id/${id}`, {
                   BALANCE: item.BALANCE - costOfMedicine,
                 })
                 .then((res) => {
@@ -253,7 +253,7 @@ export default function TableMedicinePeople() {
                   var medics = selectedRows.map((row) => row.NAME.trim());
                   //console.log(medics.join(","));
                   axios
-                    .post("http://localhost:8080" + `/api/transactions`, {
+                    .post("https://withered-away-back-postgres.onrender.com" + `/api/transactions`, {
                       BANK_ACCOUNT_NO: item.BANK_ACCOUNT_NO,
                       PEOPLE_ID: id,
                       TRX_TYPE: "BUYING MEDICINE",

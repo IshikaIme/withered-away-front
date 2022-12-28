@@ -19,7 +19,7 @@ export default function AdminDash() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080" + "/auth/check-admin", {
+      .get("https://withered-away-back-postgres.onrender.com" + "/auth/check-admin", {
         headers: AuthHeader(),
       })
       .then(function (response) {

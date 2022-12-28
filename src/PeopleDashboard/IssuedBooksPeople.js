@@ -35,7 +35,7 @@ export default function IssuedBooksPeople() {
   const classes = useStyles();
   useEffect(() => {
     fetch(
-      "http://localhost:8080" + `/api/books/id/book_issue/book_id/people_id/${id}`
+      "https://withered-away-back-postgres.onrender.com" + `/api/books/id/book_issue/book_id/people_id/${id}`
     )
       .then((resp) => resp.json())
       .then((resp) => {

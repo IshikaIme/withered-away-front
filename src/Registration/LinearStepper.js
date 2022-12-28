@@ -102,7 +102,7 @@ const LinearStepper = () => {
 		console.log(data);
 		if (activeStep === steps.length - 1) {
 			axios
-				.post("http://localhost:8080" + "/api/reg", data)
+				.post("https://withered-away-back-postgres.onrender.com" + "/api/reg", data)
 				.then((resp) => resp.json())
 				.catch((error) => console.log(error))
 				.then((res) => {

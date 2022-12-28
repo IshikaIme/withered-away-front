@@ -10,7 +10,7 @@ export default function DoctorDash() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080" + "/auth/check-doctor", {
+      .get("https://withered-away-back-postgres.onrender.com" + "/auth/check-doctor", {
         headers: AuthHeader(),
       })
       .then(function (response) {
